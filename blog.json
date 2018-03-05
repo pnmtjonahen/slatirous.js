@@ -1,0 +1,10 @@
+[
+    {
+        "title": "SLATIROUS BLOGGING", 
+        "description": "Slatirous Blogging", 
+        "date": "April 1, 2018",
+        "imageurl":"https://www.w3schools.com/w3images/woods.jpg",
+        "imagealt":"nature",
+        "entry":"Slatirous.js is not a javascript framework, it is javascript blogging without a framework. So build on the famous slatirous.js framework we now can enter blog entries."
+    }
+]
