@@ -3,7 +3,7 @@ class IndexView {
         this.blogContainer = document.getElementById("blog");
 
         fetch("blog.json").then(res => res.json()).then(json => {
-            json.forEach((blog) => {
+            json.forEach(blog => {
                 this.blogContainer.appendChild(this.newBlog(blog));
             });
         });
@@ -27,7 +27,7 @@ class IndexView {
         img.alt = blog.imagealt;
         img.style = "width:100%";
         
-        div.appendChild(img);
+//        div.appendChild(img);
         
         const title = document.createElement("div");
         
@@ -55,8 +55,15 @@ class IndexView {
         entry.className = "w3-container";
         
         const p = document.createElement("p");
-        p.appendChild(document.createTextNode(blog.entry));
-        
+        if (Array.isArray(blog.entry)) {
+            blog.entry.forEach(e => {
+                const subp = document.createElement("p");
+                subp.appendChild(document.createTextNode(e)); 
+                p.appendChild(subp);
+            });
+        } else {
+            p.appendChild(document.createTextNode(blog.entry));
+        }
         entry.appendChild(p);
         
         div.append(entry);
