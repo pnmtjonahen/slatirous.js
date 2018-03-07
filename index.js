@@ -1,11 +1,45 @@
+/* global fetch, Node */
+
 class IndexView {
     constructor() {
         this.blogContainer = document.getElementById("blog");
 
         fetch("blog.json").then(res => res.json()).then(json => {
+            const pp = document.getElementById("popular-post");
+            this.popularPostTemplate = pp.cloneNode(true);
+            this.popularPost = pp.parentNode;
+            this.popularPost.removeChild(pp);
+
             json.forEach(blog => {
                 this.blogContainer.appendChild(this.newBlog(blog));
+
+                const npp = this.popularPostTemplate.cloneNode(true);
+                this.replaceTemplateValues(npp, blog);
+
+                this.popularPost.appendChild(npp);
             });
+        });
+    }
+
+    replaceTemplateValues(node, blog) {
+        node.childNodes.forEach(n => {
+            if (n.nodeType === Node.TEXT_NODE) {
+                for (var name in blog) {
+                    if (n.nodeValue === "{" + name + "}") {
+                        n.nodeValue = blog[name];
+                    }
+                }
+            } else {
+                var attrs = n.attributes;
+                for (var i = attrs.length - 1; i >= 0; i--) {
+                    for (var name in blog) {
+                        if (attrs[i].value === "{" + name + "}") {
+                            attrs[i].value = blog[name];
+                        }
+                    }
+                }
+                this.replaceTemplateValues(n, blog);
+            }
         });
     }
 
@@ -22,13 +56,6 @@ class IndexView {
     }
 
     appendBlogTitle(div, blog) {
-        const img = document.createElement("img");
-        img.src = blog.imageurl;
-        img.alt = blog.imagealt;
-        img.style = "width:100%";
-
-//        div.appendChild(img);
-
         const title = document.createElement("div");
 
         title.className = "w3-container";
