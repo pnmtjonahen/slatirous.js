@@ -2,21 +2,17 @@
 
 class IndexView {
     constructor() {
-        this.blogContainer = document.getElementById("blog");
 
         fetch("blog.json").then(res => res.json()).then(json => {
+            const blogContainer = document.getElementById("blog");
             const pp = document.getElementById("popular-post");
-            this.popularPostTemplate = pp.cloneNode(true);
-            this.popularPost = pp.parentNode;
-            this.popularPost.removeChild(pp);
+            const popularPostTemplate = pp.cloneNode(true);
+            const popularPost = pp.parentNode;
+            popularPost.removeChild(pp);
 
             json.forEach(blog => {
-                this.blogContainer.appendChild(this.newBlog(blog));
-
-                const npp = this.popularPostTemplate.cloneNode(true);
-                this.replaceTemplateValues(npp, blog);
-
-                this.popularPost.appendChild(npp);
+                blogContainer.appendChild(this.newBlog(blog));
+                popularPost.appendChild(this.replaceTemplateValues(popularPostTemplate.cloneNode(true), blog));
             });
         });
     }
@@ -41,6 +37,7 @@ class IndexView {
                 this.replaceTemplateValues(n, blog);
             }
         });
+        return node;
     }
 
     newBlog(blog) {
@@ -76,9 +73,9 @@ class IndexView {
 
         div.append(title);
     }
+    
     appendBlogEntry(div, blog) {
         const entry = document.createElement("div");
-
         entry.className = "w3-container";
 
         const p = document.createElement("p");
@@ -94,7 +91,6 @@ class IndexView {
         entry.appendChild(p);
 
         div.append(entry);
-
     }
 }
 const view = new IndexView();
