@@ -18,25 +18,27 @@ class IndexView {
     }
 
     replaceTemplateValues(node, blog) {
-        node.childNodes.forEach(n => {
-            if (n.nodeType === Node.TEXT_NODE) {
-                for (var name in blog) {
-                    if (n.nodeValue === "{" + name + "}") {
-                        n.nodeValue = blog[name];
-                    }
+
+        Array.from(node.childNodes).filter(n => n.nodeType === Node.TEXT_NODE).forEach(n => {
+            for (var name in blog) {
+                if (n.nodeValue === "{" + name + "}") {
+                    n.nodeValue = blog[name];
                 }
-            } else {
-                var attrs = n.attributes;
-                for (var i = attrs.length - 1; i >= 0; i--) {
-                    for (var name in blog) {
-                        if (attrs[i].value === "{" + name + "}") {
-                            attrs[i].value = blog[name];
-                        }
-                    }
-                }
-                this.replaceTemplateValues(n, blog);
             }
         });
+
+        Array.from(node.childNodes).filter(n => n.nodeType !== Node.TEXT_NODE).forEach(n => {
+            const attrs = n.attributes;
+            Array.from(attrs).forEach(attr =>  {
+                for (var name in blog) {
+                    if (attr.value === "{" + name + "}") {
+                        attr.value = blog[name];
+                    }
+                }
+            });
+            this.replaceTemplateValues(n, blog);
+        });
+        
         return node;
     }
 
@@ -73,7 +75,7 @@ class IndexView {
 
         div.append(title);
     }
-    
+
     appendBlogEntry(div, blog) {
         const entry = document.createElement("div");
         entry.className = "w3-container";
