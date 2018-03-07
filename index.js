@@ -28,8 +28,7 @@ class IndexView {
         });
 
         Array.from(node.childNodes).filter(n => n.nodeType !== Node.TEXT_NODE).forEach(n => {
-            const attrs = n.attributes;
-            Array.from(attrs).forEach(attr =>  {
+            Array.from(n.attributes).forEach(attr =>  {
                 for (var name in blog) {
                     if (attr.value === "{" + name + "}") {
                         attr.value = blog[name];
