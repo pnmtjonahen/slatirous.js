@@ -5,39 +5,11 @@ class IndexView {
 
         fetch("blog.json").then(res => res.json()).then(json => {
             const blogContainer = document.getElementById("blog");
-            const pp = document.getElementById("popular-post");
-            const popularPostTemplate = pp.cloneNode(true);
-            const popularPost = pp.parentNode;
-            popularPost.removeChild(pp);
 
             json.forEach(blog => {
                 blogContainer.appendChild(this.newBlog(blog));
-                popularPost.appendChild(this.replaceTemplateValues(popularPostTemplate.cloneNode(true), blog));
             });
         });
-    }
-
-    replaceTemplateValues(node, blog) {
-
-        Array.from(node.childNodes).filter(n => n.nodeType === Node.TEXT_NODE).forEach(n => {
-            var name;
-            if ((name = /\{(.*?)\}/.exec(n.nodeValue)) !== null) {
-                n.nodeValue = blog[name[1]];
-            }
-        });
-
-        Array.from(node.childNodes).filter(n => n.nodeType !== Node.TEXT_NODE).forEach(n => {
-            Array.from(n.attributes).forEach(attr => {
-                for (var name in blog) {
-                    if (attr.value === "{" + name + "}") {
-                        attr.value = blog[name];
-                    }
-                }
-            });
-            this.replaceTemplateValues(n, blog);
-        });
-
-        return node;
     }
 
     newBlog(blog) {
