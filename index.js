@@ -20,7 +20,7 @@ class IndexView {
     replaceTemplateValues(node, blog) {
 
         Array.from(node.childNodes).filter(n => n.nodeType === Node.TEXT_NODE).forEach(n => {
-            var name;
+            let name;
             if ((name = /\{(.*?)\}/.exec(n.nodeValue)) !== null) {
                 n.nodeValue = blog[name[1]];
             }
@@ -28,11 +28,11 @@ class IndexView {
 
         Array.from(node.childNodes).filter(n => n.nodeType !== Node.TEXT_NODE).forEach(n => {
             Array.from(n.attributes).forEach(attr => {
-                for (var name in blog) {
+                Object.keys(blog).forEach(name => {
                     if (attr.value === "{" + name + "}") {
                         attr.value = blog[name];
                     }
-                }
+                });
             });
             this.replaceTemplateValues(n, blog);
         });
