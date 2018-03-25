@@ -1,0 +1,33 @@
+{
+  "name": "slatirous.js",
+  "version": "1.0.0",
+  "license": "SEE LICENSE IN LICENCE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pnmtjonahen/slatirous.js.git"
+  },
+  "keywords": [
+    "demo",
+    "client",
+    "browser"
+  ],
+  "author": "Philippe Tjon - A - Hen philippe@tjonahen.nl",
+  "contributors": [],
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "jest": "^22.4.3",
+    "jest-fetch-mock": "^1.5.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
+    ],
+    "collectCoverage":true,
+        "coverageReporters" : ["json", "text", "lcov"]
+  }
+}
