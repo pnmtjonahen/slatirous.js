@@ -27,7 +27,11 @@
     "setupFiles": [
       "./setupJest.js"
     ],
-    "collectCoverage":true,
-        "coverageReporters" : ["json", "text", "lcov"]
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "text",
+      "lcov"
+    ]
   }
 }
