@@ -94,6 +94,3 @@ class IndexView {
     }
 }
 const view = new IndexView();
-
-
-
