@@ -12,21 +12,25 @@ class IndexView {
 
             json.forEach(blog => {
                 blogContainer.appendChild(this.newBlog(blog));
-                popularPost.appendChild(this.replaceTemplateValues(popularPostTemplate.cloneNode(true), blog));
+                popularPost.appendChild(
+                        this.replaceTemplateValues(
+                        popularPostTemplate.cloneNode(true), blog));
             });
         });
     }
 
     replaceTemplateValues(node, blog) {
 
-        Array.from(node.childNodes).filter(n => n.nodeType === Node.TEXT_NODE).forEach(n => {
+        Array.from(node.childNodes)
+                .filter(n => n.nodeType === Node.TEXT_NODE).forEach(n => {
             let name;
             if ((name = /\{(.*?)\}/.exec(n.nodeValue)) !== null) {
                 n.nodeValue = blog[name[1]];
             }
         });
 
-        Array.from(node.childNodes).filter(n => n.nodeType !== Node.TEXT_NODE).forEach(n => {
+        Array.from(node.childNodes)
+                .filter(n => n.nodeType !== Node.TEXT_NODE).forEach(n => {
             Array.from(n.attributes).forEach(attr => {
                 Object.keys(blog).forEach(name => {
                     if (attr.value === "{" + name + "}") {
