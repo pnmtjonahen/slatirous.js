@@ -1,5 +1,13 @@
 [
     {
+        "title": "Ordina Code&Comedy", 
+        "description": "Slatirous presentation at Code&Comedy", 
+        "date": "4-4-2018",
+        "imageurl": "images/codeandcomedy.jpg",
+        "imagealt": "me",
+        "entry": "Slatirous.js presentation at Ordina Code&Comedy, with a packed room, to much to present, to little time, bad eyes, and artificially enhanced voice. Was fun, see you next year."
+    },
+    {
         "title": "SLATIROUS BLOGGING", 
         "description": "Slatirous Blogging", 
         "date": "1-4-2018",
