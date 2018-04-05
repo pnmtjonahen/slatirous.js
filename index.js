@@ -5,16 +5,17 @@ class IndexView {
 
         fetch("blog.json").then(res => res.json()).then(json => {
             const blogContainer = document.getElementById("blog");
-            const pp = document.getElementById("popular-post");
-            const popularPostTemplate = pp.cloneNode(true);
-            const popularPost = pp.parentNode;
-            popularPost.removeChild(pp);
+            const popularPostTemplate = document.getElementById("popular-post");
+            const popularPostContainer = popularPostTemplate.parentNode;
+
+            popularPostTemplate.removeAttribute("id");
+            popularPostContainer.removeChild(popularPostTemplate);
 
             json.forEach(blog => {
                 blogContainer.appendChild(this.newBlog(blog));
-                popularPost.appendChild(
+                popularPostContainer.appendChild(
                         this.replaceTemplateValues(
-                        popularPostTemplate.cloneNode(true), blog));
+                                popularPostTemplate.cloneNode(true), blog));
             });
         });
     }
