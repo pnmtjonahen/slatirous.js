@@ -22,6 +22,7 @@ class IndexView {
 
     replaceTemplateValues(node, blog) {
 
+// replace template values using regex
         Array.from(node.childNodes)
                 .filter(n => n.nodeType === Node.TEXT_NODE).forEach(n => {
             let name;
@@ -30,6 +31,7 @@ class IndexView {
             }
         });
 
+// replace template values using javascript key-value mapping
         Array.from(node.childNodes)
                 .filter(n => n.nodeType !== Node.TEXT_NODE).forEach(n => {
             Array.from(n.attributes).forEach(attr => {
@@ -58,28 +60,19 @@ class IndexView {
     }
 
     appendBlogTitle(div, blog) {
-        const title = document.createElement("div");
+// insert new html snippit using backticks and script values.
+        const template = document.createElement('template');
+        template.innerHTML = 
+`<div class="w3-container">
+    <h3><b>${blog.title}</b></h3>
+    <h5>${blog.description}, <span class="w3-opacity">${blog.date}</span></h5>
+</div>`;
+        div.appendChild(template.content.firstChild);
 
-        title.className = "w3-container";
-        const h3 = document.createElement("h3");
-        const bold = document.createElement("b");
-        bold.appendChild(document.createTextNode(blog.title));
-        h3.appendChild(bold);
-        title.appendChild(h3);
-
-        const h5 = document.createElement("h5");
-        h5.appendChild(document.createTextNode(blog.description + ", "));
-        const span = document.createElement("span");
-        span.className = "w3-opacity";
-        span.appendChild(document.createTextNode(blog.date));
-
-        h5.appendChild(span);
-        title.appendChild(h5);
-
-        div.append(title);
     }
 
     appendBlogEntry(div, blog) {
+// insert new html snippet using DOM api.        
         const entry = document.createElement("div");
         entry.className = "w3-container";
 
@@ -95,7 +88,7 @@ class IndexView {
         }
         entry.appendChild(p);
 
-        div.append(entry);
+        div.appendChild(entry);
     }
 }
 const view = new IndexView();
