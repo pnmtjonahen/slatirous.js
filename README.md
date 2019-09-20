@@ -1,4 +1,4 @@
-#Slatirous.js
+# Slatirous.js
 
 Slatirous.js, master of the JavaScript universe. 
 
