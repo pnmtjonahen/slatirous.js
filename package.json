@@ -23,6 +23,7 @@
     "test": "jest"
   },
   "jest": {
+    "testURL":"http://localhost",
     "automock": false,
     "setupFiles": [
       "./setupJest.js"
