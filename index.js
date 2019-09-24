@@ -2,14 +2,16 @@
 
 class IndexView {
     constructor() {
-        const bookmarked = window.location.href.replace(/(.*?)#(.*)/, (match, p1, p2) => {
-            return p2;
-        });
         fetch("blog.json").then(res => res.json()).then(json => {
 
             this.blogs = json;
-            this.setCurrentBlog(bookmarked ? bookmarked : this.blogs[0].id);
-            
+
+            if (window.location.href.match(/(.*?)#(.*)/)) {
+              this.setCurrentBlog(window.location.href.replace(/(.*?)#(.*)/, (match, p1, p2) => p2));
+            } else {
+              this.setBlog(this.blogs[0]);
+            }
+
 
             const popularPostTemplate = document.getElementById("popular-post");
             const popularPostContainer = popularPostTemplate.parentNode;
@@ -125,4 +127,3 @@ class IndexView {
 
 }
 const view = new IndexView();
-module.exports = view;
