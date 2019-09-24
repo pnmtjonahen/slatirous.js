@@ -2,13 +2,14 @@
 
 class IndexView {
     constructor() {
-        this.inlineImgRegEx = /!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/g;
-        this.headerRegEx = /^(#{1,6})[ \t]+(.+)/gm;
-        this.blogs = [];
+        const bookmarked = window.location.href.replace(/(.*?)#(.*)/, (match, p1, p2) => {
+            return p2;
+        });
         fetch("blog.json").then(res => res.json()).then(json => {
 
             this.blogs = json;
-            this.setBlog(this.blogs[0]);
+            this.setCurrentBlog(bookmarked ? bookmarked : this.blogs[0].id);
+            
 
             const popularPostTemplate = document.getElementById("popular-post");
             const popularPostContainer = popularPostTemplate.parentNode;
@@ -103,13 +104,20 @@ class IndexView {
     }
 
     determineType(entry) {
-      if (entry.match(this.headerRegEx)) {
-        return this.htmlTemplate(entry.replace(this.headerRegEx, (match, p1, p2) => {
+      const inlineImgRegEx = /^!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/;
+      const inlineLinkRegEx = /^\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/;
+      const headerRegEx = /^(#{1,6})[ \t]+(.+)/;
+      if (entry.match(headerRegEx)) {
+        return this.htmlTemplate(entry.replace(headerRegEx, (match, p1, p2) => {
           return '<h' + p1.length +'>' + p2 + '</h' + p1.length + '>';
         }));
-      } else if (entry.match(this.inlineImgRegEx)) {
-        return this.htmlTemplate(entry.replace(this.inlineImgRegEx, (match, p1, p2, p3) => {
+      } else if (entry.match(inlineImgRegEx)) {
+        return this.htmlTemplate(entry.replace(inlineImgRegEx, (match, p1, p2, p3) => {
           return `<div class="blog"><img src="${p3}" alt="${p1}" class="blog"/></div>`
+        }));
+      } else if (entry.match(inlineLinkRegEx)) {
+        return this.htmlTemplate(entry.replace(inlineLinkRegEx, (match, p1, p2, p3) => {
+          return `<a href="${p3}" target="_blank">${p1 ? p1 : p3}</a>`;
         }));
       }
       return this.htmlTemplate(`<p>${entry}</p>`);

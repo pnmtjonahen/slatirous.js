@@ -24,7 +24,10 @@
         "date": "20-11-2018",
         "imageurl": "https://d33wubrfki0l68.cloudfront.net/c5ad3f3c682696ec6325406241ab9dc6b5af755b/e849a/images/stateofjs2018-logo.svg",
         "imagealt": "stateofjs",
-        "entry": "State of javascript https://2018.stateofjs.com/, the good/bad news? nothing to new or even interesting, no life changing frameworks."
+        "entry": ["State of javascript",
+                  "[](https://2018.stateofjs.com/)",
+                  ", the good/bad news? nothing to new or even interesting, no life changing frameworks."
+                ]
     },
     {
         "id":"codeone2018",
