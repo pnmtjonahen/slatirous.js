@@ -2,21 +2,23 @@
 
 class IndexView {
     constructor() {
-
+        this.inlineImgRegEx = /!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/g;
+        this.headerRegEx = /^(#{1,6})[ \t]+(.+)/gm;
+        this.blogs = [];
         fetch("blog.json").then(res => res.json()).then(json => {
-            const blogContainer = document.getElementById("blog");
+
+            this.blogs = json;
+            this.setBlog(this.blogs[0]);
+
             const popularPostTemplate = document.getElementById("popular-post");
             const popularPostContainer = popularPostTemplate.parentNode;
-
-            popularPostTemplate.removeAttribute("id");
-            popularPostContainer.removeChild(popularPostTemplate);
-
-            json.forEach(blog => {
-                blogContainer.appendChild(this.newBlog(blog));
+            this.blogs.forEach(blog => {
                 popularPostContainer.appendChild(
                         this.replaceTemplateValues(
-                                popularPostTemplate.cloneNode(true), blog));
+                                popularPostTemplate.content.cloneNode(true), blog));
             });
+
+
         });
     }
 
@@ -40,6 +42,10 @@ class IndexView {
                         attr.value = blog[name];
                     }
                 });
+// replace template values using a regexp replace with function
+                attr.value = attr.value.replace(/(.*?)\{(.*?)\}(.*)/, (match, p1, p2, p3) => {
+                  return p1 + blog[p2] + p3;
+                });
             });
             this.replaceTemplateValues(n, blog);
         });
@@ -47,41 +53,46 @@ class IndexView {
         return node;
     }
 
-    newBlog(blog) {
-        const div = document.createElement("div");
-        div.className = "w3-card-4 w3-margin w3-white";
-
-        this.appendBlogTitle(div, blog);
-        this.appendBlogEntry(div, blog);
-        const hr = document.createElement("hr");
-        div.appendChild(hr);
-
-        return div;
+    setCurrentBlog(id) {
+      this.setBlog(this.blogs.filter(e => {
+        return e.id === id;
+      })[0]);
     }
 
-    appendBlogTitle(div, blog) {
-// insert new html snippit using backticks and script values.
-        const template = document.createElement('template');
-        template.innerHTML = 
-`<div class="w3-container">
-    <h3><b>${blog.title}</b></h3>
-    <h5>${blog.description}, <span class="w3-opacity">${blog.date}</span></h5>
-</div>`;
-        div.appendChild(template.content.firstChild);
+    setBlog(blog) {
+// insert new html snippet using backticks notation and a dynamic template element
+        const div = this.htmlTemplate(`<div class="w3-card-4 w3-margin w3-white">
+        <div class="w3-container">
+            <h3><b>${blog.title}</b></h3>
+            <h5>${blog.description}, <span class="w3-opacity">${blog.date}</span></h5>
+        </div>
+  </div>`);
 
+        this.appendBlogEntry(div, blog);
+
+        const blogContainer = document.getElementById("blog");
+        if (blogContainer.hasChildNodes()) {
+          blogContainer.replaceChild(div, blogContainer.firstChild);
+        } else {
+          blogContainer.appendChild(div);
+        }
+    }
+
+    htmlTemplate(html) {
+      const template = document.createElement('template');
+      template.innerHTML = html;
+      return template.content.firstChild;
     }
 
     appendBlogEntry(div, blog) {
-// insert new html snippet using DOM api.        
+// insert new html snippet using DOM api.
         const entry = document.createElement("div");
         entry.className = "w3-container";
 
         const p = document.createElement("p");
         if (Array.isArray(blog.entry)) {
             blog.entry.forEach(e => {
-                const subp = document.createElement("p");
-                subp.appendChild(document.createTextNode(e));
-                p.appendChild(subp);
+                p.appendChild(this.determineType(e));
             });
         } else {
             p.appendChild(document.createTextNode(blog.entry));
@@ -90,8 +101,20 @@ class IndexView {
 
         div.appendChild(entry);
     }
+
+    determineType(entry) {
+      if (entry.match(this.headerRegEx)) {
+        return this.htmlTemplate(entry.replace(this.headerRegEx, (match, p1, p2) => {
+          return '<h' + p1.length +'>' + p2 + '</h' + p1.length + '>';
+        }));
+      } else if (entry.match(this.inlineImgRegEx)) {
+        return this.htmlTemplate(entry.replace(this.inlineImgRegEx, (match, p1, p2, p3) => {
+          return `<div class="blog"><img src="${p3}" alt="${p1}" class="blog"/></div>`
+        }));
+      }
+      return this.htmlTemplate(`<p>${entry}</p>`);
+    }
+
 }
 const view = new IndexView();
-
-
-
+module.exports = view;
