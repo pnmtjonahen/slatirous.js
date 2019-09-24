@@ -5,9 +5,9 @@ class IndexView {
         fetch("blog.json").then(res => res.json()).then(json => {
 
             this.blogs = json;
-
-            if (window.location.href.match(/(.*?)#(.*)/)) {
-              this.setCurrentBlog(window.location.href.replace(/(.*?)#(.*)/, (match, p1, p2) => p2));
+            const bookmarkRegExp = /(.*?)#(.*)/;
+            if (window.location.href.match(bookmarkRegExp)) {
+              this.setCurrentBlog(window.location.href.replace(bookmarkRegExp, (match, p1, p2) => p2));
             } else {
               this.setBlog(this.blogs[0]);
             }
@@ -109,6 +109,7 @@ class IndexView {
       const inlineImgRegEx = /^!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/;
       const inlineLinkRegEx = /^\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/;
       const headerRegEx = /^(#{1,6})[ \t]+(.+)/;
+
       if (entry.match(headerRegEx)) {
         return this.htmlTemplate(entry.replace(headerRegEx, (match, p1, p2) => {
           return '<h' + p1.length +'>' + p2 + '</h' + p1.length + '>';
@@ -124,6 +125,5 @@ class IndexView {
       }
       return this.htmlTemplate(`<p>${entry}</p>`);
     }
-
 }
 const view = new IndexView();
