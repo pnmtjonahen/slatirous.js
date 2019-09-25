@@ -92,17 +92,97 @@ class IndexView {
         const entry = document.createElement("div");
         entry.className = "w3-container";
 
-        const p = document.createElement("p");
-        if (Array.isArray(blog.entry)) {
-            blog.entry.forEach(e => {
-                p.appendChild(this.determineType(e));
-            });
+        if (blog.entry) {
+          const p = document.createElement("p");
+          if (Array.isArray(blog.entry)) {
+              blog.entry.forEach(e => {
+                  p.appendChild(this.determineType(e));
+              });
+          } else {
+              p.appendChild(document.createTextNode(blog.entry));
+          }
+          entry.appendChild(p);
         } else {
-            p.appendChild(document.createTextNode(blog.entry));
+            fetch("blog/" + blog.id + ".md").then(res => res.text()).then(md => {
+                entry.appendChild(this.parseMd(md));
+            });
         }
-        entry.appendChild(p);
 
         div.appendChild(entry);
+    }
+
+    parseMd(entry) {
+      var htmlBlocks = [];
+      entry = this.parseHeader(entry, htmlBlocks);
+      entry = this.parseImg(entry, htmlBlocks);
+      entry = this.parseLink(entry, htmlBlocks);
+      entry = this.parseCode(entry, htmlBlocks);
+      entry = this.parseParagraphs(entry, htmlBlocks);
+      entry = entry.replace(/PTJ-md(.*?)md-PTJ/gm, (match, p1) => {
+          return htmlBlocks[p1];
+      });
+      return this.htmlTemplate(`<div>${entry}</div>`);
+
+    }
+
+    parseHeader(entry, htmlBlocks) {
+      const headerRegEx = /^(#{1,6})[ \t]+(.+)/gm;
+      return entry.replace(headerRegEx, (match, p1, p2) => {
+        return this.hashHtmlCode('<h' + p1.length +'>' + p2 + '</h' + p1.length + '>', htmlBlocks);
+      });
+    }
+
+    parseImg(entry, htmlBlocks) {
+      const inlineImgRegEx = /!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/gm;
+      return entry.replace(inlineImgRegEx, (match, p1, p2, p3) => {
+        return this.hashHtmlCode(`<div class="blog"><img src="${p3}" alt="${p1}" class="blog"/></div>`, htmlBlocks);
+      });
+    }
+
+    parseLink(entry, htmlBlocks) {
+      const inlineLinkRegEx = /\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/gm;
+      return entry.replace(inlineLinkRegEx, (match, p1, p2, p3) => {
+        return this.hashHtmlCode(`<a href="${p3}" target="_blank">${p1 ? p1 : p3}</a>`, htmlBlocks);
+      });
+    }
+
+    parseCode(entry, htmlBlocks) {
+      const codeRegExp = /(?:^|\n)(?: {0,3})(```+)(?: *)([^\s`]*)\n([\s\S]*?)\n(?: {0,3})\1/gm;
+      return entry.replace(codeRegExp, (matc, p1, p2, p3) => {
+        p3 = p3.replace(/^([ \t]*)/g, '');
+        p3 = p3.replace(/[ \t]*$/g, '');
+        p3 = this.escapeXml(p3);
+        return this.hashHtmlCode(`<pre ${p2 ? `class="${p2}"` :''}>${p3}</pre>`, htmlBlocks);
+      });
+    }
+
+    escapeXml(text) {
+      return text.replace(/<(?![a-z\/?$!])/gi, '&lt;')
+                  .replace(/</g, '&lt;')
+                  .replace(/>/g, '&gt;');
+    }
+    parseParagraphs(text, htmlBlocks) {
+
+      text = text.replace(/^\n+/g, '');
+      text = text.replace(/\n+$/g, '');
+
+      var paras = text.split(/\n{2,}/g);
+      var parasParsed = [];
+
+      paras.forEach(str => {
+        if (!str.startsWith("PTJ-md")) {
+            parasParsed.push(str);
+        } else if (str.search(/\S/) >= 0) {
+            parasParsed.push(str.replace(/^([ \t]*)/g, '<p>') + '</p>');
+        }
+      });
+
+      return parasParsed.join('\n');
+    }
+
+    hashHtmlCode(html, htmlBlocks) {
+      // hash the parsed html code and put it between tags. this will prevent other parser to reparse this already correct html
+      return "\n\nPTJ-md"+(htmlBlocks.push(html) -1) +"md-PTJ\n\n";
     }
 
     determineType(entry) {

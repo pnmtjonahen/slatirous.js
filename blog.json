@@ -5,77 +5,14 @@
         "description": "How to embed google photos",
         "date": "20-09-2019",
         "imageurl": "https://lh3.googleusercontent.com/CgwcH7wZ8rM5Jg82D4YSnqOHyVEnoX-f840C2iCW2MCQbluIhSYHliwlmjNgBFEN0HOaa6UnnPoNH_SFTXu-qxjRnvbyc0Z7VFtq0aqzXZ3DpdE_03U1_unzS5VCaEizjHWp5zwbWrrCO36EctBbJ9nIGNTCc6OD2cVFiKwOMZfHL4IAa72nPKrJZr59kp2klIWvtRwvaUR1yxI0pmplMFj7HJLXx5pqwo51pnv6Xxq5VTUVlyOyGF5TiEO4ptIgcS0EtjG5G1k2y9WaO6rj3R8KaV6h5x4G-uP66DoDhWJj43N8VsHOxHgJTwdMdEciw6FgPNkjlORTNHyKn5vNKU4BST1y41nb8C-Q97gby8E1C_GZ15vKBrKX94-J9DlYBxJiGj1SmxOwGVuctN6BYkzGfAW47ZYSZQKVFCxRkeoHjFdItKjtpx-GHvKdG0EE5fruk9PtaIy3CEDeh1Fj5SXkhFPwVcfVNC0zX-AIOhC6fGLNlu3ZjaRkArCrXQ4M0U9P-Pz2JRDGLW4r5GhVCv4pV4o6pQt3GiAdzOe1sV1qNR5thniIZuG0aIgVBW7TQUHTrSBD-KaNCbzDadhzreCKQru4bAieWYu8TtiHxgEtDocTgDjmhcr9KSoFXrAAqJLbLJQNgV6Wf7ziLj1cP8kWgLnUjOi7qGMCGZ3mW-HZ8tbMyjeGiAUN3lTuLybMfh5J13ona2F-eMGUCwv9UaBJQvVhq12nEz03030xpdWHB5NVUw=w1362-h1021-no",
-        "imagealt": "Photo",
-        "entry": [
-            "September 2019, two weeks before I'll go to SpringOne conference, I decided to revive my blogging system.",
-            "First question was how to embed images in my blogs?, add some styling like headers and list.",
-            "## embedding images.",
-            "Well let's use google photos for images. The trick is getting the correct image url.",
-            "Step one is of course have a photo on google photo, second is getting the correct link, open the image you want to embed and create a link to it. Open the link and you get a google photo page with a single image on it. Don't use the link as the img src but use the image url that is embedded on that link page. (right click on the image and get the image address).",
-            "![logo](https://lh3.googleusercontent.com/CgwcH7wZ8rM5Jg82D4YSnqOHyVEnoX-f840C2iCW2MCQbluIhSYHliwlmjNgBFEN0HOaa6UnnPoNH_SFTXu-qxjRnvbyc0Z7VFtq0aqzXZ3DpdE_03U1_unzS5VCaEizjHWp5zwbWrrCO36EctBbJ9nIGNTCc6OD2cVFiKwOMZfHL4IAa72nPKrJZr59kp2klIWvtRwvaUR1yxI0pmplMFj7HJLXx5pqwo51pnv6Xxq5VTUVlyOyGF5TiEO4ptIgcS0EtjG5G1k2y9WaO6rj3R8KaV6h5x4G-uP66DoDhWJj43N8VsHOxHgJTwdMdEciw6FgPNkjlORTNHyKn5vNKU4BST1y41nb8C-Q97gby8E1C_GZ15vKBrKX94-J9DlYBxJiGj1SmxOwGVuctN6BYkzGfAW47ZYSZQKVFCxRkeoHjFdItKjtpx-GHvKdG0EE5fruk9PtaIy3CEDeh1Fj5SXkhFPwVcfVNC0zX-AIOhC6fGLNlu3ZjaRkArCrXQ4M0U9P-Pz2JRDGLW4r5GhVCv4pV4o6pQt3GiAdzOe1sV1qNR5thniIZuG0aIgVBW7TQUHTrSBD-KaNCbzDadhzreCKQru4bAieWYu8TtiHxgEtDocTgDjmhcr9KSoFXrAAqJLbLJQNgV6Wf7ziLj1cP8kWgLnUjOi7qGMCGZ3mW-HZ8tbMyjeGiAUN3lTuLybMfh5J13ona2F-eMGUCwv9UaBJQvVhq12nEz03030xpdWHB5NVUw=w1362-h1021-no) First question was how to embed images in my blogs?",
-            "## headers",
-            "Headers are less trickier, taken from the showdown, a javascript markdown librarie, the code to check and convert # prefixed lines to create headers."
-            ]
+        "imagealt": "Photo"
     },
     {
-        "id":"statejs2018",
-        "title": "State Of JavaScript",
-        "description": "State Of JavaScript 2018",
-        "date": "20-11-2018",
-        "imageurl": "https://d33wubrfki0l68.cloudfront.net/c5ad3f3c682696ec6325406241ab9dc6b5af755b/e849a/images/stateofjs2018-logo.svg",
-        "imagealt": "stateofjs",
-        "entry": ["State of javascript",
-                  "[](https://2018.stateofjs.com/)",
-                  ", the good/bad news? nothing to new or even interesting, no life changing frameworks."
-                ]
-    },
-    {
-        "id":"codeone2018",
-        "title": "Oracle Code-One",
-        "description": "Slatirous CFP for Oracle's Code-One, missed it",
-        "date": "1-6-2018",
-        "imageurl": "https://lh3.googleusercontent.com/rWtgKADj6D6LG8-NQ1T0dwVUdkOWtUliOs5DFV_LzcaVkwmx0dqjvL0UupAN5vgbWjlK0nzzc9H3AMbNPgsbDso4RXJhOUPjfUM4BRiRtMZP_76VRhw9DNiNlmXju-w3tCTzP0wHNVUZctmQYHeLvQDgXknrkYLQEYT5DEgfy1TVNV2p4erLfID2EQVmFF2LSuqZuI7Img-nZl3XWslAM2PjsvTMWm-TDFHz_QF8r9KhcoeEwOMMf9zq3mdweVCb2OugOiiS4PFZZj5Ri4DtyvqNRUAtxECCkAT5Bnbsl5jq5B_TiQQKm69KJ-vCoXNr_8zp6E0fJD2mU06mCU3OZ9AKLnSZUvMrmHEMy7_B6GPmJoBRvHPX3rwnUimqE37954jJbvgaTWA2kGk7y0qVHoAOelYilNibL4Z50nbK0cXnMUDBfKo5IbRgI0EifTO6wlHv5J28xWv00L4_0jPGPMEm6GqxAwlACPxYpFKcplGYWD9djC1XLI16eJW6NvrnYJF6wqTWqMznJAWoJA3LqRC-pNDUOB-IlAviFLObcnmcBIUXQtpXPeov9mlkrgT7OwTjudipVousbkdizohBgkBA6kfGQ8fecIVaFZNbIj0GPM0-J3QtHtELhl79sVThfKhRfPJ369y5gdeXP7DG5fna4NOiUl_QJCattLMHLewpwWS8E5ZgsXRwJU8KwQExXJzk-qStvDIx_stHVJP6et4UztfEbqeMqOGgfc9BRQZ62r52UA=w1362-h1021-no",
-        "imagealt": "Code-One",
-        "entry": "Had this wonderful presentation prepared for Oracle's Code-One, unfortunately for everybody out there, I missed the CFP deadline by 1 day."
-    },
-    {
-        "id":"4-4-2018",
-        "title": "Ordina Code&Comedy",
-        "description": "Slatirous presentation at Code&Comedy",
-        "date": "4-4-2018",
-        "imageurl": "images/codeandcomedy.jpg",
-        "imagealt": "me",
-        "entry": "Slatirous.js presentation at Ordina Code&Comedy, with a packed room, to much to present, to little time, bad eyes, and artificially enhanced voice. Was fun, see you next year."
-    },
-    {
-        "id":"1-4-2018",
-        "title": "SLATIROUS BLOGGING",
-        "description": "Slatirous Blogging",
-        "date": "1-4-2018",
-        "imageurl": "https://www.w3schools.com/w3images/woods.jpg",
-        "imagealt": "nature",
-        "entry": "Slatirous.js is not a javascript framework, it is javascript blogging without a framework. So build on the famous slatirous.js framework we now can enter blog entries."
-    },
-    {
-        "id":"20-3-2018",
-        "title": "Slatirous.js",
-        "description": "Master of the JavaScript universe.",
-        "date": "20-3-2018",
-        "imageurl": "https://www.w3schools.com/w3images/bridge.jpg",
-        "imagealt": "bridge",
-        "entry": [
-            "Build full dynamic web application or server side applications, you can even embed it into your Java application. ",
-            "Minimal footprint, and extremely low learning curve."
-        ]
-    },
-    {
-        "id":"15-3-2018",
+        "id":"onojs",
         "title": "O-no, no JS",
         "description": "JavaScript is dead, long live JavaScript",
         "date": "15-3-2018",
         "imageurl": "https://www.w3schools.com/w3images/house2.jpg",
-        "imagealt": "house2",
-        "entry": "JavaScript is dead, long live JavaScript, How to build JS applications without extra dependencies."
+        "imagealt": "house2"
     }
-
 ]
