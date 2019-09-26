@@ -27,37 +27,10 @@ describe('Index', () => {
                 description: "Test Blog",
                 date: "1-4-2018",
                 imageurl: "https://www.w3schools.com/w3images/woods.jpg",
-                imagealt: "nature",
-                entry: "Test blog entry"
-            },
-            {
-                id: "id2",
-                title: "TEST BLOG2",
-                description: "Multi paragraph test blog",
-                date: "20-3-2018",
-                imageurl: "https://www.w3schools.com/w3images/bridge.jpg",
-                imagealt: "bridge",
-                entry: [
-                    "Line 1",
-                    "Line 2"
-                ]
-            },
-            {
-                id: "id3",
-                title: "TEST BLOG2",
-                description: "Multi paragraph test blog",
-                date: "20-3-2018",
-                imageurl: "https://www.w3schools.com/w3images/bridge.jpg",
-                imagealt: "bridge",
-                entry: [
-                    "# Header1",
-                    "## Header 2",
-                    "### Header 3",
-                    "![test](http://image.png)",
-                    "simple line"
-                ]
+                imagealt: "nature"
             }
           ]));
+        fetch.mockResponseOnce("# Markdown");  
         var index = require('./index.js');
         expect(index !== undefined);
     });

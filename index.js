@@ -9,7 +9,7 @@ class IndexView {
             if (window.location.href.match(bookmarkRegExp)) {
               this.setCurrentBlog(window.location.href.replace(bookmarkRegExp, (match, p1, p2) => p2));
             } else {
-              this.setBlog(this.blogs[0]);
+              this.setCurrentBlog(this.blogs[0].id);
             }
 
 
@@ -27,7 +27,7 @@ class IndexView {
 
     replaceTemplateValues(node, blog) {
 
-// replace template values using regex
+// replace template values using regex, get all child nodes, filter on text nodes and use a regex to replace the node value
         Array.from(node.childNodes)
                 .filter(n => n.nodeType === Node.TEXT_NODE).forEach(n => {
             let name;
@@ -40,6 +40,7 @@ class IndexView {
         Array.from(node.childNodes)
                 .filter(n => n.nodeType !== Node.TEXT_NODE).forEach(n => {
             Array.from(n.attributes).forEach(attr => {
+// using Object.keys get all the attributes (aka keys) from the blog entry
                 Object.keys(blog).forEach(name => {
                     if (attr.value === "{" + name + "}") {
                         attr.value = blog[name];
@@ -71,7 +72,7 @@ class IndexView {
         </div>
   </div>`);
 
-        this.appendBlogEntry(div, blog);
+        div.appendChild(this.appendBlogEntry(blog));
 
         const blogContainer = document.getElementById("blog");
         if (blogContainer.hasChildNodes()) {
@@ -87,28 +88,14 @@ class IndexView {
       return template.content.firstChild;
     }
 
-    appendBlogEntry(div, blog) {
+    appendBlogEntry(blog) {
 // insert new html snippet using DOM api.
         const entry = document.createElement("div");
         entry.className = "w3-container";
-
-        if (blog.entry) {
-          const p = document.createElement("p");
-          if (Array.isArray(blog.entry)) {
-              blog.entry.forEach(e => {
-                  p.appendChild(this.determineType(e));
-              });
-          } else {
-              p.appendChild(document.createTextNode(blog.entry));
-          }
-          entry.appendChild(p);
-        } else {
-            fetch("blog/" + blog.id + ".md").then(res => res.text()).then(md => {
-                entry.appendChild(this.parseMd(md));
-            });
-        }
-
-        div.appendChild(entry);
+        fetch("blog/" + blog.id + ".md").then(res => res.text()).then(md => {
+            entry.appendChild(this.parseMd(md));
+        });
+        return entry;
     }
 
     parseMd(entry) {
@@ -118,28 +105,31 @@ class IndexView {
       entry = this.parseLink(entry, htmlBlocks);
       entry = this.parseCode(entry, htmlBlocks);
       entry = this.parseParagraphs(entry, htmlBlocks);
+
       entry = entry.replace(/PTJ-md(.*?)md-PTJ/gm, (match, p1) => {
           return htmlBlocks[p1];
       });
-      return this.htmlTemplate(`<div>${entry}</div>`);
+// nested elements
+      entry = entry.replace(/PTJ-md(.*?)md-PTJ/gm, (match, p1) => {
+          return htmlBlocks[p1];
+      });
+
+
+      return this.htmlTemplate(`<div class="blog">${entry}</div>`);
 
     }
 
     parseHeader(entry, htmlBlocks) {
       const headerRegEx = /^(#{1,6})[ \t]+(.+)/gm;
       return entry.replace(headerRegEx, (match, p1, p2) => {
-        return this.hashHtmlCode('<h' + p1.length +'>' + p2 + '</h' + p1.length + '>', htmlBlocks);
+        return this.hashHtmlCode('<h' + p1.length +'>' + p2 + '</h' + p1.length + '>\n', htmlBlocks);
       });
     }
 
     parseImg(entry, htmlBlocks) {
       const inlineImgRegEx = /!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d|auto]+[A-Za-z%]{0,4})x([*\d|auto]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/gm;
       return entry.replace(inlineImgRegEx, (match, p1, p2, p3, p4, p5) => {
-        var style;
-        if (p4 && p5) {
-          style = "width:"+p4+"; height:"+p5+";"
-        }
-        return this.hashHtmlCode(`<div class="blog"><img src="${p3}" alt="${p1}" class="blog" ${style ? `style="${style}"` : ''} /></div>`, htmlBlocks);
+        return this.hashHtmlCode(`<div class="blog"><img src="${p3}" alt="${p1}" class="blog" ${p4 && p5 ? `style="width:${p4}; height:${p5}"` : ''} /></div>`, htmlBlocks);
       });
     }
 
@@ -174,10 +164,10 @@ class IndexView {
       var parasParsed = [];
 
       paras.forEach(str => {
-        if (!str.startsWith("PTJ-md")) {
+        if (str.startsWith("PTJ-md")) {
             parasParsed.push(str);
         } else if (str.search(/\S/) >= 0) {
-            parasParsed.push(str.replace(/^([ \t]*)/g, '<p>') + '</p>');
+            parasParsed.push('<p>' + str + '</p>');
         }
       });
 
@@ -186,7 +176,7 @@ class IndexView {
 
     hashHtmlCode(html, htmlBlocks) {
       // hash the parsed html code and put it between tags. this will prevent other parser to reparse this already correct html
-      return "\n\nPTJ-md"+(htmlBlocks.push(html) -1) +"md-PTJ\n\n";
+      return "PTJ-md"+(htmlBlocks.push(html) -1) +"md-PTJ";
     }
 
     determineType(entry) {
@@ -200,7 +190,7 @@ class IndexView {
         }));
       } else if (entry.match(inlineImgRegEx)) {
         return this.htmlTemplate(entry.replace(inlineImgRegEx, (match, p1, p2, p3) => {
-          return `<div class="blog"><img src="${p3}" alt="${p1}" class="blog"/></div>`
+          return `<img src="${p3}" alt="${p1}" class="blog"/>`
         }));
       } else if (entry.match(inlineLinkRegEx)) {
         return this.htmlTemplate(entry.replace(inlineLinkRegEx, (match, p1, p2, p3) => {

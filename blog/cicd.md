@@ -1,7 +1,4 @@
-![gogs](https://img.shields.io/badge/git-Gogs-blue)
-![jenkins](https://img.shields.io/badge/cicd-Jenkins-blue)
-![nexus3](https://img.shields.io/badge/repo-Nexus3-blue)
-![sonarqube](https://img.shields.io/badge/qa-SonarQube-blue)
+![gogs](https://img.shields.io/badge/git-Gogs-blue)![jenkins](https://img.shields.io/badge/cicd-Jenkins-blue)![nexus3](https://img.shields.io/badge/repo-Nexus3-blue)![sonarqube](https://img.shields.io/badge/qa-SonarQube-blue)
 
 This repository contains scripts/guide to start a local buildpipeline. The following tools are included:
 - Jenkins
