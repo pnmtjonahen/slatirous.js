@@ -1,5 +1,3 @@
-# About
-
 ## end 2017
 
 This blog site is the result of a presentation in which was shown how we can implement single page applications without using any frameworks.
