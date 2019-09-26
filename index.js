@@ -104,6 +104,7 @@ class IndexView {
       entry = this.parseImg(entry, htmlBlocks);
       entry = this.parseLink(entry, htmlBlocks);
       entry = this.parseCode(entry, htmlBlocks);
+      entry = this.parseList(entry, htmlBlocks);
       entry = this.parseParagraphs(entry, htmlBlocks);
 
       entry = entry.replace(/PTJ-md(.*?)md-PTJ/gm, (match, p1) => {
@@ -150,6 +151,24 @@ class IndexView {
       });
     }
 
+    parseList(entry, htmlBlocks) {
+      const startListRegExp = /^\n{1} ?[*+-][ \t](.*)/gm;
+      const endListRegExp = /^[*+-][ \t](.*)\n$/gm;
+      const listRegExp = /^[*+-][ \t](.*)/gm;
+      const nrItems = entry
+      entry = entry.replace(startListRegExp, (match, p1) => {
+          return this.hashHtmlCode("<p><ul><li>" + p1 + "</li>", htmlBlocks);
+      });
+      entry = entry.replace(endListRegExp, (match, p1) => {
+          return this.hashHtmlCode("<li>" + p1 + "</li></ul></p>", htmlBlocks);
+      });
+
+      return entry.replace(listRegExp, (match, p1) => {
+          return this.hashHtmlCode("<li>" + p1 + "</li>", htmlBlocks);
+      });
+
+    }
+
     escapeXml(text) {
       return text.replace(/<(?![a-z\/?$!])/gi, '&lt;')
                   .replace(/</g, '&lt;')
@@ -179,25 +198,25 @@ class IndexView {
       return "PTJ-md"+(htmlBlocks.push(html) -1) +"md-PTJ";
     }
 
-    determineType(entry) {
-      const inlineImgRegEx = /^!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/;
-      const inlineLinkRegEx = /^\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/;
-      const headerRegEx = /^(#{1,6})[ \t]+(.+)/;
-
-      if (entry.match(headerRegEx)) {
-        return this.htmlTemplate(entry.replace(headerRegEx, (match, p1, p2) => {
-          return '<h' + p1.length +'>' + p2 + '</h' + p1.length + '>';
-        }));
-      } else if (entry.match(inlineImgRegEx)) {
-        return this.htmlTemplate(entry.replace(inlineImgRegEx, (match, p1, p2, p3) => {
-          return `<img src="${p3}" alt="${p1}" class="blog"/>`
-        }));
-      } else if (entry.match(inlineLinkRegEx)) {
-        return this.htmlTemplate(entry.replace(inlineLinkRegEx, (match, p1, p2, p3) => {
-          return `<a href="${p3}" target="_blank">${p1 ? p1 : p3}</a>`;
-        }));
-      }
-      return this.htmlTemplate(`<p>${entry}</p>`);
-    }
+    // determineType(entry) {
+    //   const inlineImgRegEx = /^!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/;
+    //   const inlineLinkRegEx = /^\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/;
+    //   const headerRegEx = /^(#{1,6})[ \t]+(.+)/;
+    //
+    //   if (entry.match(headerRegEx)) {
+    //     return this.htmlTemplate(entry.replace(headerRegEx, (match, p1, p2) => {
+    //       return '<h' + p1.length +'>' + p2 + '</h' + p1.length + '>';
+    //     }));
+    //   } else if (entry.match(inlineImgRegEx)) {
+    //     return this.htmlTemplate(entry.replace(inlineImgRegEx, (match, p1, p2, p3) => {
+    //       return `<img src="${p3}" alt="${p1}" class="blog"/>`
+    //     }));
+    //   } else if (entry.match(inlineLinkRegEx)) {
+    //     return this.htmlTemplate(entry.replace(inlineLinkRegEx, (match, p1, p2, p3) => {
+    //       return `<a href="${p3}" target="_blank">${p1 ? p1 : p3}</a>`;
+    //     }));
+    //   }
+    //   return this.htmlTemplate(`<p>${entry}</p>`);
+    // }
 }
 const view = new IndexView();

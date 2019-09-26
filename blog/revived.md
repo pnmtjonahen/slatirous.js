@@ -12,7 +12,7 @@ Step one is of course have a photo on google photo, second is getting the correc
 
 ## Headers, codeblocks, links, etc. etc.
 
-Used showdown [showdown](https://github.com/showdownjs/showdown) as an inspiration to create my own markdown parser. Not to reinvent the same code but a way to learn more about how showdown works. Using a lot of reg expressions to replace markdown syntax into correct html.
+Used [showdown](https://github.com/showdownjs/showdown) as an inspiration to create my own markdown parser. Not to reinvent the same code but a way to learn more about how showdown works. Using a lot of reg expressions to replace markdown syntax into correct html.
 
 
 See the code of this application ;)

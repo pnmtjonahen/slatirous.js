@@ -1,6 +1,7 @@
 ![gogs](https://img.shields.io/badge/git-Gogs-blue)![jenkins](https://img.shields.io/badge/cicd-Jenkins-blue)![nexus3](https://img.shields.io/badge/repo-Nexus3-blue)![sonarqube](https://img.shields.io/badge/qa-SonarQube-blue)
 
-This repository contains scripts/guide to start a local buildpipeline. The following tools are included:
+This blog contains scripts/guide to start a local buildpipeline. The following tools are included:
+
 - Jenkins
 - SonarQube
 - Nexus3
@@ -20,7 +21,7 @@ When playing around or initially start the application without -d (detached) mod
 ## Gogs a painless self-hosted Git services
 
 ### Installation
-Dockerhub : https://hub.docker.com/r/gogs/gogs/
+Dockerhub : [](https://hub.docker.com/r/gogs/gogs/)
 
 ```bash
 docker run \
@@ -35,12 +36,13 @@ docker run \
 ```
 
 ### Configuration
-Open a browser: http://localhost:8300
+Open a browser: [](http://localhost:8300)
 
 On the 'Install Steps For First-time Run' change the following settings:
+
 - Database Type : SQLite3
 - SSH Port : 8322
-- Application URL : http://localhost:8300
+- Application URL : [](http://localhost:8300)
 - Log Path : /data/log
 
 And click on the 'Install Gogs' button  
@@ -50,7 +52,7 @@ When presented with the 'Sign In' page create your first account (which will bec
 You should now have your own self-hosted Git service.
 
 ### Mirror GitHub
-Inspired by : https://moox.io/blog/keep-in-sync-git-repos-on-github-gitlab-bitbucket/
+Inspired by : [](https://moox.io/blog/keep-in-sync-git-repos-on-github-gitlab-bitbucket/)
 
 Not having my source code only on the self-hosted git service I wanted to have my github repositories synced with my Gogs service.
 To allow easy push and pulls on both repository I added the same public SSH key to both GitHub and Gogs.
@@ -58,10 +60,9 @@ To allow easy push and pulls on both repository I added the same public SSH key 
 Next step is to mirror a GitHub repository in Gogs. Select create -> New Migration.
 
 Gogs only allows for creating a mirror using HTTP/HTTPS so you need your GitHub username/password for Authorisation. Fill in the:
+
 - Clone Address
-- Need Authorization
-  - Username
-  - Password
+- Need Authorization (Username/Password)
 - Repository Name
 
 Use the same repository name as the mirrored repository to prevent confusion.
@@ -79,14 +80,16 @@ git remote set-url origin --add ssh://git@localhost:8322/{user_name}/{repository
 ```
 
 where:
+
 - user_name is the name of the user that contains the repository
 - repository_name is the name of the cloned repository
 
 
 ## Jenkins
 
-Inspired by : https://jenkins.io/doc/tutorials/build-a-java-app-with-maven/
-Dockerhub : https://hub.docker.com/r/jenkinsci/blueocean/
+Inspired by : [](https://jenkins.io/doc/tutorials/build-a-java-app-with-maven/)
+
+Dockerhub : [](https://hub.docker.com/r/jenkinsci/blueocean/)
 
 Except that we wont use a file based repository but will use a hosted repository (Gogs)
 
@@ -107,6 +110,7 @@ docker run \
 ```
 
 This will then:
+
 - run Jenkins in the background
 - restarts Jenkins unless stopped and
 - removes the host based volume.
@@ -131,7 +135,7 @@ ssh://git@gogs/{user_name}/{repository_name}.git
 As the Gogs repository from a Jenkins point of view is not on localhost:8322 but on gogs:22 as they are on the same docker network.
 
 ### Trigger build on push
-On Jenkins install the 'Gogs Webhook Plugin' https://wiki.jenkins.io/display/JENKINS/Gogs+Webhook+Plugin
+On Jenkins install the 'Gogs Webhook Plugin' [](https://wiki.jenkins.io/display/JENKINS/Gogs+Webhook+Plugin)
 
 Then on Gogs repository configure the webhook (Gogs) on push only. For the payload use:
 ```code
@@ -143,7 +147,8 @@ From a Gogs point of view Jenkins is not on localhost:18080 but on the same dock
 If you push changed to the Gogs repo (or when you use)
 
 ## SonarQube
-Dockerhub : https://hub.docker.com/_/sonarqube
+Dockerhub : [](https://hub.docker.com/_/sonarqube)
+
 ### Installation
 
 ```bash
@@ -181,7 +186,7 @@ stage('Sonar') {
 
 ## Nexus3
 
-Dockerhub : https://hub.docker.com/r/sonatype/nexus3
+Dockerhub : [](https://hub.docker.com/r/sonatype/nexus3)
 
 ### Installation
 
@@ -304,11 +309,11 @@ Note: Need to find a better place for the .m2 folder.
 ## OWASP Dependency-Check
 Dependency-Check is a software composition analysis utility that identifies project dependencies and checks if there are any known, publicly disclosed, vulnerabilities. Currently, Java and .NET are supported; additional experimental support has been added for Ruby, Node.js, Python, and limited support for C/C++ build systems (autoconf and cmake). The tool can be part of a solution to the "OWASP Top 10 2017 A9-Using Components with Known Vulnerabilities" previously known as "OWASP Top 10 2013 A9-Using Components with Known Vulnerabilities".
 
-Dependency Check : https://www.owasp.org/index.php/OWASP_Dependency_Check
+Dependency Check : [](https://www.owasp.org/index.php/OWASP_Dependency_Check)
 
-Jenkins Plugin : https://jenkins.io/doc/pipeline/steps/dependency-check-jenkins-plugin/
+Jenkins Plugin : [](https://jenkins.io/doc/pipeline/steps/dependency-check-jenkins-plugin/)
 
-Maven Plugin : https://jeremylong.github.io/DependencyCheck/dependency-check-maven/
+Maven Plugin : [](https://jeremylong.github.io/DependencyCheck/dependency-check-maven/)
 
 To enable the dependency check plugin in your pipeline add the following pipeline stage to your Jenkinsfile:
 

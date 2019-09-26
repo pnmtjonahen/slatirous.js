@@ -28,7 +28,7 @@
         "title": "About",
         "description": "About Slatirous.js",
         "date": "2018",
-        "imageurl": "https://www.w3schools.com/w3images/house2.jpg",
-        "imagealt": "house2"
+        "imageurl": "images/info.png",
+        "imagealt": "info"
     }
 ]
