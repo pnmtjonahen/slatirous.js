@@ -133,9 +133,13 @@ class IndexView {
     }
 
     parseImg(entry, htmlBlocks) {
-      const inlineImgRegEx = /!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/gm;
-      return entry.replace(inlineImgRegEx, (match, p1, p2, p3) => {
-        return this.hashHtmlCode(`<div class="blog"><img src="${p3}" alt="${p1}" class="blog"/></div>`, htmlBlocks);
+      const inlineImgRegEx = /!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d|auto]+[A-Za-z%]{0,4})x([*\d|auto]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/gm;
+      return entry.replace(inlineImgRegEx, (match, p1, p2, p3, p4, p5) => {
+        var style;
+        if (p4 && p5) {
+          style = "width:"+p4+"; height:"+p5+";"
+        }
+        return this.hashHtmlCode(`<div class="blog"><img src="${p3}" alt="${p1}" class="blog" ${style ? `style="${style}"` : ''} /></div>`, htmlBlocks);
       });
     }
 
