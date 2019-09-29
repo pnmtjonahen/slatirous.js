@@ -38,7 +38,16 @@ pre.bash {
 
 /* all screens unless otherwise defined */
 @media only screen {
-  .step {}
+  .step {
+    position: relative;
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+  .step::before {
+    counter-increment: step-counter;
+    content: 'Step ' counter(step-counter) ' ';
+
+  }
 }
 
 @media only screen and (min-width: 64.063em) {
