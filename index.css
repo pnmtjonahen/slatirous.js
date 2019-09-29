@@ -44,6 +44,8 @@ pre.bash {
 @media only screen and (min-width: 64.063em) {
   .step {
     position: relative;
+    font-size: 1.1em;
+    font-weight: bold;
   }
   .step::before {
     counter-increment: step-counter;
