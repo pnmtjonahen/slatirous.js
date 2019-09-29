@@ -1,4 +1,6 @@
 /* global fetch, Node */
+/* https://regex101.com */
+/* https://github.com/showdownjs/showdown/tree/master/src/subParsers/makehtml */
 
 class IndexView {
     constructor() {
@@ -108,7 +110,24 @@ class IndexView {
       this.htmlBlocks = [];
       this.contentIds = [];
       entry = this.parseHeader(entry);
-      entry = entry.replace(/!table\-of\-content/g, (match) => {
+      entry = this.parseTableOfContent(entry);
+      entry = this.parseImg(entry);
+      entry = this.parseLink(entry);
+      entry = this.parseCode(entry);
+      entry = this.parseList(entry);
+      entry = this.parseStep(entry);
+      entry = this.parseParagraphs(entry);
+      entry = this.unhashHtmlCode(entry);
+
+      return this.htmlTemplate(`<div class="blog">${entry}</div>`);
+    }
+
+    hasTableOfContent(entry) {
+      return entry.match(/^!table\-of\-content$/gm);
+    }
+
+    parseTableOfContent(entry) {
+      return entry.replace(/!table\-of\-content/g, (match) => {
         return this.hashHtmlCode(`<p>Table of content</p>
         <ul>
         ${this.contentIds.map(contentId => {
@@ -116,28 +135,6 @@ class IndexView {
         }).join('')}
         </ul>`);
       });
-      entry = this.parseImg(entry);
-      entry = this.parseLink(entry);
-      entry = this.parseCode(entry);
-      entry = this.parseList(entry);
-      entry = this.parseStep(entry);
-      entry = this.parseParagraphs(entry);
-
-      entry = entry.replace(/PTJ-md(.*?)md-PTJ/gm, (match, p1) => {
-          return this.htmlBlocks[p1];
-      });
-// nested elements
-      entry = entry.replace(/PTJ-md(.*?)md-PTJ/gm, (match, p1) => {
-          return this.htmlBlocks[p1];
-      });
-
-
-      return this.htmlTemplate(`<div class="blog">${entry}</div>`);
-
-    }
-
-    hasTableOfContent(entry) {
-      return entry.match(/^!table\-of\-content$/gm);
     }
 
     parseHeader(entry) {
@@ -235,6 +232,16 @@ class IndexView {
       // hash the parsed html code and put it between tags. this will prevent other parser to reparse this already correct html
       return "PTJ-md"+(this.htmlBlocks.push(html) -1) +"md-PTJ";
     }
-
+    
+    unhashHtmlCode(entry) {
+      const htmlHashedBlockRegExp = /PTJ-md(.*?)md-PTJ/gm;
+      return entry.replace(htmlHashedBlockRegExp, (match, p1) => {
+        // nested elements
+          if (this.htmlBlocks[p1].match(htmlHashedBlockRegExp)) {
+              return this.unhashHtmlCode(this.htmlBlocks[p1]);
+          }
+          return this.htmlBlocks[p1];
+      });
+    }
 }
 const view = new IndexView();
