@@ -7,7 +7,7 @@ var expect = require('chai').expect;
 describe('Index', () => {
     beforeEach(() => {
         fetch.resetMocks();
-        document.body.innerHTML = `<div id="blog"/>
+        document.body.innerHTML = `<div id="blog"></div>
 <ul class="w3-ul w3-hoverable w3-white">
   <template id="popular-post">
     <li class="w3-padding-16" >
@@ -20,6 +20,7 @@ describe('Index', () => {
   </template>
 </ul>`;
     });
+
     it('should load index.js', () => {
         fetch.mockResponseOnce(JSON.stringify([{
                 id: "id1",
@@ -30,7 +31,7 @@ describe('Index', () => {
                 imagealt: "nature"
             }
           ]));
-        fetch.mockResponseOnce("# Markdown");  
+        fetch.mockResponseOnce('# Simple Text\n\nParagraph\n\n[![img](img.png)](link)\n\n```code\n\n<xml></xml>\n\n```\n\n- one\n- two\n- three\n\n', { status: 300, headers: { 'content-type': 'text/plain; charset=UTF-8'} });
         var index = require('./index.js');
         expect(index !== undefined);
     });

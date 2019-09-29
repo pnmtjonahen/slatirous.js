@@ -1,0 +1,70 @@
+body, h1, h2, h3, h4, h5 {
+  font-family: "Raleway", sans-serif
+}
+
+div.blog {
+  margin-bottom: 10px;
+}
+
+img.blog {}
+
+a.blog {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+pre.code {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 3px;
+}
+
+pre.bash {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  color: #f6f8fa;
+  background-color: black;
+  border-radius: 3px;
+}
+
+.section {
+  counter-reset: step-counter;
+}
+
+/* all screens unless otherwise defined */
+@media only screen {
+  .step {}
+}
+
+@media only screen and (min-width: 64.063em) {
+  .step {
+    position: relative;
+  }
+  .step::before {
+    counter-increment: step-counter;
+    content: 'Step ' counter(step-counter) ' ';
+
+  }
+
+  .step::after {
+    content: counter(step-counter);
+    position: absolute;
+    left: -3.5em;
+    top: -.5em;
+    background: #f6f8fa;
+    border-radius: 50%;
+    border: 1px;
+    border-style: solid;
+    border-color: black;
+    width: 2em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+}

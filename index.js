@@ -2,10 +2,14 @@
 
 class IndexView {
     constructor() {
+        var htmlBlocks = [];
+        var contentIds = [];
+        var currentBlog;
+
         fetch("blog.json").then(res => res.json()).then(json => {
 
             this.blogs = json;
-            const bookmarkRegExp = /(.*?)#(.*)/;
+            const bookmarkRegExp = /(.*?)#([a-zA-Z]*)_?.*/;
             if (window.location.href.match(bookmarkRegExp)) {
               this.setCurrentBlog(window.location.href.replace(bookmarkRegExp, (match, p1, p2) => p2));
             } else {
@@ -64,15 +68,16 @@ class IndexView {
     }
 
     setBlog(blog) {
+        this.currentBlog = blog;
 // insert new html snippet using backticks notation and a dynamic template element
         const div = this.htmlTemplate(`<div class="w3-card-4 w3-margin w3-white">
         <div class="w3-container">
-            <h3><b>${blog.title}</b></h3>
-            <h5>${blog.description}, <span class="w3-opacity">${blog.date}</span></h5>
+            <h3><b>${this.currentBlog.title}</b></h3>
+            <h5>${this.currentBlog.description}, <span class="w3-opacity">${this.currentBlog.date}</span></h5>
         </div>
   </div>`);
 
-        div.appendChild(this.appendBlogEntry(blog));
+        div.appendChild(this.appendBlogEntry());
 
         const blogContainer = document.getElementById("blog");
         if (blogContainer.hasChildNodes()) {
@@ -88,31 +93,42 @@ class IndexView {
       return template.content.firstChild;
     }
 
-    appendBlogEntry(blog) {
+    appendBlogEntry() {
 // insert new html snippet using DOM api.
         const entry = document.createElement("div");
         entry.className = "w3-container";
-        fetch("blog/" + blog.id + ".md").then(res => res.text()).then(md => {
+        fetch("blog/" + this.currentBlog.id + ".md").then(res => res.text()).then(md => {
             entry.appendChild(this.parseMd(md));
         });
         return entry;
     }
 
     parseMd(entry) {
-      var htmlBlocks = [];
-      entry = this.parseHeader(entry, htmlBlocks);
-      entry = this.parseImg(entry, htmlBlocks);
-      entry = this.parseLink(entry, htmlBlocks);
-      entry = this.parseCode(entry, htmlBlocks);
-      entry = this.parseList(entry, htmlBlocks);
-      entry = this.parseParagraphs(entry, htmlBlocks);
+
+      this.htmlBlocks = [];
+      this.contentIds = [];
+      entry = this.parseHeader(entry);
+      entry = entry.replace(/!table\-of\-content/g, (match) => {
+        return this.hashHtmlCode(`<p>Table of content</p>
+        <ul>
+        ${this.contentIds.map(contentId => {
+          return `<li><a href="#${contentId.id}">${contentId.title}</a></li>`;
+        }).join('')}
+        </ul>`);
+      });
+      entry = this.parseImg(entry);
+      entry = this.parseLink(entry);
+      entry = this.parseCode(entry);
+      entry = this.parseList(entry);
+      entry = this.parseStep(entry);
+      entry = this.parseParagraphs(entry);
 
       entry = entry.replace(/PTJ-md(.*?)md-PTJ/gm, (match, p1) => {
-          return htmlBlocks[p1];
+          return this.htmlBlocks[p1];
       });
 // nested elements
       entry = entry.replace(/PTJ-md(.*?)md-PTJ/gm, (match, p1) => {
-          return htmlBlocks[p1];
+          return this.htmlBlocks[p1];
       });
 
 
@@ -120,53 +136,75 @@ class IndexView {
 
     }
 
-    parseHeader(entry, htmlBlocks) {
+    hasTableOfContent(entry) {
+      return entry.match(/^!table\-of\-content$/gm);
+    }
+
+    parseHeader(entry) {
       const headerRegEx = /^(#{1,6})[ \t]+(.+)/gm;
+      const idRegExp = /\s?\{([^{]+?)}\s*$/gm;
+      const hasTableOfContent = this.hasTableOfContent(entry);
+
       return entry.replace(headerRegEx, (match, p1, p2) => {
-        return this.hashHtmlCode('<h' + p1.length +'>' + p2 + '</h' + p1.length + '>\n', htmlBlocks);
+
+        var hcontent = p2.replace(idRegExp, '');
+        var ids = p2.match(idRegExp);
+        if (hasTableOfContent && ids) {
+          var id = this.currentBlog.id + "_" + ids[0].replace(/\{/gm, '').replace(/}/gm, '').trim().replace(/#/g,'');
+          this.contentIds.push({id : id, title: hcontent});
+          return this.hashHtmlCode('<h' + p1.length +' class="section" id="'+ id+'">' + hcontent + '</h' + p1.length + '>\n');
+        }
+        return this.hashHtmlCode('<h' + p1.length +' class="section">' + hcontent + '</h' + p1.length + '>\n');
       });
     }
 
-    parseImg(entry, htmlBlocks) {
+    parseImg(entry) {
       const inlineImgRegEx = /!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d|auto]+[A-Za-z%]{0,4})x([*\d|auto]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/gm;
       return entry.replace(inlineImgRegEx, (match, p1, p2, p3, p4, p5) => {
-        return this.hashHtmlCode(`<div class="blog"><img src="${p3}" alt="${p1}" class="blog" ${p4 && p5 ? `style="width:${p4}; height:${p5}"` : ''} /></div>`, htmlBlocks);
+        return this.hashHtmlCode(`<div class="blog"><img src="${p3}" alt="${p1}" class="blog" ${p4 && p5 ? `style="width:${p4}; height:${p5}"` : ''} /></div>`);
       });
     }
 
-    parseLink(entry, htmlBlocks) {
+    parseLink(entry) {
       const inlineLinkRegEx = /\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/gm;
       return entry.replace(inlineLinkRegEx, (match, p1, p2, p3) => {
-        return this.hashHtmlCode(`<a href="${p3}" target="_blank">${p1 ? p1 : p3}</a>`, htmlBlocks);
+        return this.hashHtmlCode(`<a href="${p3}" target="_blank">${p1 ? p1 : p3}</a>`);
       });
     }
 
-    parseCode(entry, htmlBlocks) {
+    parseCode(entry) {
       const codeRegExp = /(?:^|\n)(?: {0,3})(```+)(?: *)([^\s`]*)\n([\s\S]*?)\n(?: {0,3})\1/gm;
       return entry.replace(codeRegExp, (matc, p1, p2, p3) => {
         p3 = p3.replace(/^([ \t]*)/g, '');
         p3 = p3.replace(/[ \t]*$/g, '');
         p3 = this.escapeXml(p3);
-        return this.hashHtmlCode(`<pre ${p2 ? `class="${p2}"` :''}>${p3}</pre>`, htmlBlocks);
+        return this.hashHtmlCode(`<pre ${p2 ? `class="${p2}"` :''}>${p3}</pre>`);
       });
     }
 
-    parseList(entry, htmlBlocks) {
+    parseList(entry) {
       const startListRegExp = /^\n{1} ?[*+-][ \t](.*)/gm;
       const endListRegExp = /^[*+-][ \t](.*)\n$/gm;
       const listRegExp = /^[*+-][ \t](.*)/gm;
       const nrItems = entry
       entry = entry.replace(startListRegExp, (match, p1) => {
-          return this.hashHtmlCode("<p><ul><li>" + p1 + "</li>", htmlBlocks);
+          return this.hashHtmlCode(`<p><ul><li>${p1}</li>`);
       });
       entry = entry.replace(endListRegExp, (match, p1) => {
-          return this.hashHtmlCode("<li>" + p1 + "</li></ul></p>", htmlBlocks);
+          return this.hashHtmlCode(`<li>${p1}</li></ul></p>`);
       });
 
       return entry.replace(listRegExp, (match, p1) => {
-          return this.hashHtmlCode("<li>" + p1 + "</li>", htmlBlocks);
+          return this.hashHtmlCode(`<li>${p1}</li>`);
       });
 
+    }
+
+    parseStep(entry) {
+      const stepRegExp = /^-Step (.+)/gm;
+      return entry.replace(stepRegExp, (match, p1) => {
+          return this.hashHtmlCode(`<p class="step">${p1}</p>`);
+      });
     }
 
     escapeXml(text) {
@@ -174,7 +212,7 @@ class IndexView {
                   .replace(/</g, '&lt;')
                   .replace(/>/g, '&gt;');
     }
-    parseParagraphs(text, htmlBlocks) {
+    parseParagraphs(text) {
 
       text = text.replace(/^\n+/g, '');
       text = text.replace(/\n+$/g, '');
@@ -193,30 +231,10 @@ class IndexView {
       return parasParsed.join('\n');
     }
 
-    hashHtmlCode(html, htmlBlocks) {
+    hashHtmlCode(html) {
       // hash the parsed html code and put it between tags. this will prevent other parser to reparse this already correct html
-      return "PTJ-md"+(htmlBlocks.push(html) -1) +"md-PTJ";
+      return "PTJ-md"+(this.htmlBlocks.push(html) -1) +"md-PTJ";
     }
 
-    // determineType(entry) {
-    //   const inlineImgRegEx = /^!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/;
-    //   const inlineLinkRegEx = /^\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/;
-    //   const headerRegEx = /^(#{1,6})[ \t]+(.+)/;
-    //
-    //   if (entry.match(headerRegEx)) {
-    //     return this.htmlTemplate(entry.replace(headerRegEx, (match, p1, p2) => {
-    //       return '<h' + p1.length +'>' + p2 + '</h' + p1.length + '>';
-    //     }));
-    //   } else if (entry.match(inlineImgRegEx)) {
-    //     return this.htmlTemplate(entry.replace(inlineImgRegEx, (match, p1, p2, p3) => {
-    //       return `<img src="${p3}" alt="${p1}" class="blog"/>`
-    //     }));
-    //   } else if (entry.match(inlineLinkRegEx)) {
-    //     return this.htmlTemplate(entry.replace(inlineLinkRegEx, (match, p1, p2, p3) => {
-    //       return `<a href="${p3}" target="_blank">${p1 ? p1 : p3}</a>`;
-    //     }));
-    //   }
-    //   return this.htmlTemplate(`<p>${entry}</p>`);
-    // }
 }
 const view = new IndexView();

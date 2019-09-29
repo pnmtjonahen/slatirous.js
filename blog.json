@@ -16,6 +16,14 @@
         "imagealt": "CI/CD"
     },
     {
+        "id":"restjpa",
+        "title": "REST with JPA",
+        "description": "Beautifull REST api with dynamic queries",
+        "date": "15-4-2018",
+        "imageurl": "https://img.shields.io/badge/REST-JPA-blue",
+        "imagealt": "JPA"
+    },
+    {
         "id":"onojs",
         "title": "O-no, no JS",
         "description": "JavaScript is dead, long live JavaScript",

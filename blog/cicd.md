@@ -2,10 +2,7 @@
 
 This blog contains scripts/guide to start a local buildpipeline. The following tools are included:
 
-- Jenkins
-- SonarQube
-- Nexus3
-- Gogs
+!table-of-content
 
 All the different tools run in their own docker container.
 
@@ -18,7 +15,7 @@ The following decisions I made and are up to the reader to decide whether to fol
 Note:
 When playing around or initially start the application without -d (detached) mode, it is easier to read what is happening/went wrong. If everything is working fine, stop and start all application with the -d (detached) option.
 
-## Gogs a painless self-hosted Git services
+## Gogs a painless self-hosted Git services {#gogs}
 
 ### Installation
 Dockerhub : [](https://hub.docker.com/r/gogs/gogs/)
@@ -85,7 +82,7 @@ where:
 - repository_name is the name of the cloned repository
 
 
-## Jenkins
+## Jenkins {#jenkins}
 
 Inspired by : [](https://jenkins.io/doc/tutorials/build-a-java-app-with-maven/)
 
@@ -146,7 +143,7 @@ From a Gogs point of view Jenkins is not on localhost:18080 but on the same dock
 
 If you push changed to the Gogs repo (or when you use)
 
-## SonarQube
+## SonarQube {#sonarcube}
 Dockerhub : [](https://hub.docker.com/_/sonarqube)
 
 ### Installation
@@ -184,7 +181,7 @@ stage('Sonar') {
 }
 ```
 
-## Nexus3
+## Nexus3 {#nexus}
 
 Dockerhub : [](https://hub.docker.com/r/sonatype/nexus3)
 
@@ -306,7 +303,7 @@ In that local folder add the following settings.xml file.
 
 Note: Need to find a better place for the .m2 folder.
 
-## OWASP Dependency-Check
+## OWASP Dependency-Check {#depcheck}
 Dependency-Check is a software composition analysis utility that identifies project dependencies and checks if there are any known, publicly disclosed, vulnerabilities. Currently, Java and .NET are supported; additional experimental support has been added for Ruby, Node.js, Python, and limited support for C/C++ build systems (autoconf and cmake). The tool can be part of a solution to the "OWASP Top 10 2017 A9-Using Components with Known Vulnerabilities" previously known as "OWASP Top 10 2013 A9-Using Components with Known Vulnerabilities".
 
 Dependency Check : [](https://www.owasp.org/index.php/OWASP_Dependency_Check)
