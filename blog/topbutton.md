@@ -70,6 +70,8 @@ This is the final code for my top-button webcomponent.
 - See [](https://benmarshall.me/attaching-javascript-handlers-to-scroll-events/) on why scroll is done this way.
 - See [](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md#iife) on the IIFE.
 
+
+
 ```code
 (function() {
   const template = document.createElement('template');
