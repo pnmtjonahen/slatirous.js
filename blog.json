@@ -1,42 +1,55 @@
-[
-    {
-        "id":"revived",
-        "title": "Revived! Yes we are still alive.",
-        "description": "How to embed google photos",
-        "date": "20-09-2019",
-        "imageurl": "https://lh3.googleusercontent.com/CgwcH7wZ8rM5Jg82D4YSnqOHyVEnoX-f840C2iCW2MCQbluIhSYHliwlmjNgBFEN0HOaa6UnnPoNH_SFTXu-qxjRnvbyc0Z7VFtq0aqzXZ3DpdE_03U1_unzS5VCaEizjHWp5zwbWrrCO36EctBbJ9nIGNTCc6OD2cVFiKwOMZfHL4IAa72nPKrJZr59kp2klIWvtRwvaUR1yxI0pmplMFj7HJLXx5pqwo51pnv6Xxq5VTUVlyOyGF5TiEO4ptIgcS0EtjG5G1k2y9WaO6rj3R8KaV6h5x4G-uP66DoDhWJj43N8VsHOxHgJTwdMdEciw6FgPNkjlORTNHyKn5vNKU4BST1y41nb8C-Q97gby8E1C_GZ15vKBrKX94-J9DlYBxJiGj1SmxOwGVuctN6BYkzGfAW47ZYSZQKVFCxRkeoHjFdItKjtpx-GHvKdG0EE5fruk9PtaIy3CEDeh1Fj5SXkhFPwVcfVNC0zX-AIOhC6fGLNlu3ZjaRkArCrXQ4M0U9P-Pz2JRDGLW4r5GhVCv4pV4o6pQt3GiAdzOe1sV1qNR5thniIZuG0aIgVBW7TQUHTrSBD-KaNCbzDadhzreCKQru4bAieWYu8TtiHxgEtDocTgDjmhcr9KSoFXrAAqJLbLJQNgV6Wf7ziLj1cP8kWgLnUjOi7qGMCGZ3mW-HZ8tbMyjeGiAUN3lTuLybMfh5J13ona2F-eMGUCwv9UaBJQvVhq12nEz03030xpdWHB5NVUw=w1362-h1021-no",
-        "imagealt": "Photo"
-    },
-    {
-        "id":"cicd",
-        "title": "Continious Integration / Continious Deployment",
-        "description": "A buildpipeline",
-        "date": "20-08-2019",
-        "imageurl": "https://img.shields.io/badge/qa-cicd-blue",
-        "imagealt": "CI/CD"
-    },
-    {
-        "id":"restjpa",
-        "title": "REST with JPA",
-        "description": "Beautifull REST api with dynamic queries",
-        "date": "15-4-2018",
-        "imageurl": "https://img.shields.io/badge/REST-JPA-blue",
-        "imagealt": "JPA"
-    },
-    {
-        "id":"onojs",
-        "title": "O-no, no JS",
-        "description": "JavaScript is dead, long live JavaScript",
-        "date": "15-3-2018",
-        "imageurl": "https://www.w3schools.com/w3images/house2.jpg",
-        "imagealt": "house2"
-    },
-    {
-        "id":"about",
-        "title": "About",
-        "description": "About Slatirous.js",
-        "date": "2018",
-        "imageurl": "images/info.png",
-        "imagealt": "info"
-    }
+[{
+    "id": "topbutton",
+    "title": "Building a webcomponent",
+    "description": "How-to make a goto top button using webcomponent, js only",
+    "date": "30-09-2019",
+    "imageurl": "https://img.shields.io/badge/js-webcomponent-blue",
+    "imagealt": "JS webcomponent",
+    "tags": ["js", "webcomponent", "html", "css"]
+  },
+  {
+    "id": "revived",
+    "title": "Revived! Yes we are still alive.",
+    "description": "How-to embed google photos",
+    "date": "20-09-2019",
+    "imageurl": "https://lh3.googleusercontent.com/CgwcH7wZ8rM5Jg82D4YSnqOHyVEnoX-f840C2iCW2MCQbluIhSYHliwlmjNgBFEN0HOaa6UnnPoNH_SFTXu-qxjRnvbyc0Z7VFtq0aqzXZ3DpdE_03U1_unzS5VCaEizjHWp5zwbWrrCO36EctBbJ9nIGNTCc6OD2cVFiKwOMZfHL4IAa72nPKrJZr59kp2klIWvtRwvaUR1yxI0pmplMFj7HJLXx5pqwo51pnv6Xxq5VTUVlyOyGF5TiEO4ptIgcS0EtjG5G1k2y9WaO6rj3R8KaV6h5x4G-uP66DoDhWJj43N8VsHOxHgJTwdMdEciw6FgPNkjlORTNHyKn5vNKU4BST1y41nb8C-Q97gby8E1C_GZ15vKBrKX94-J9DlYBxJiGj1SmxOwGVuctN6BYkzGfAW47ZYSZQKVFCxRkeoHjFdItKjtpx-GHvKdG0EE5fruk9PtaIy3CEDeh1Fj5SXkhFPwVcfVNC0zX-AIOhC6fGLNlu3ZjaRkArCrXQ4M0U9P-Pz2JRDGLW4r5GhVCv4pV4o6pQt3GiAdzOe1sV1qNR5thniIZuG0aIgVBW7TQUHTrSBD-KaNCbzDadhzreCKQru4bAieWYu8TtiHxgEtDocTgDjmhcr9KSoFXrAAqJLbLJQNgV6Wf7ziLj1cP8kWgLnUjOi7qGMCGZ3mW-HZ8tbMyjeGiAUN3lTuLybMfh5J13ona2F-eMGUCwv9UaBJQvVhq12nEz03030xpdWHB5NVUw=w1362-h1021-no",
+    "imagealt": "Photo",
+    "tags": ["Google Photo", "js", "markdown"]
+  },
+  {
+    "id": "cicd",
+    "title": "Continious Integration / Continious Deployment",
+    "description": "A buildpipeline",
+    "date": "20-08-2019",
+    "imageurl": "https://img.shields.io/badge/qa-cicd-blue",
+    "imagealt": "CI/CD",
+    "tags": ["CI/CD", "Jenkins", "GOGS", "git", "SonarQube"]
+  },
+  {
+    "id": "restjpa",
+    "title": "REST with JPA",
+    "description": "Beautifull REST api with dynamic queries",
+    "date": "2017/2018",
+    "imageurl": "https://img.shields.io/badge/REST-JPA-blue",
+    "imagealt": "JPA",
+    "tags": ["REST", "JPA", "Java", "CriteriaAPI", "Lambda", "SQL"]
+  },
+  {
+    "id": "onojs",
+    "title": "O-no, no JS",
+    "description": "JavaScript is dead, long live JavaScript",
+    "date": "15-3-2018",
+    "imageurl": "https://www.w3schools.com/w3images/house2.jpg",
+    "imagealt": "house2",
+    "tags": ["js, blog"]
+  },
+  {
+    "id": "about",
+    "title": "About",
+    "description": "About Slatirous.js",
+    "date": "2018",
+    "imageurl": "images/info.png",
+    "imagealt": "info",
+    "tags": ["about"]
+  }
 ]

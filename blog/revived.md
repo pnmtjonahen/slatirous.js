@@ -16,3 +16,68 @@ Used [showdown](https://github.com/showdownjs/showdown) as an inspiration to cre
 
 
 See the code of this application ;)
+
+Currently the code supports:
+## Standard (semi) markdown syntax
+
+### headers
+
+```code
+# H1
+## H1
+### H1
+#### H1
+##### H1
+###### H1
+```
+
+### list
+Non nested list must start with an empty line and end with one
+
+```code
+
+- L1
+- L2
+- L3
+
+```
+
+### image
+
+```code
+![title](link)
+```
+
+### links
+
+```code
+[title](link)
+```
+
+Including nested images as the link title
+
+### image
+
+```code
+[![title](img-link)](link)
+```
+
+## my extended markdown syntax
+
+### steps
+Often needed steps that I take to create something. Without the need to number my steps automatically.
+
+```code
+-Step with a step text
+```
+
+### table-of-content
+When creating a header you can specify its id. These then can be used to create a table of content.
+
+```code
+!table-of-content
+
+## firstheader {#id}
+```
+
+The table of content is a single level table of content. 

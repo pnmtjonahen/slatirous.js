@@ -116,6 +116,7 @@ So where does this FinStatement_ class come from? The actual API defines it as b
 Once the model is generated and available to our code we can use the generated model in our query builder.
 
 With the above code and maven plugin we now have a query that looks something like:
+
 ```code
 select * from FIN_TRANS where creation_date between '2019-01-01' and '2019-02-01'
 ```

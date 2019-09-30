@@ -32,7 +32,7 @@ pre.bash {
   border-radius: 3px;
 }
 
-.section {
+h1.section {
   counter-reset: step-counter;
 }
 
