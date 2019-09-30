@@ -1,3 +1,5 @@
+# A top-button WebComponent
+
 When setting up and extending my blog I came to the conclusion that it would be very handy to have a "goto top button" when the user scrolls down.
 
 The first implementation was done by following [](https://www.w3schools.com/howto/howto_js_scroll_to_top.asp). A simple and IMHO a nice way to implement it.

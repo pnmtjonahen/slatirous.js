@@ -1,5 +1,5 @@
 
-## Beautifull REST api
+# Beautifull REST api
 
 Before the whole HATEOS or even GraphQl movement there already was a notion of creating REST full API that where loosely coupled and give its user the flexibility they needed aka "Beautiful REST API's".
 
