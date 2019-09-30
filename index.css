@@ -36,6 +36,20 @@ h1.section {
   counter-reset: step-counter;
 }
 
+.section .back {
+  display: block;
+  position:relative;
+}
+span.back {
+  position: relative;
+  display:inline-block;
+  float: right;
+}
+a.back {
+  text-decoration: none;
+  cursor: pointer;
+}
+
 /* all screens unless otherwise defined */
 @media only screen {
   .step {

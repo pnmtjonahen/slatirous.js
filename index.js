@@ -163,9 +163,9 @@ class IndexView {
           id: id,
           title: hcontent
         });
-        return this.hashHtmlCode('<h' + p1.length + ' class="section" id="' + id + '">' + hcontent + '</h' + p1.length + '>\n');
+        return this.hashHtmlCode(`<h${p1.length} class="section back" id="${id}">${hcontent}<span class="back"><a class="back" onClick="document.body.scrollTop = 0; document.documentElement.scrollTop = 0; return false;">^</a></span></h${p1.length}>`);
       }
-      return this.hashHtmlCode('<h' + p1.length + ' class="section">' + hcontent + '</h' + p1.length + '>\n');
+      return this.hashHtmlCode(`<h${p1.length} class="section">${hcontent}</h${p1.length}>`);
     });
   }
 

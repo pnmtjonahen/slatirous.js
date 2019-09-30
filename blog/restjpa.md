@@ -1,9 +1,9 @@
 
 ## Beautifull REST api
 
-Before the whole HATEOS or even GraphQl movement there already was a notion of creating REST full API that where loosely coupled and give its user the flexibility they needed.
+Before the whole HATEOS or even GraphQl movement there already was a notion of creating REST full API that where loosely coupled and give its user the flexibility they needed aka "Beautiful REST API's".
 
-When creating REST API we can not only only use HTTP verbs, mime types, HTTP result codes etc etc, but also leverage the posibility of query parameters. For excample to get all the records between certain dates, or with a certain property value set.
+When creating REST API we can not only only use HTTP verbs, mime types, HTTP result codes etc etc, but also leverage the possibility of query parameters. For example to get all the records between certain dates, or with a certain property value set.
 
 To make this more concrete imagine the following case where we have an endpoint that represents the collection of financial statements:
 
@@ -19,7 +19,7 @@ What now if we want only between certain dates?
 http://my-mony/financialstatements?creation_date>2019-01-01&creation_date<2019-02-01
 ```
 
-Or what is we want only the statements that have a certain beneficiary account and we received money from
+Or what if we want only the statements that have a certain beneficiary account that we received money from
 
 ```code
 http://my-mony/financialstatements?beneficiary_account=NL46INGB00129856&Credit=true
@@ -37,16 +37,16 @@ or
 select * from FIN_TRANS where beneficiary_account = 'NL46INGB00129856' and credit=1
 ```
 
-What now if we want to combine these two, even what if we want to specify the columns we want to select, or even if we want a specific ordering or even a group by in our interface.
+What now if we want to combine these two, even what if we want to specify the columns we want to select, or even if we want a specific ordering or even allow a group by in our REST interface.
 
 The result would mean that we need to define a unmaintainable combination of different queries.
-Wouldn't it be nice to have a way to define a dynamic query based on the parameters entered in the url? That woud not only solve our query problem but would also introduce a possible attack vector for a malicious user.
+Wouldn't it be nice to have a way to define a dynamic query based on the parameters entered in the url? That would not only solve our query problem but would also introduce a possible attack vector for a malicious user. What we need is to allow the users of our REST API to specify the query parameters, but we are still in control on what can be used as a parameter.
 
 One way to solve this would be to use the Criteria api from JPA and limit the possible parameters. And that is exactly what I did.
 
 see [](https://docs.oracle.com/javaee/6/tutorial/doc/gjrij.html) for more specific information on the API and its possibilities.
 
-Using the Criteria API we can dynamically / programmatically build our database queries
+Using the Criteria API we can dynamically / programmatically build our database queries. Lets see how that can be done.
 
 -Step is to instantiate a CriteriaQuery, to do this we use the CriteriaBuilder.
 
@@ -73,15 +73,15 @@ Effectively we now have a query that looks like:
 select * from FIN_TRANS;
 ```
 
--Step is to setup the where clause:
+-Step is to setup the where clause.
 
 ```code
 Predicate pr = cb.between(finStatementRoot.get(FinStatement_.creationdate), toFirstDate(v), toSecondDate(v))
 cq.where(pr);
 ```
-where v is the value from which we take to dates. Something like '2019-01-01,2019-02-01'
+where v is the value from which we take to dates. Something like '2019-01-01,2019-02-01'.
 
--Step is to generate the JPA model classes
+-Step is to generate the JPA model classes.
 
 So where does this FinStatement_ class come from? The actual API defines it as being a SingularAttribute<? super X, Y>. It s part of the JPA model generated classes. To generate this model I'll use a maven plugin.
 
@@ -121,11 +121,11 @@ With the above code and maven plugin we now have a query that looks something li
 select * from FIN_TRANS where creation_date between '2019-01-01' and '2019-02-01'
 ```
 
-So far so good, we still do not have a dynamically created query, we build our query in a rather complex way.
+So far so good, we still do not have a dynamically created query and even, we build our query in a rather complex way.
 
 -Step is to determine the actual field that is queried.
 
-To do that we need some extra input. The query field. at that point the code would become something like
+To do that we need some extra input. The query field. At this point the code would become something like.
 
 ```code
   Predicate pr;
@@ -141,9 +141,9 @@ To do that we need some extra input. The query field. at that point the code wou
   cq.where(pr);
 
 ```
-The result is that we can ether select on date or on account, not on both. Fortunately there is a way to combine Predicates using a boolean method of the CriteriaBuilder. (and, or, etc). this means that if we have two predicates generated we can and/or them together.
+The result is that we can ether select on date or on account, not on both. Fortunately there is a way to combine Predicates using a boolean method of the CriteriaBuilder (and, or, etc). This means that if we have two predicates generated we can and/or them together.
 
-Also the current way we have implemented is, is that there is only a single fieldSelected. First step is to make the fieldSelected a collection of selected fields. What is the new loop in java 8+? Collection API with streams and lambdas.
+Also the current way we have implemented it, is that there is only a single fieldSelected. First step is to make the fieldSelected a collection of selected fields. What is the new loop in java 8+? Collection API with streams and lambdas.
 
 -Step is to change the selectedFields into a stream of fields and then map them into a predicate.
 At the and we then can reduce the stream of predicates into a single predicate.
@@ -161,7 +161,7 @@ Predicate pr = fieldSelected.stream().map(field -> {
 }).reduce((a, b) -> cb.and(a, b));
 cq.where(pr);
 ```
-The resulting query would be something like
+The resulting query would be something like:
 
 ```code
 select * from FIN_TRANS where beneficiary_account = 'NL46INGB00129856'
@@ -170,7 +170,7 @@ select * from FIN_TRANS where beneficiary_account = 'NL46INGB00129856'
 
 -Step is to get rid of the switch statement.
 
-What is a switch statement, nothing more the a lookup table. And in this case a lookup table for a function.
+What is a switch statement, nothing more the a lookup table and in this case a lookup table with a function as the value.
 
 ```code
 public interface PredicateSupplier extends Serializable {
@@ -191,7 +191,7 @@ map.put("beneficiary_account", (CriteriaBuilder cb, Root<FinStatement_> r, Strin
 );
 ```
 
-With this change we can rewrite our code to look like
+With this change we can rewrite our code to look like.
 ```code
 Predicate pr = fieldSelected.stream()
         .map(field -> map.get(field).supply(cb, finStatementRoot, v))
@@ -200,7 +200,7 @@ cq.where(pr);
 ```
 
 -Step is to get rid of the map.
-Last thing I did was rewrite the map as a enumeration
+Last thing I did was rewrite the map as a enumeration.
 
 ```code
 public enum PredicateField {
@@ -220,7 +220,7 @@ public enum PredicateField {
 }
 ```
 
-The resulting code would then look like
+The resulting code would then look like.
 
 ```code
 Predicate pr = fieldSelected.stream()
