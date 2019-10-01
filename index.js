@@ -110,7 +110,11 @@ class IndexView {
     if (!blog.tags) {
       return;
     }
-    document.getElementById("tags").appendChild(this.htmlTemplate(`<p>${blog.tags.map((t) => {
+    var tags = document.getElementById("tags");
+    while (tags.lastChild) {
+      tags.removeChild(tags.lastChild);
+    }
+    tags.appendChild(this.htmlTemplate(`<p>${blog.tags.map((t) => {
         return `<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">${t}</span> `;
     }).join('')}</p>`));
   }
@@ -119,6 +123,7 @@ class IndexView {
 
     this.htmlBlocks = [];
     this.contentIds = [];
+
     entry = this.parseCode(entry);
     entry = this.parseHeader(entry);
     entry = this.parseTableOfContent(entry);
@@ -128,13 +133,20 @@ class IndexView {
     entry = this.parseStep(entry);
     entry = this.parseParagraphs(entry);
     entry = this.unhashHtmlCode(entry);
-
+    entry = this.encloseList(entry);
 
     return this.htmlTemplate(`<div class="blog">${entry}</div>`);
   }
 
   hasTableOfContent(entry) {
     return entry.match(/^!table\-of\-content$/gm);
+  }
+
+  encloseList(entry) {
+    entry = entry.replace(/¨2(?:\r\n|\r|\n)¨1/gm, '');
+    entry = entry.replace(/¨1/gm, '<ul>');
+    entry = entry.replace(/¨2/gm, '</ul>');
+    return entry;
   }
 
   parseTableOfContent(entry) {
@@ -194,19 +206,18 @@ class IndexView {
   }
 
   parseList(entry) {
-    const startListRegExp = /^\n{1} ?[*+-][ \t](.*)/gm;
-    const endListRegExp = /^[*+-][ \t](.*)\n$/gm;
-    const listRegExp = /^[*+-][ \t](.*)/gm;
+    // const startListRegExp = /^-(.*)(?=\n-)/gm;
+    // const endListRegExp = /^-(.*)(?=\n\n)/gm;
+    const listRegExp = /^- (.*)/gm;
 
-    entry = entry.replace(startListRegExp, (match, p1) => {
-      return this.hashHtmlCode(`<p><ul><li>${p1}</li>`);
-    });
-    entry = entry.replace(endListRegExp, (match, p1) => {
-      return this.hashHtmlCode(`<li>${p1}</li></ul></p>`);
-    });
-
+    // entry = entry.replace(startListRegExp, (match, p1) => {
+    //   return this.hashHtmlCode(`<p><ul><li>${p1}</li>`);
+    // });
+    // entry = entry.replace(endListRegExp, (match, p1) => {
+    //   return this.hashHtmlCode(`<li>${p1}</li></ul></p>`);
+    // });
     entry = entry.replace(listRegExp, (match, p1) => {
-      return this.hashHtmlCode(`<li>${p1}</li>`);
+      return this.hashHtmlCode(`¨1<li>${p1}</li>¨2`);
     });
 
     return entry;

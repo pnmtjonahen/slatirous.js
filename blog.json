@@ -1,4 +1,5 @@
-[{
+[
+  {
     "id": "topbutton",
     "title": "Building a webcomponent",
     "description": "How-to make a goto top button using webcomponent, js only",
