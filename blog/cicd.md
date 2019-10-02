@@ -18,6 +18,7 @@ When playing around or initially start the application without -d (detached) mod
 ## Gogs a painless self-hosted Git services {#gogs}
 
 ### Installation
+
 Dockerhub : [](https://hub.docker.com/r/gogs/gogs/)
 
 ```bash
@@ -33,6 +34,7 @@ docker run \
 ```
 
 ### Configuration
+
 Open a browser: [](http://localhost:8300)
 
 On the 'Install Steps For First-time Run' change the following settings:
@@ -49,6 +51,7 @@ When presented with the 'Sign In' page create your first account (which will bec
 You should now have your own self-hosted Git service.
 
 ### Mirror GitHub
+
 Inspired by : [](https://moox.io/blog/keep-in-sync-git-repos-on-github-gitlab-bitbucket/)
 
 Not having my source code only on the self-hosted git service I wanted to have my github repositories synced with my Gogs service.
@@ -91,6 +94,7 @@ Dockerhub : [](https://hub.docker.com/r/jenkinsci/blueocean/)
 Except that we wont use a file based repository but will use a hosted repository (Gogs)
 
 ### Installation
+
 To get jenkins installed follow the guide mentioned above. After installation and your first pipeline stop jenkins and restart with the following docker command:
 
 ```bash
@@ -113,6 +117,7 @@ This will then:
 - removes the host based volume.
 
 ### Build your Gogs mirrored project.
+
 First Jenkins need to be able to get the source code using git (Either via GitHub or from Gogs). As we added to both repositories the same ssh public key we can simply add a credential with the private key belonging to the public key.
 
 Add a Jenkins file to your repository (if not already done) with the correct pipeline definition.
@@ -132,6 +137,7 @@ ssh://git@gogs/{user_name}/{repository_name}.git
 As the Gogs repository from a Jenkins point of view is not on localhost:8322 but on gogs:22 as they are on the same docker network.
 
 ### Trigger build on push
+
 On Jenkins install the 'Gogs Webhook Plugin' [](https://wiki.jenkins.io/display/JENKINS/Gogs+Webhook+Plugin)
 
 Then on Gogs repository configure the webhook (Gogs) on push only. For the payload use:
@@ -144,6 +150,7 @@ From a Gogs point of view Jenkins is not on localhost:18080 but on the same dock
 If you push changed to the Gogs repo (or when you use)
 
 ## SonarQube {#sonarcube}
+
 Dockerhub : [](https://hub.docker.com/_/sonarqube)
 
 ### Installation
@@ -244,6 +251,7 @@ For local development we need to setup maven to use our local installed nexus as
 ```
 
 ### Configuration (Jenkins)
+
 For Jenkins maven builds to use the Nexus repository 2 separate changes need to be made.
 
 First the maven agent used in the pipeline definition should also connect to the docker network. Change your Jenkins file as follows:
@@ -304,6 +312,7 @@ In that local folder add the following settings.xml file.
 Note: Need to find a better place for the .m2 folder.
 
 ## OWASP Dependency-Check {#depcheck}
+
 Dependency-Check is a software composition analysis utility that identifies project dependencies and checks if there are any known, publicly disclosed, vulnerabilities. Currently, Java and .NET are supported; additional experimental support has been added for Ruby, Node.js, Python, and limited support for C/C++ build systems (autoconf and cmake). The tool can be part of a solution to the "OWASP Top 10 2017 A9-Using Components with Known Vulnerabilities" previously known as "OWASP Top 10 2013 A9-Using Components with Known Vulnerabilities".
 
 Dependency Check : [](https://www.owasp.org/index.php/OWASP_Dependency_Check)
@@ -325,6 +334,7 @@ stage('Dependency Check') {
 This will use the default [National Vulnerability Database](https://nvd.nist.gov/vuln/search) database location. Make sure that the maven docker instance is reusing the same location else the database is donwloaded with each build.
 
 ### Automatically update the Database
+
 The plugin will auto update the NVD database when it is run. To keep the updates as small as possible an extra build job could be created to periodically update the database.
 
 The following pipeline definition will update the database, run it every day at noon. To keep the database up to date.

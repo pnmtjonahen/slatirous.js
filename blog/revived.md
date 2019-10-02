@@ -14,7 +14,6 @@ Step one is of course have a photo on google photo, second is getting the correc
 
 Used [showdown](https://github.com/showdownjs/showdown) as an inspiration to create my own markdown parser. Not to reinvent the same code but a way to learn more about how showdown works. Using a lot of reg expressions to replace markdown syntax into correct html.
 
-
 See the code of this application ;)
 
 Currently the code supports:
@@ -32,6 +31,7 @@ Currently the code supports:
 ```
 
 ### list
+
 Non nested list must start with an empty line and end with one
 
 ```code
@@ -65,6 +65,7 @@ Including nested images as the link title
 ## my extended markdown syntax
 
 ### steps
+
 Often needed steps that I take to create something. Without the need to number my steps automatically.
 
 ```code
@@ -72,6 +73,7 @@ Often needed steps that I take to create something. Without the need to number m
 ```
 
 ### table-of-content
+
 When creating a header you can specify its id. These then can be used to create a table of content.
 
 ```code
@@ -80,4 +82,4 @@ When creating a header you can specify its id. These then can be used to create 
 ## firstheader {#id}
 ```
 
-The table of content is a single level table of content. 
+The table of content is a single level table of content.

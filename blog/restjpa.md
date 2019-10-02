@@ -112,6 +112,7 @@ So where does this FinStatement_ class come from? The actual API defines it as b
     </dependencies>
 </plugin>
 ```
+
 Once the model is generated and available to our code we can use the generated model in our query builder.
 
 With the above code and maven plugin we now have a query that looks something like:
@@ -140,6 +141,7 @@ To do that we need some extra input. The query field. At this point the code wou
   cq.where(pr);
 
 ```
+
 The result is that we can ether select on date or on account, not on both. Fortunately there is a way to combine Predicates using a boolean method of the CriteriaBuilder (and, or, etc). This means that if we have two predicates generated we can and/or them together.
 
 Also the current way we have implemented it, is that there is only a single fieldSelected. First step is to make the fieldSelected a collection of selected fields. What is the new loop in java 8+? Collection API with streams and lambdas.
@@ -160,6 +162,7 @@ Predicate pr = fieldSelected.stream().map(field -> {
 }).reduce((a, b) -> cb.and(a, b));
 cq.where(pr);
 ```
+
 The resulting query would be something like:
 
 ```code
@@ -184,6 +187,7 @@ map.put("creation_date", new PredicateSupplier() {
 ```
 
 When we make our PredicateSupplier a @FunctionalInterface we can write it as a lambda.
+
 ```code
 map.put("beneficiary_account", (CriteriaBuilder cb, Root<FinStatement_> r, String v) ->
         cb.equal(r.get(FinStatement_.beneficiaryaccount), v))
@@ -191,6 +195,7 @@ map.put("beneficiary_account", (CriteriaBuilder cb, Root<FinStatement_> r, Strin
 ```
 
 With this change we can rewrite our code to look like.
+
 ```code
 Predicate pr = fieldSelected.stream()
         .map(field -> map.get(field).supply(cb, finStatementRoot, v))
@@ -199,6 +204,7 @@ cq.where(pr);
 ```
 
 -Step is to get rid of the map.
+
 Last thing I did was rewrite the map as a enumeration.
 
 ```code

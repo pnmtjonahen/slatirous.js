@@ -3,6 +3,7 @@ JavaScript is dead, long live JavaScript, How to build JS applications without e
 This is the first blog entry about building a web application/frontend without any extra dependencies. Can I? and Must I?
 
 ## Simple DOM manipulation
+
 There is no need for extra libraries to manipulate the DOM. We can use the same API as a framework uses. It is cumbersome, bud for simple projects it is feasible.
 
 ```code
@@ -21,6 +22,7 @@ There is no need for extra libraries to manipulate the DOM. We can use the same 
 ```
 
 ## Getting data from backend
+
 Fetching data from a backend is as easy as calling a fetch.
 
 ```code
@@ -34,6 +36,7 @@ fetch("data.json").then(res => res.json()).then(json => {
 Converting the response into a json object is as simple as calling the json() method on the response.
 
 ## Little more advance DOM manipulation
+
 There is also the possibility to create a template element, and then using backtick notations to enter html.  
 
 ```code
@@ -50,6 +53,7 @@ There is also the possibility to create a template element, and then using backt
 ```
 
 ## Other usage of a template node
+
 It is also possible to add a template node inside your html file and then using javascript get the template manipulate the content of the template and add it to the DOM.
 
 ```code
@@ -75,6 +79,7 @@ parent.appendChild(element);
 ```
 
 ## Modifying the template
+
 As in javascript every thing is a hashmap, we can use this to get attributes from an object.
 
 Or use a regex to replace values.

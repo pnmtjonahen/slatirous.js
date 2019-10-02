@@ -20,7 +20,6 @@ Headers, links, images, code blocks etc etc, are supported. The parser is not fu
 
 The current plan for the side is to use it as my personal blogging platform.
 
-
 Philippe Tjon-A-Hen.
 
 [![GitHub](https://img.shields.io/badge/git-GitHub-blue)](https://github.com/pnmtjonahen/slatirous.js)
