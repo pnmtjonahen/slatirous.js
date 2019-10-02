@@ -1,4 +1,4 @@
-# A top-button WebComponent
+## WebComponent
 
 When setting up and extending my blog I came to the conclusion that it would be very handy to have a "goto top button" when the user scrolls down.
 
@@ -64,7 +64,7 @@ Here we create a template node and sets its innerHTML. Using back tick notation.
 
 Using javascript we now can manipulate our dom. Add nodes to it add, eventhandlers etc etc.
 
-## TL;DR;
+## tl;dr;
 This is the final code for my top-button webcomponent.
 
 - See [](https://benmarshall.me/attaching-javascript-handlers-to-scroll-events/) on why scroll is done this way.

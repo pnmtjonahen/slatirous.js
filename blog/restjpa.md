@@ -1,5 +1,4 @@
-
-# Beautifull REST api
+## REST API with CriteriaQuery
 
 Before the whole HATEOS or even GraphQl movement there already was a notion of creating REST full API that where loosely coupled and give its user the flexibility they needed aka "Beautiful REST API's".
 

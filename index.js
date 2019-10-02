@@ -74,7 +74,7 @@ class IndexView {
     // insert new html snippet using backticks notation and a dynamic template element
     const div = this.htmlTemplate(`<div class="w3-card-4 w3-margin w3-white">
         <div class="w3-container">
-            <h3><b>${this.currentBlog.title}</b></h3>
+            <h1 class="section"><b>${this.currentBlog.title}</b></h1>
             <h5>${this.currentBlog.description}, <span class="w3-opacity">${this.currentBlog.date}</span></h5>
         </div>
   </div>`);
@@ -133,7 +133,6 @@ class IndexView {
     entry = this.parseStep(entry);
     entry = this.parseParagraphs(entry);
     entry = this.unhashHtmlCode(entry);
-    entry = this.encloseList(entry);
 
     return this.htmlTemplate(`<div class="blog">${entry}</div>`);
   }
@@ -142,12 +141,7 @@ class IndexView {
     return entry.match(/^!table\-of\-content$/gm);
   }
 
-  encloseList(entry) {
-    entry = entry.replace(/¨2(?:\r\n|\r|\n)¨1/gm, '');
-    entry = entry.replace(/¨1/gm, '<ul>');
-    entry = entry.replace(/¨2/gm, '</ul>');
-    return entry;
-  }
+
 
   parseTableOfContent(entry) {
     return entry.replace(/!table\-of\-content/g, (match) => {
@@ -196,8 +190,7 @@ class IndexView {
   }
 
   parseCode(entry) {
-    const codeRegExp = /(?:^|\n)(?: {0,3})(```+)(?: *)([^\s`]*)\n([\s\S]*?)\n(?: {0,3})\1/gm;
-    return entry.replace(codeRegExp, (matc, p1, p2, p3) => {
+    return entry.replace(/(?:^|\n)(?: {0,3})(```+)(?: *)([^\s`]*)\n([\s\S]*?)\n(?: {0,3})\1/gm, (matc, p1, p2, p3) => {
       p3 = p3.replace(/^([ \t]*)/g, '');
       p3 = p3.replace(/[ \t]*$/g, '');
       p3 = this.escapeXml(p3);
@@ -206,26 +199,21 @@ class IndexView {
   }
 
   parseList(entry) {
-    // const startListRegExp = /^-(.*)(?=\n-)/gm;
-    // const endListRegExp = /^-(.*)(?=\n\n)/gm;
-    const listRegExp = /^- (.*)/gm;
-
-    // entry = entry.replace(startListRegExp, (match, p1) => {
-    //   return this.hashHtmlCode(`<p><ul><li>${p1}</li>`);
-    // });
-    // entry = entry.replace(endListRegExp, (match, p1) => {
-    //   return this.hashHtmlCode(`<li>${p1}</li></ul></p>`);
-    // });
-    entry = entry.replace(listRegExp, (match, p1) => {
-      return this.hashHtmlCode(`¨1<li>${p1}</li>¨2`);
+    entry = entry.replace(/^- (.*)/gm, (match, p1) => {
+      return '¨1' + this.hashHtmlCode(`<li>${p1}</li>`) + '¨2';
     });
+    return this.encloseList(entry);
+  }
 
-    return entry;
+  encloseList(entry) {
+    entry = entry.replace(/¨2(?:\r\n|\r|\n)¨1/gm, '');
+    return entry.replace(/¨1(.+)¨2/gm, (match, p1) => {
+        return this.hashHtmlCode(`<ul>${p1}</ul>`);
+    });
   }
 
   parseStep(entry) {
-    const stepRegExp = /^-Step (.+)/gm;
-    return entry.replace(stepRegExp, (match, p1) => {
+    return entry.replace(/^-Step (.+)/gm, (match, p1) => {
       return this.hashHtmlCode(`<p class="step">${p1}</p>`);
     });
   }
@@ -247,7 +235,9 @@ class IndexView {
       if (str.startsWith("PTJ-md")) {
         parasParsed.push(str);
       } else if (str.search(/\S/) >= 0) {
-        parasParsed.push('<p>' + str + '</p>');
+        str = str.replace(/^\n+/g, '');
+        str = str.replace(/\n+$/g, '');
+        parasParsed.push(`<p>${str}</p>`);
       }
     });
 
