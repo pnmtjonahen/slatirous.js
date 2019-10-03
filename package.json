@@ -1,38 +1,33 @@
 {
-  "name": "slatirous.js",
+  "name": "slatirous",
   "version": "1.0.0",
-  "license": "SEE LICENSE IN LICENCE",
+  "description": "A Blogging System ",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pnmtjonahen/slatirous.js.git"
+    "url": "git+https://github.com/pnmtjonahen/slatirous.js.git"
   },
   "keywords": [
-    "demo",
-    "client",
-    "browser"
+    "js",
+    "webcomponents",
+    "blogging",
+    "markdown"
   ],
-  "author": "Philippe Tjon - A - Hen philippe@tjonahen.nl",
-  "contributors": [],
-  "dependencies": {},
+  "author": "Philippe Tjon-A-Hen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pnmtjonahen/slatirous.js/issues"
+  },
+  "homepage": "https://github.com/pnmtjonahen/slatirous.js#readme",
   "devDependencies": {
-    "chai": "^4.1.2",
-    "jest": "^22.4.3",
-    "jest-fetch-mock": "^1.5.0"
-  },
-  "scripts": {
-    "test": "jest"
-  },
-  "jest": {
-    "testURL":"http://localhost",
-    "automock": false,
-    "setupFiles": [
-      "./setupJest.js"
-    ],
-    "collectCoverage": true,
-    "coverageReporters": [
-      "json",
-      "text",
-      "lcov"
-    ]
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "@babel/preset-env": "^7.6.2",
+    "babel-jest": "^24.9.0",
+    "chai": "^4.2.0",
+    "jest": "^24.9.0"
   }
 }
