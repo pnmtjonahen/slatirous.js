@@ -1,12 +1,17 @@
 /* global fetch, Node */
-/* https://regex101.com */
-/* https://github.com/showdownjs/showdown/tree/master/src/subParsers/makehtml */
 import {mdParser} from './mdparser.js'
 
 class IndexView {
   constructor() {
-
-    fetch("blog.json").then(res => res.json()).then(json => {
+    const blogs = [];
+    fetch("blog.json")
+    .then(res => {
+      if (!res.ok) {
+        throw Error(res.statusText);
+      }
+      return res.json();
+    })
+    .then(json => {
 
       this.blogs = json;
       const bookmarkRegExp = /(.*?)#([a-zA-Z]*)_?.*/;
@@ -19,14 +24,29 @@ class IndexView {
       const popularPostTemplate = document.getElementById("popular-post");
       const popularPostContainer = popularPostTemplate.parentNode;
       this.blogs.forEach(blog => {
-        popularPostContainer.appendChild(
-          this.replaceTemplateValues(
-            popularPostTemplate.content.cloneNode(true), blog));
+          var node = this.replaceTemplateValues(popularPostTemplate.content.cloneNode(true), blog);
+          node = this.updateOnClick(node, blog);
+          popularPostContainer.appendChild(node);
       });
-
+    })
+    .catch(error => {
+        console.log("failed fetch blog.json : " + error);
     });
   }
 
+  updateOnClick(node, blog) {
+    var anchor = node.getElementById(blog.id);
+    if (anchor) {
+      anchor.onclick = () => {
+        // document.body.scrollTop = 0;
+        // document.documentElement.scrollTop = 0;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // window.location.hash = blog.id
+        this.setCurrentBlog(blog.id);
+      }
+    }
+    return node;
+  }
   replaceTemplateValues(node, blog) {
 
     // replace template values using regex, get all child nodes, filter on text nodes and use a regex to replace the node value
@@ -55,7 +75,6 @@ class IndexView {
         });
         this.replaceTemplateValues(n, blog);
       });
-
     return node;
   }
 
@@ -94,10 +113,18 @@ class IndexView {
     // insert new html snippet using DOM api.
     const entry = document.createElement("div");
     entry.className = "w3-container";
-    fetch("blog/" + blog.id + ".md").then(res => res.text()).then(md => {
+    fetch("blog/" + blog.id + ".md")
+    .then(res => {
+      if (!res.ok) {
+        throw Error(res.statusText);
+      }
+      return res.text();
+    }).then(md => {
       var html = mdParser.parseMd(blog, md);
       entry.appendChild(this.htmlTemplate(`<div class="blog">${html}</div>`));
       this.appendTags(blog);
+    }).catch((error) => {
+      console.log("failed fetch " + "blog/" + blog.id + ".md : " + error);
     });
     return entry;
   }
@@ -115,4 +142,4 @@ class IndexView {
     }).join('')}</p>`));
   }
 }
-export const view = new IndexView();
+export {IndexView};

@@ -45,7 +45,7 @@
           <ul class="w3-ul w3-hoverable w3-white">
             <template id="popular-post">
               <li class="w3-padding-16">
-                <a href="#{id}" onclick="view.setCurrentBlog('{id}'); document.body.scrollTop = 0; document.documentElement.scrollTop = 0;" class="blog">
+                <a id="{id}" class="blog">
                   <img src="{imageurl}" alt="{imagealt}" class="w3-left w3-margin-right" style="width:50px">
                   <span class="w3-large">{title}</span><br>
                   <span>{description}</span>
@@ -78,7 +78,11 @@
     <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
     <p>&copy; 2018, Philippe Tjon-A-Hen</p>
   </footer>
-  <script src="./index.js" type="module"></script>
+  <script type="module">
+      import {IndexView} from "./index.js";
+
+      const view = new IndexView();
+  </script>
   <script src="./topbutton.js" type="module"></script>
 </body>
 

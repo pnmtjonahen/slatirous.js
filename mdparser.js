@@ -1,3 +1,6 @@
+/* https://regex101.com */
+/* https://github.com/showdownjs/showdown/tree/master/src/subParsers/makehtml */
+
 class MdParser {
   constructor() {
     var htmlBlocks = [];
@@ -22,11 +25,10 @@ class MdParser {
 
     return `<div class="blog">${entry}</div>`;
   }
+
   hasTableOfContent(entry) {
     return entry.match(/^!table\-of\-content$/gm);
   }
-
-
 
   parseTableOfContent(entry) {
     return entry.replace(/!table\-of\-content/g, (match) => {
