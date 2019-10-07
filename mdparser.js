@@ -15,10 +15,10 @@ class MdParser {
 
     entry = this.parseCode(entry);
     entry = this.parseComments(entry);
-    entry = this.parseHeader(entry);
-    entry = this.parseTableOfContent(entry);
     entry = this.parseImg(entry);
     entry = this.parseLink(entry);
+    entry = this.parseHeader(entry);
+    entry = this.parseTableOfContent(entry);
     entry = this.parseList(entry);
     entry = this.parseStep(entry);
     entry = this.parseParagraphs(entry);
@@ -66,8 +66,23 @@ class MdParser {
   parseImg(entry) {
     const inlineImgRegEx = /!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d|auto]+[A-Za-z%]{0,4})x([*\d|auto]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/gm;
     return entry.replace(inlineImgRegEx, (match, p1, p2, p3, p4, p5) => {
-      return this.hashHtmlCode(`<div class="blog"><img src="${p3}" alt="${p1}" class="blog" ${p4 && p5 ? `style="width:${p4}; height:${p5}"` : ''}/></div>`);
+      var width = this.getSize(p4);
+      var heigth = this.getSize(p5);
+      return this.hashHtmlCode(`<div class="blog"><img src="${p3}" alt="${p1}" class="blog" ${p4 && p5 ? `style="width:${width}; height:${heigth}"` : ''}/></div>`);
     });
+  }
+
+  getSize(p) {
+      if (!p) {
+        return p;
+      }
+      if (p.endsWith('%')) {
+        return p;
+      }
+      if (isNaN(p)) {
+        return p;
+      }
+      return p + 'px';
   }
 
   parseLink(entry) {
