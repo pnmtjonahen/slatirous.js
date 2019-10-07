@@ -19,6 +19,8 @@ A view on the Austin Convention Center and downtown Austin. First diner in Austi
 
 Today I had no sessions or workshops scheduled. After registration we went out and explored the city of Austin on a electronic scooter.
 
+My impressions of Austin.
+- quiet
 - texas capitol
 - straight down congress av. Over the Ann W. Richards Congress Av Bridge
 - then back again up de congress av and behind the capitol to the
@@ -26,17 +28,23 @@ Today I had no sessions or workshops scheduled. After registration we went out a
 
 - relax at the fairmont hotel swimming pool and finally diner at the OP Italian restaurant
 
+
+
 ## Monday
 
 ### 9:00am–11:00am Hands-on Knative
+
 Nice two hour handson workshop on what is knative and how can we deploy, scale, bluegreen deployments and events (functions) on kubernate on google cloud platform using knative.
 
+### 1:00pm–3:00pm Concourse
 
-<!-- 6:00pm=10:00pm
-Opening Reception in Community Hub -->
+A rather in depth workshop on the internal working of concourse, not what I was expecting/wanted/hoped for. As I do not have any concourse knowledge it went over my head.
 
-<!-- 7:00pm-8:00pm
-Lightning Talks -->
+<!-- ### 2:00pm-4:00pm Community Hub Opens -->
+
+<!-- 6:00pm=10:00pm Opening Reception in Community Hub -->
+
+<!-- 7:00pm-8:00pm Lightning Talks -->
 
 ## Tuesday
 <!-- 9:00am-11:00am
