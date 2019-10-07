@@ -14,6 +14,7 @@ class MdParser {
     this.currentBlog = blog;
 
     entry = this.parseCode(entry);
+    entry = this.parseComments(entry);
     entry = this.parseHeader(entry);
     entry = this.parseTableOfContent(entry);
     entry = this.parseImg(entry);
@@ -129,6 +130,10 @@ class MdParser {
     });
 
     return parasParsed.join('\n');
+  }
+
+  parseComments(entry) {
+    return entry;
   }
 
   hashHtmlCode(html) {

@@ -1,16 +1,36 @@
 ## Saturday
 
-05 Oct DL71 Amsterdam (AMS) - Atlanta, GA (ATL) 08:35-12:17
+### 05 Oct DL71 Amsterdam (AMS) - Atlanta, GA (ATL) 08:35-12:17
 
-05 Oct DL1180 Atlanta, GA (ATL) - Austin, TX (AUS) 14:55-16:18
+Early rise (03:00am) to catch the morning flight to Atlanta from Amsterdam Schiphol Airport. Long flight with nothing special happening, some food, some drinks, a movie or 2 and of course trying to get some sleep.  
 
-05 Oct FAIRMONT AUSTIN CITY CENTER 101 Red River St Austin 78701,TX/US 05 Oct-12 Oct
+### 05 Oct DL1180 Atlanta, GA (ATL) - Austin, TX (AUS) 14:55-16:18
+
+Layover in Atlanta, as we did only have carry on luggage we where rather quick thru customs. When we bookd our tickets I took in account that entering the USA could take more then an hour. This time however it was done in under 10 minutes. And thus we had plenty of time for our transfer.
+
+### 05 Oct FAIRMONT AUSTIN CITY CENTER 101 Red River St Austin 78701,TX/US 05 Oct-12 Oct
+
+Got a room with a view ![view](https://lh3.googleusercontent.com/NxvW3IMsU4PDYAp_YwrGmTnNiH_mZ6fj3yrJqHdg4JUCBfJHnXP12NAsEnh2K0aXAODX2FDTzR5u5q_Kh83tCP7h2vCpbZQmSuyFBWGDKgFU1uPJC_xsj4e361WBOKDCRd-GGDmm-LKa6L77Q3yW9kw1yhQiOAiu3icrZ1cuW0ZR0vYlXV22b1bf-JfQEBEvggzFBNkRr3rLAFT-D1mZyzFNRmzhysXOPjYo506XIiml2-0ZvrttIkW-Nyh7R6GhyMpYg4duSzIC1U0llu7uwzmYit7Ste8Stcax6jG05AOwtcgD4PZphT4evNZbobhuCzcAUwSRwtDMOzyxm8jrBYx4WmeA4Ty7yY0vsa3YFJqvW38Z8fmxpaiB__yD7yERPIJdq-fzIMxbTcFoMn7KFC1m-FbL_lD5vp8Lahxmk9ZLtO3f4_huKqf3Diyy8soVChZJmoY28rNZfncAHBiGKwRKIWj2WD1abbWe1yrmWAYORLktzIKvrEVuoxU6PuWyJBforvrTYur6YiGfKfpqPlG12lE4DjiY2pPjoTpLeU2vqjuYpbmO1n5JxuVvNXfSDIq9h3g4Q9x2-SM_UbxHIUliJIU56rYArBn32DlcoGIXDqvq9FxTaA0udY4pH5alTMXsrGBPgxUXEKg4R_lQRWWEznkSAb1tce2n9dQrImn8FxsD2Zl5lL1a=w1981-h991-no =50%xauto)
+
+A view on the Austin Convention Center and downtown Austin. First diner in Austin at the [moonshine grill](https://moonshinegrill.com/).
+
 
 ## Sunday
 
+Today I had no sessions or workshops scheduled. After registration we went out and explored the city of Austin on a electronic scooter.
+
+- texas capitol
+- straight down congress av. Over the Ann W. Richards Congress Av Bridge
+- then back again up de congress av and behind the capitol to the
+- Bullock Texas State History Museum
+
+- relax at the fairmont hotel swimming pool and finally diner at the OP Italian restaurant
+
 ## Monday
-<!-- 9:00am–11:00am
-Hands-on Knative (Reserved) 13AB -->
+
+### 9:00am–11:00am Hands-on Knative
+Nice two hour handson workshop on what is knative and how can we deploy, scale, bluegreen deployments and events (functions) on kubernate on google cloud platform using knative.
+
 
 <!-- 6:00pm=10:00pm
 Opening Reception in Community Hub -->
