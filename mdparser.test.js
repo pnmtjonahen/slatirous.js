@@ -51,6 +51,11 @@ describe('Markdown plus Parser', () => {
     expect(result).to.equal(`<div class="blog"><h1 class="section">H1</h1></div>`);
   });
 
+  it('headers with nested link', () => {
+    var result = mdParser.parseMd(blog,`# H1 [blog](http://localhost) {#myid}`);
+    expect(result).to.equal(`<div class="blog"><h1 class="section">H1 <a href="http://localhost" target="_blank">blog</a></h1></div>`);
+  });
+
   it('table of content', () => {
     var result = mdParser.parseMd(blog,`!table-of-content
 # H1 {#myid}`);
@@ -69,10 +74,15 @@ describe('Markdown plus Parser', () => {
     expect(mdParser.parseMd(blog,'![img](img.jpg =autox100%)'))
       .to.equal(`<div class="blog"><div class="blog"><img src="img.jpg" alt="img" class="blog" style="width:auto; height:100%"/></div></div>`);
   });
+  it('img with styling fixed size', () => {
+    expect(mdParser.parseMd(blog,'![img](img.jpg =100x100)'))
+      .to.equal(`<div class="blog"><div class="blog"><img src="img.jpg" alt="img" class="blog" style="width:100px; height:100px"/></div></div>`);
+  });
   it('link inside text', () => {
     expect(mdParser.parseMd(blog,'pre text [](img.html) post text'))
       .to.equal(`<div class="blog"><p>pre text <a href="img.html" target="_blank">img.html</a> post text</p></div>`);
   });
+
   it('link with embedded img', () => {
     expect(mdParser.parseMd(blog,'[![img](img.jpg =autox100%)](img.html)'))
       .to.equal(`<div class="blog"><a href="img.html" target="_blank"><div class="blog"><img src="img.jpg" alt="img" class="blog" style="width:auto; height:100%"/></div></a></div>`);

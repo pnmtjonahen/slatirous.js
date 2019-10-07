@@ -1,4 +1,13 @@
 [{
+    "id": "s1p",
+    "title": "SpringOne Platform",
+    "description": "Austin Convention Center",
+    "date": "October 7-10, 2019",
+    "imageurl": "https://d1ophd2rlqbanb.cloudfront.net/2019/images/logo-s1p-by-pivotal-243c7b.svg",
+    "imagealt": "s1p logo",
+    "tags": ["Java", "Spring", "cloud", "boot", "reactive"]
+  },
+  {
     "id": "topbutton",
     "title": "Building a webcomponent",
     "description": "How-to make a goto top button using webcomponent, js only",
