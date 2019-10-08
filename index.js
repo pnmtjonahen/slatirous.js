@@ -122,12 +122,37 @@ class IndexView {
       return res.text();
     }).then(md => {
       var html = mdParser.parseMd(blog, md);
-      entry.appendChild(this.htmlTemplate(`<div class="blog">${html}</div>`));
+      var div = this.htmlTemplate(`<div class="blog">${html}</div>`)
+      this.updatePanelOnClick(div);
+      entry.appendChild(div);
       this.appendTags(blog);
     }).catch((error) => {
       console.log("failed fetch " + "blog/" + blog.id + ".md : " + error);
     });
     return entry;
+  }
+
+  updatePanelOnClick(entry) {
+    var acc = entry.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function(e) {
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        // this.classList.toggle("active");
+
+        /* Toggle between hiding and showing the active panel */
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          e.target.innerHTML = "More...";
+          panel.style.display = "none";
+        } else {
+          e.target.innerHTML = "Less...";
+          panel.style.display = "block";
+        }
+      });
+    }
   }
 
   appendTags(blog) {
