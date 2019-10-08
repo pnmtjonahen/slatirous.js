@@ -45,6 +45,7 @@ My impressions of Austin. First of all, and it might be due to being a Sunday I 
 
 <<<
 
+
 ## Monday
 
 >>>
@@ -82,20 +83,25 @@ And also a hard to follow on the followup project for [hystrix](https://github.c
 
 >>>
 
-<!-- 9:00am-11:00am
-Main Stage -->
+### 9:00am-11:00am Main Stage
+<!-- ![]() -->
+Opening of the SpringOne Platform with some very nice keynote speakers, actual to much to remember. Some highlights:
 
-<!-- 11:30am–12:40pm
-The Value of Reactive Systems -->
+- VMware acquires Pivotal, still a work in progress bud should be finished at the end of the Year.
+- Microsoft + Pivotal, with a nice demo on deploying and running Spring Boot applications on Azure. With the introduction of Azure Spring Cloud. (Will this compete with CloudFoundry?)
+- [Traihead](https://trailhead.salesforce.com/en/home) and the need to educate the next generation. My take from this was "document more" every thing that you figured out on your own someone can benefit from it. A appeal to all attendants to get, write a blog, answer questions in a community and present at a conference. Have companies create the environment to enable this, which made me proud to be at Ordina, as that is exactlywhat out CodeSmith program is about.
+- LOL, basic human needs include WiFi and battery.  
 
-<!-- 11:30am–12:40pm
-Spring Cloud on Kubernetes -->
 
-<!-- 11:30am–12:40pm
-Spring Framework 5.2: Core Container Revisited -->
+### 11:30am–12:40pm Spring Framework 5.2: Core Container Revisited
+Very good session on v5.2 of spring with some insights of what has happened, good Java8 support throughout the whole core of spring, making  use of all the Java8 features and getting rid of old code.
 
-<!-- 11:30am–12:40pm
-PKS Automation Station...All Aboard: Enabling Team Access to PKS with a Concourse Pipeline -->
+- Nullability implemented where needed, and used to get rid of extra null checks.
+- ObjectProvider class, with all the new possible API's, stream @nullable etc.
+- Performance improvements, and the notion of programatically setting up your spring context. (aka get rid of the component scan).
+ - GraalVM support (5.1 prepare for graalVM, 5.2 custom setup, 5.3 out-of-the-box)
+ - Reactive setup with R2DBC, RSocket
+
 
 <!-- 2:00pm–3:10pm
 Do’s and Don’ts: Avoiding First-Time Reactive Programmer Mines -->

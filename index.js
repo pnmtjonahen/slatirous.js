@@ -15,7 +15,7 @@ class IndexView {
 
       this.blogs = json.filter(b => !b.hide);
 
-      const bookmarkRegExp = /(.*?)#([a-zA-Z]*)_?.*/;
+      const bookmarkRegExp = /(.*?)#([a-zA-Z0-9]*)_?.*/;
       if (window.location.href.match(bookmarkRegExp)) {
         this.setCurrentBlog(window.location.href.replace(bookmarkRegExp, (match, p1, p2) => p2));
       } else {
@@ -81,6 +81,7 @@ class IndexView {
   }
 
   setCurrentBlog(id) {
+    console.log("loading " + id);
     this.setBlog(this.blogs.filter(e => {
       return e.id === id;
     })[0]);
