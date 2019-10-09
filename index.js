@@ -124,9 +124,7 @@ class IndexView {
       return res.text();
     }).then(md => {
       var html = mdParser.parseMd(blog, md);
-      var div = this.htmlTemplate(`<div class="blog">${html}</div>`)
-      this.updatePanelOnClick(div);
-      entry.appendChild(div);
+      entry.appendChild(this.updatePanelOnClick(this.htmlTemplate(`<div class="blog">${html}</div>`)));
       this.appendTags(blog);
     }).catch((error) => {
       console.log("failed fetch " + "blog/" + blog.id + ".md : " + error);
@@ -134,18 +132,14 @@ class IndexView {
     return entry;
   }
 
-  updatePanelOnClick(entry) {
-    var acc = entry.getElementsByClassName("accordion");
+  updatePanelOnClick(div) {
+    var acc = div.getElementsByClassName("accordion");
     var i;
 
     for (i = 0; i < acc.length; i++) {
+      acc[i].innerHTML = "More...";
       acc[i].addEventListener("click", function(e) {
-        /* Toggle between adding and removing the "active" class,
-        to highlight the button that controls the panel */
-        // this.classList.toggle("active");
-
-        /* Toggle between hiding and showing the active panel */
-        var panel = this.nextElementSibling;
+        var panel = this.previousElementSibling;
         if (panel.style.display === "block") {
           e.target.innerHTML = "More...";
           panel.style.display = "none";
@@ -155,6 +149,7 @@ class IndexView {
         }
       });
     }
+    return div;
   }
 
   appendTags(blog) {

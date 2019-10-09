@@ -26,10 +26,10 @@ Today I had no sessions or workshops scheduled. After registration we went out a
 Next we went to see the Texas Capitol.
 ![capitol](https://lh3.googleusercontent.com/R6oLBcWOrrjWET0M6-UFfoasaRVkriMhzbnE7qSb3yOYAr8Ci2J-Sq1iOHgCMM5C7Pxu24ZM9UNLehagbGZIPDuelBF-JK1RqGUNevyWlF8C_z2PTlnNhyGP8nKKljnNryWGV0-JomBN_MD6HfVaspZwYDHNIHDsg9_01ll18Vs9WngaU5461AcMv08s-XEJ2AEKZKUZ5Q3t3g0PHtB1N6xDHOy09wSjhP0aPzpjEbNRGOistlPQ5WJ-IkGEgrEbBpjznbyduhFEFE_0Th5Cz7lDlmpt2mml70_swpEU0zBIH8RIiq8ov7LcDZrLQ9BU4aL_aH75CyIcEKYZnnjkXXBgvYCKiB9lJiigubMOT6rrhYOsHwzyeK01_Ghnfpyr_6MKEIXBfXkRfI05RbljLN3aTBjWuIqOKNTtSO6JaQ2xJwD2xbAWoIDhdicljbb0DFmbn_grWbMNOwIIpqGNfkSkS27RtQARhFci00J0MQEhwNJxQVT4k-3N7WUDo0oBKx-tIlIqsvlt4cD7PWzFIdI6l8IFoy29zmmGEOkLIdhmWDjalBvtbPDvPIS4lNq8MtvQzx-ULQ7eNZ2S83p_tF_VV_CwnS3K5y5GYy02PgOTMItAvOQg5uQtFqGx6tprzbECzW5bqMiQSxgVN1PQkjK67pDNbhZf-XXeAhrBAeDTnqlD30ZqcQc5dP_xlceY_4AK4JtdwDfI6kUg9p6k5Xk2DA3PvH_E70fibprZ5DmvVbwmfQ=w640-h480-no =50%xauto)
 
-To hot to walk so we rented some electronic scooters to get around and went straight down Congress av.
+To hot to walk so we rented some electronic scooters to get around and went straight down Congress Av.
 ![congress av](https://lh3.googleusercontent.com/Wddi_Qnb1_l2Q9R7hkfMXQSKX8zCaUySYRVHJfVzVHQRwNpA5rEUo0HFd3AIj7Vg1kzL6Hzg3MnmUAcYljrMxfUQkfAkPaXjkNDzHN0PRNeF7N8Hal7B05x1pwlRiDH1hXEZoK755FFGshUWbd8cC1CDQqenBOJ2Ovo2YeJi4nKO08GwrqqTsfcrQ8I-zYF4Z57_j_HB8mm9G87kVGif0Ejt7zlfdlP6C0XzgUTpcby3WMNIJzzB1Lt1xKK3ifXrHK3cvgSvX9LhagbE0mpu7o0rvrTLFVNjFyGehd7M06KesQ2N0raVQXVLYR3na2kJmIhoCuuytzDyYIHeJzHwXZLMTw-clt2vlxGT-cO85o5-fQwfnTT3AgoHkrKOC8-oZoH5okTv13OR-Eq8KUwBGH2ztyAk9Gv0Vxg3b1LrpGsApXKiDz1exf7qN2QIrjePU04ZeezJkqC7y2XXQzyGSPqQ8QIxwkDCeQSP_SCL8E05iogPIxBCjK4BRCg5aGGzJdTChsy7B8U-vx_CSXVKW1aVxPhYUmIwGId1acj266klx3XsffXG_EjAcHRcpomMHqpSwWXiCWlr0zSVLMg1Os8mMs7bd36U3D25QCHZuM_28VpDnnyIe9SDTeS_cmWRXWaS7sFsPRTxSnYNt_pFB6JWastlPQ0ZbwFkl1jOkNhZ4CvLq_Frpb5q8twxR3V0VYvbwD5FMskbumCOA7eHXoWMx2CN966gGikKnzTozDT1XCIB7w=w640-h480-no =50%xauto)
 
-Over the Ann W. Richards Congress Av. Bridge to SoCo district where we did some window shopping and had a light lunch.
+Over the Ann W. Richards Congress Av. Bridge to South Congress Avenue (SoCo) district where we did some window shopping and had a light lunch.
 ![soco](https://lh3.googleusercontent.com/ub86Q4HaqmpRfwEeoiIVdMSxdC-Rr1QV519jP4DuvM0gfVhUNFn_V_cBeGsVifWpEWNHAVBV2bz1sbPRRGv1RVKr1h339dIC7EE6V5K8q2D0VO_0scEO7n6Hle5QjuuEbl1bA20kmmLcedFwShoN_eix0BK1KQOkIzZC4PP-63zqvoeDC-i_yiGugDVBkiYcoW2fMNzZ3BpEG1NOXkrNrx1yjBS2SJC4TyCYHY7TMNLqdI5srEmI8uhAatXwSAJAl1Xyj3yYQyzSuX7T8Y7ASzAv7EqiWnCw-vepcCi3zbc8L_ya3qH0WiHMfy7FSvP7l-5Klc-7fWhfh-6yiERv060sEO_HdjW_APMbCLDlQKFh8K27382dSprP8aHcFHmXhs0MoG35Dm0uV538m4cHChl24DNGNwiWzhMCdEGRV6EIbbOpPfE6HT0EJyxdTSRT9xWfuWC2vofZLvh7FIeQIeQkprfaYnjh3eF3dXB5FNSM95QQfahX68ggaNNVcjlX9zKF7JO1S8M6iRX9QdarRgawxfuY-KrV-W8QDZ5pdQtgvgTVpdX9CVsXo945tylkHeKbpZ8YTRsYzXL2hPcyr8zg9Xm8sG3hSDB0e8_ShHmyWC1FQGcN9YIMVjYcYhacM7A4RUTTWpWeQH7uG4yU2Es_281WB4qX_FR3-zpRRZFwOcK96DncaRUHbDm0MmZEH9namNORHAlEoYJXs5rUBdlXMS-BW_UO5caHccgZK5mwwo7ffw=w640-h480-no =50%xauto)
 
 Back again on the scooter to the Bullock Texas State History Museum. As it was the first Sunday of the month we got a free entry to the museum.
@@ -48,7 +48,10 @@ My impressions of Austin. First of all, and it might be due to being a Sunday I 
 
 ## Monday
 
+Today was the first day of the conference where I was able to reserve a seat at a Hands-on lab.  
+
 >>>
+
 ### 9:00am–11:00am Hands-on Knative
 
 Nice two hour hands-on workshop on what is knative and how can we deploy, scale, do blue green deployments and events (functions) with [kubernates](https://kubernetes.io/) on google cloud platform using [knative](https://cloud.google.com/knative/).
@@ -79,56 +82,78 @@ Quote "Containers will not fix your culture!" some food for thought.
 And also a hard to follow on the followup project for [hystrix](https://github.com/Netflix/Hystrix/wiki). Apparently hystrix is in maintenance mode and needs a successor. [resilience4j](https://resilience4j.readme.io/docs) is the answer.
 
 <<<
-## Tuesday
+
+ ## Tuesday
+
+Starting the day with a burrito breakfast is a experience. Hot sauce in the morning, with coffee, and piña.
 
 >>>
 
 ### 9:00am-11:00am Main Stage
-<!-- ![]() -->
+![opening](https://lh3.googleusercontent.com/zeW7ocRAEpDsAGIbDNRuZ6bS5vQy0ITd3h9PShsUzlhw__1D73oP8vbqTkP5xQLTvnpNcIuO3PSVLI8Bfh6muoCOggu0cseQsYru9dWRt6O9pzEHXCp_qKuNx9oVsLEz3t3yW869RJyHgdiBOm38XmjMTePGJiGX-NMSjvvqa7tmY4nMowWBWQlqEWg_HU9s8VS7kmcjwyLaxU1ib2ETm1BfQW_04el23gKsRW4I0fNWjp8Xf4Hak27xHmcNKnYwIcufRjhlgCFQMSepPwVvzJbmBcNVZrXpibqJsJsH9HVnJy8oRwCPzfHtC9-rZqqM1fbEuczjbC81HMMfE4xN2x_YNiwNsxEkoAJInobMZxFHTx7fBMRj-gEGyBJsK72V8Jck1R42iFU7yn-wIasxDRy6WLQ3HYyBV44XsDd1B3-GdY5jAl93Z-xKhl2Q-OvyRbJ_3lrsxPDjQzImk0iKFhXal4G_UetheIRBDfxhHUUpdoNM9FlpMZRQDs0MKcoZtG4ygSdrtFpD2DK8s1Idg1xJAj6EU89Qln-xeSzmazL0f8S_4UvvtTnCvSXTNcpN3DJMwdRNSrEK1_eZ8Tlzzi8aPfNb1jVlGCtNuSCr1FYwsshEVNFc8VgDT_2yzgWIrUVKVCEgytbJpyGBmUvdP6NHm-IBRs4gPpCq7IWaRfRpFobdQN5TxvrBs7O33xTqRfi3cezrtqh-gEjJcm0Ty-CBWRTl7is_a19-LMqPRULIMv7KXw=w640-h480-no =50%xauto)
 Opening of the SpringOne Platform with some very nice keynote speakers, actual to much to remember. Some highlights:
 
 - VMware acquires Pivotal, still a work in progress bud should be finished at the end of the Year.
 - Microsoft + Pivotal, with a nice demo on deploying and running Spring Boot applications on Azure. With the introduction of Azure Spring Cloud. (Will this compete with CloudFoundry?)
-- [Traihead](https://trailhead.salesforce.com/en/home) and the need to educate the next generation. My take from this was "document more" every thing that you figured out on your own someone can benefit from it. A appeal to all attendants to get, write a blog, answer questions in a community and present at a conference. Have companies create the environment to enable this, which made me proud to be at Ordina, as that is exactlywhat out CodeSmith program is about.
+- [Traihead](https://trailhead.salesforce.com/en/home) and the need to educate the next generation. My take from this was "document more" every thing that you figured out on your own someone can benefit from it. A appeal to all attendants to get, write a blog, answer questions in a community and present at a conference. Have companies create the environment to enable this, which made me proud to be at Ordina, as that is exactly what our CodeSmith program is about.
 - LOL, basic human needs include WiFi and battery.  
+- We as humans are need driven, as long as there is still a need we do things, this also applies to software development.
 
 
 ### 11:30am–12:40pm Spring Framework 5.2: Core Container Revisited
-Very good session on v5.2 of spring with some insights of what has happened, good Java8 support throughout the whole core of spring, making  use of all the Java8 features and getting rid of old code.
+Juergen Hoeller
+
+Very good session on v5.2 of Spring with some insights of what has happened, like good Java 8 support throughout the whole core of spring, making use of all the Java 8 features and getting rid of old code.
 
 - Nullability implemented where needed, and used to get rid of extra null checks.
-- ObjectProvider class, with all the new possible API's, stream @nullable etc.
+- ObjectProvider class, with all the new possible API's, stream, @nullable etc.
 - Performance improvements, and the notion of programatically setting up your spring context. (aka get rid of the component scan).
- - GraalVM support (5.1 prepare for graalVM, 5.2 custom setup, 5.3 out-of-the-box)
- - Reactive setup with R2DBC, RSocket
+- GraalVM support, (5.1 prepare for GraalVM, 5.2 custom setup, 5.3 out-of-the-box)
+- Reactive setup with R2DBC, RSocket
 
+> jdk9 flow API, need to do a follow up on that
 
-<!-- 2:00pm–3:10pm
-Do’s and Don’ts: Avoiding First-Time Reactive Programmer Mines -->
+### 2:00pm–3:10pm Do’s and Don’ts: Avoiding First-Time Reactive Programmer Mines
+Sergei Egorov
 
-<!-- 2:00pm–3:10pm
-Using Metrics to Ensure Quality Applications in Pivotal Platform -->
+Learn functional programming, or better do understand the whole of java stream API, more like imperative vs functional than the actual functional programming languages, understand lazy evaluation. Nothing happens until you do a collect on the stream.
 
-<!-- 4:20pm–5:30pm
-Reactive Relational Database Connectivity with Spring -->
+> Subscribe in code is a code smell!
 
-<!-- 4:20pm–5:30pm
-Event Driven with Spring -->
+Understand immutability of reactive operators. Always return result of the operator and always used that returned value. Use high-order function like flatMap or filter, instead create your of methods. Also use the correct method for the job ad hand, there are more methods then just map, flatMap and filter, even for map there can be alternatives like map vs handle, or flatMap vs concatMap or switchMap or flatMapSequential.
 
-<!-- 4:20pm–5:30pm
-Distributed Tracing in the Wild -->
+Remember that for reactor every thing is a queue, flatmap, map etc are queued which has some overhead, A plain for loop to calculate something can be faster then a reactive variant.
 
-<!-- 4:20pm–5:30pm
-Running Spring Boot Applications as GraalVM Native Images -->
+When using a blocking call, like a JDBC call have it run on a special thread pool, else the whole reactive thread pool might become blocked.
 
-<!-- 4:20pm–5:30pm
-Eighteen Years of Spring -->
+> Do prepare for day 2, shit happens
 
-<!-- 5:40pm–6:10pm
-Event-Driven Java Applications with Redis 5.0 Streams -->
+Checkout .checkpoint operations or Hooks.onOperatorDebug or ReactorDebugAgent.init() these will add debugging information in the stacktrace in case an error occurs.
 
-<!-- 5:40pm–6:10pm
-Chaos Engineering for Pivotal Platform, Part II -->
+#### Do...
+
+- Learn functional programmings
+- Check various operators
+- Think about the resiliency
+- Start gradually
+- Prepare for Day 2
+
+#### Don't...
+- Use it for heavy computation
+- Care about threads
+- Block non-blocking threads
+- Use ThreadLocals
+- Be afraid of it
+
+### 4:20pm–5:30pm Eighteen Years of Spring
+Rod Johnson
+
+Nice presentation of the top 10 things that we can learn from 18 years of spring. The things that wen right and also the things that wen wrong.
+
+From coding standards, to community, opensource, correct covernance, and the fight about what is right and what is wrong.
+
+### the night
+After the last session we went to [stagger lee](https://thestaggerlee.com/) for the EMEA BBQ party. After enjoying some BBQ and drinks.  
 
 <<<
 

@@ -21,6 +21,7 @@ class MdParser {
     entry = this.parseTableOfContent(entry);
     entry = this.parseList(entry);
     entry = this.parseStep(entry);
+    entry = this.parseBlockQuote(entry);
     entry = this.parseAccordion(entry);
     entry = this.parseParagraphs(entry);
     entry = this.unhashHtmlCode(entry);
@@ -42,10 +43,16 @@ class MdParser {
         </ul>`);
     });
   }
+
+  parseBlockQuote(entry) {
+    return entry.replace(/^> (.*)/gm, (match, p1) => {
+      return this.hashHtmlCode(`<blockquote><p>${p1}</p></blockquote>`);
+    });
+  }
   parseAccordion(entry) {
     return entry.replace(/>{3}([\s\S]*?)<{3}/gm, (match, p1) => {
         var content = this.parseParagraphs(p1);
-        return this.hashHtmlCode(`<button class="accordion">More..</button><div class="panel">${content}</div>`);
+        return this.hashHtmlCode(`<div class="panel">${content}</div><button class="accordion"></button>`);
     });
   }
 
