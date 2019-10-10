@@ -68,7 +68,7 @@ Need to check this out!
 
 ### 2:00pm-4:00pm Community Hub Opens
 
-Today at 2:00pm the Community Hub opened. The community hub is located with in a big hall where also other events will take place, the Main Stage fore example is also located in the same hall. Made a round all the vendor stands, had some nice conversation with the vendors [AWS](https://aws.amazon.com/), [dynatrace](https://www.dynatrace.com/), [Signal Sciences](https://www.signalsciences.com/), [New Relic](https://newrelic.com/) and scored some swagg.
+Today at 2:00pm the Community Hub opened. The community hub is located with in a big hall where also other events will take place, the Main Stage fore example is also located in the same hall. Made a round all the vendor stands, had some nice conversation with the vendors [White Source](https://www.whitesourcesoftware.com/), [AWS](https://aws.amazon.com/), [dynatrace](https://www.dynatrace.com/), [Signal Sciences](https://www.signalsciences.com/), [New Relic](https://newrelic.com/) and scored some swagg.
 
 ### 6:00pm=10:00pm Opening Reception in Community Hub
 Reception with games, food and drinks, a lot of food and drinks.
@@ -83,7 +83,7 @@ And also a hard to follow on the followup project for [hystrix](https://github.c
 
 <<<
 
- ## Tuesday
+## Tuesday
 
 Starting the day with a burrito breakfast is a experience. Hot sauce in the morning, with coffee, and piña.
 
@@ -93,7 +93,7 @@ Starting the day with a burrito breakfast is a experience. Hot sauce in the morn
 ![opening](https://lh3.googleusercontent.com/zeW7ocRAEpDsAGIbDNRuZ6bS5vQy0ITd3h9PShsUzlhw__1D73oP8vbqTkP5xQLTvnpNcIuO3PSVLI8Bfh6muoCOggu0cseQsYru9dWRt6O9pzEHXCp_qKuNx9oVsLEz3t3yW869RJyHgdiBOm38XmjMTePGJiGX-NMSjvvqa7tmY4nMowWBWQlqEWg_HU9s8VS7kmcjwyLaxU1ib2ETm1BfQW_04el23gKsRW4I0fNWjp8Xf4Hak27xHmcNKnYwIcufRjhlgCFQMSepPwVvzJbmBcNVZrXpibqJsJsH9HVnJy8oRwCPzfHtC9-rZqqM1fbEuczjbC81HMMfE4xN2x_YNiwNsxEkoAJInobMZxFHTx7fBMRj-gEGyBJsK72V8Jck1R42iFU7yn-wIasxDRy6WLQ3HYyBV44XsDd1B3-GdY5jAl93Z-xKhl2Q-OvyRbJ_3lrsxPDjQzImk0iKFhXal4G_UetheIRBDfxhHUUpdoNM9FlpMZRQDs0MKcoZtG4ygSdrtFpD2DK8s1Idg1xJAj6EU89Qln-xeSzmazL0f8S_4UvvtTnCvSXTNcpN3DJMwdRNSrEK1_eZ8Tlzzi8aPfNb1jVlGCtNuSCr1FYwsshEVNFc8VgDT_2yzgWIrUVKVCEgytbJpyGBmUvdP6NHm-IBRs4gPpCq7IWaRfRpFobdQN5TxvrBs7O33xTqRfi3cezrtqh-gEjJcm0Ty-CBWRTl7is_a19-LMqPRULIMv7KXw=w640-h480-no =50%xauto)
 Opening of the SpringOne Platform with some very nice keynote speakers, actual to much to remember. Some highlights:
 
-- VMware acquires Pivotal, still a work in progress bud should be finished at the end of the Year.
+- VMware acquires Pivotal, still a work in progress but should be finished at the end of the Year.
 - Microsoft + Pivotal, with a nice demo on deploying and running Spring Boot applications on Azure. With the introduction of Azure Spring Cloud. (Will this compete with CloudFoundry?)
 - [Traihead](https://trailhead.salesforce.com/en/home) and the need to educate the next generation. My take from this was "document more" every thing that you figured out on your own someone can benefit from it. A appeal to all attendants to get, write a blog, answer questions in a community and present at a conference. Have companies create the environment to enable this, which made me proud to be at Ordina, as that is exactly what our CodeSmith program is about.
 - LOL, basic human needs include WiFi and battery.  
@@ -158,28 +158,126 @@ After the last session we went to [stagger lee](https://thestaggerlee.com/) for 
 <<<
 
 ## Wednesday
+
+Breakfast with beagles, egg, bacon and coffee, thats the way to start the day. Had a nice conversation over breakfast, touched some politics. Even they don't understand how they got there current coverment. The difference between driving in the US and driving in the Netherlands, and our stereotypes, Dutch vs US.
+
 >>>
 
-<!-- 9:00am-11:00am
-Main Stage -->
+### 9:00am-11:00am Main Stage
 
-<!-- 11:30am–12:40pm
-Designing a Reactive System -->
+Morning main stage session hosted by Josh Long, with some speakers from The Home Depot, Netflix and GM. And a demo on reactor, reactive [r2dbc](https://r2dbc.io/) database drivers.
 
-<!-- 11:30am–12:40pm
-Spring Cloud Function: Write Once, Run Anywhere (For Real!) -->
+The Home Depot was more a story on how they migrated from a typical retail company into a software supported company. Of course using SpringBoot applications.
 
-<!-- 2:00pm–3:10pm
-Event-Driven Architectures for Spring Developers -->
+Netflix had a nice presentation about what they initially build them self, donated that to Spring and are now micrating all there applications into spring boot applications using there own donated code. At the moment are around 20% of all there java software is migrated. Now that's what I call full circle open source.
+Also interesting to hear is that Netflix not only build software supporting the streaming service, but also the software for creating the Netflix original content.
 
-<!-- 2:00pm–3:10pm
-Performance Monitoring Backend and Frontend Using Micrometer -->
+### 11:30am–12:40pm Designing a Reactive System
+Ryland Degnan, Stephane Maldini, Andy Shi.
 
-<!-- 4:20pm–5:30pm
-Enterprise Application Migration -->
+This was a different setup then the normal 3 guys and a slide deck, where each of them takes a turn on presenting something. 3 guys on chairs as in a panel discussion, but now based on a single slide each of them explains there take on it.
 
-<!-- 4:20pm–5:30pm
-Reactive Architectures with RSocket and Spring Cloud Gateway -->
+Designing microservices can be split up in two different categories, the one where we have a legacy system that needs to be migrated, and on the other side the new to build applications. Each have there own approach. But also different problems. Applying the same rules for greenfield microservices on a migration will result in different issues/problems to be solved
+
+So what is the cloud native wish list when we would start greenfield.
+
+###### Expressive
+- Developers want to take advantage of interaction types beyond request/response (streaming, push, realtime data processing)
+###### Comprehensive
+- Applications do not consist solely of backend services, increasing need to extend to edge, serverless, mobile and web.
+###### Reactive
+- Build modern, cloud native applications requires reactive systems that are responsive, resilient, elastic and message driven.
+
+You need back pressure!
+
+What RSocket delivers
+
+###### Expressive
+- out of the box support for request-response and streaming, resumability and cancellation of streams.
+###### Comprehensive
+- Clients in every language, including mobile and browsers
+- works with any transport in any environment (Bare metal, VMs, k8s, etc)
+###### Reactive
+- Reactive flow control eliminates complex configuration
+
+### 2:00pm–3:10pm Performance Monitoring Backend and Frontend Using Micrometer
+Clint Checketts
+
+During the morning session somebody called it mi-crometer, the speacker started with Micro-meter or Mi-crometer whatever you want, he however pronounced it as Micro-Meter
+
+Very nice presentation with a lot of demo's, even though it was all in kotlin, it still showed all the things he wanted to explain. The first demo was to show what was possible and what API'swhere available.
+
+The spring demo actual showed the same but then with all the spring defaults, resulting in almost the same functionality as the first one.
+
+Spring Micrometer Integration
+- Build into Spring
+- Autowired by Spring
+- Integration provided by micrometer
+- Integration provided by the library
+- Custom stuff
+
+Some other pointers
+###### dimensional metrics vs hierarchical.
+
+hierarchical:
+server1.http.requests = 10
+us-east.blue.server1.http.request.200.users = 10
+
+dimensional:
+http_requests{server="server1"} 10
+http_requests{server="server1",
+          region="us-east",
+          cluster="blue",
+          status="200",
+          uri="users"} 10
+
+Both dimensional and hierarchical counters are about the same metric, http_request count, however adding extra information about the counter is in a dimensional way much easier and far more extensible.
+
+###### The parts of what observability is and some implementations
+- logging (log4j)
+- metrics (Micrometer)
+- tracing (Zipkin)
+
+Tagging metrics, don't use user input, and use a RestTemplate with parameters
+http_request{uri="users/{id}"} 10
+
+vs
+
+http_request{uri="users/1"} 1
+http_request{uri="users/2"} 1
+http_request{uri="users/3"} 1
+http_request{uri="users/4"} 1
+
+the second one will break your metrics and with a high number of users can even result in out-of-memory.
+
+###### Some sideline mentioned things
+> HealthIndicator interface
+> @cacheable
+
+These need a followup.
+
+### 4:20pm–5:30pm Reactive Architectures with RSocket and Spring Cloud Gateway
+Spencer Gibb, Cora Iberkleid
+
+Very nice presentation and demo of the Spring Cloud Gateway with [RSocket](http://rsocket.io/)
+
+When using the Spring Gateway with RSocket you don't need to:
+- Ingress permissions
+- Separate Service Discovery
+- Circuit Breaker
+- Client-side load balancer
+- Sidecar
+- Startup order problems
+- Special case for warmup
+- Message broker
+
+With the demo they showed all of the above. One side note it all is still in beta, but to me looked very promising.
+
+### Congress Bridge Bats
+After the last session we went to see the bats.
+![bat](https://lh3.googleusercontent.com/MDp-OqNn7L92TPtr0lmNA2SSLOY89jEeLtxwSnRGzC0brb9gkIZJk3W7yAItJfSYaeGRC3Ban54QDk_l-EOLFSeRbjwlE5RDcGrP56rqT4Pcfe8RGjwa0ihLFgdN50Aq0MfAvLqR2S4b_99wZ45dlaHCa6udhwfLXSviDps3uUr1C6J-aUxA8kI20pK-S4HtuLCmSCTrupIFuohAEvNfSyCWQ4A5-eDhK5na5gCOMqOe3zX0a0gfjSC5pIElAK-9wdDRM0ZzZHiPCagu-MULMe-yKKbh-Ri85dXeMSn_phiU-xf1oNttuev-USQhrSaBuUjpRSsU9ZDvpP2sPwKG6ReTgSM2MMFJ5MzRKKSfOmpPptyLLeC_MekuUJl0de2oipxZVyIue1XH8V-t4amIWkPOa5D1HErTqsBsDikRjXLzoHMEnawTPdpKfoy0U-euJSoAzkzSBGVjvZvfpKuRNYtMC5Q-wIChQbGQ0AfYQA1878PrbOfe6v6_3OGz6idrPKCnmpOShm-8-TqdSpnDv4Aty3e0SqbigUPVOQazRTQuLBP7oEsv0ggympu7Skra5kxQdV9JK06tN883WrLRg9dgIL3vTb1K9czb0ijk8qyOklFupWSCtFAhWe-IjmvJ3B_GD8Znzyd3lf3gesrA_EMr4_7hiMGnPQSgM2G30zL6xASwr4xhq-Qjz5rAh_MUQNBncF4VxlWvGWaBtb6-eKovqvwYNe2IURWEy2_Iod-fDiZjLw=w640-h480-no =50%xauto)
+
+Unfortunately the was to much wind and after almost 3 hours waiting we gave up. Fortunately there was a guy with a night vision (infrared) scope, So we did see them only where not able to take pictures. Maybe tomorrow.  
 
 <<<
 
