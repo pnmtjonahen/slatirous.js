@@ -283,32 +283,41 @@ Unfortunately the was to much wind and after almost 3 hours waiting we gave up. 
 
 ## Thursday
 
+Last day of the conference, nice breakfast, with coffee, this time in a different hall, as the exhibition hall was already being cleaned.
+
 >>>
 
-<!-- 9:00am-11:00am
-Main Stage -->
+### 9:00am-11:00am Main Stage
 
-<!-- 10:30am–11:40am
-Reactor: The New Power Source for PayPal's JVM Framework -->
+The last keynote of the week, unfortunately it showed, presentations of how different companies use spring boot and spring cloud to enable them to build software, nothing major, no rocket science.
 
-<!-- 10:30am–11:40am
-Collaborative Contract-Driven Development -->
+![](https://lh3.googleusercontent.com/hnS3yyEJognPMqFc-I0sYbaVw8w7hvYpZd7l07UJIs6iLxAH3ygDY1uZVEB6JpxSJD25ajMxiCSnZVgQnRhu7BpeRU0F4ad04KP6AitxrRcnaLllUAdetuWrMxFQ4-znSr-yYjuo9HPGDcGq6VymymzLxDa8BaY5j2ov0WljhUwmxN5NkZolglu-g_QBpy6W1_RK3TOmt4yDvhweAqcuSPaTZL1jXleV3Uwdh6tFnwWxrVBC7zYmbv89Tt2NXSJBWdLZRKMiGnwLHp1eqSYfIfCVi3Y1BXdFf8xOZ7Gqi3Lfaj3BMpZiMlxTGCfjLidNDa4_f_39s6sZ0jlTEftfUWcD6XvJkrjwfHVopM5tPvLOXhf73Xlf114fm6Snw287tI6K3GLDLGQ9wWauX2lFtDhDcpSnPJkcz9sT6M_I_bdGPz-ne7q-6bhDbdyIHtXnlQR_MkUTv2SRj7vyBLkMxgdN8Iu_9l-OQXk639XAZMyapBB2iT8FjDCNQ7dDGad8Oez_5e2YZqmGJzUJQq8_szq9JbQphF7BHQrXv0b_SB6W28stnmceTze6s8mDXi8TwmYvqomV2chHvewe4CpyizEFud_D4ViWwfjjD4iLwTtkj11syAt0qERUjcns1K1wpTJHURz26XcaARZKksmlr636tUY1C_6-xUng5-ezk4Mv991kHtAbtsIrDxEmjNlzCvXiLkkHpCsNA-WDFDiWxKBQJv0DS6mIQ6aQOeEu2KiUEfFPjQ=w640-h480-no =50%xauto)
 
-<!-- 10:30am–11:40am
-JUnit 5: Evolution and Innovation -->
+### 10:30am–11:40am JUnit 5: Evolution and Innovation
 
-<!-- 12:30pm–1:30pm
-Streaming with Spring Cloud Stream and Apache Kafka -->
+// TODO
 
-<!-- 12:30pm–1:30pm
-Spring Tools 4: Bootiful Spring Tooling for Desktop and Cloud -->
+### 12:30pm–1:00pm Spring Cloud Gateway for Stateless Microservice Authorization
 
-<!-- 12:30pm–1:00pm
-Spring Cloud Gateway for Stateless Microservice Authorization -->
+// TODO
+
+After lunch we went out for a walk and ended up at the hotel pool.
+
+Saw a red-cheeked tortoise
+![red-cheeked tortoise](https://lh3.googleusercontent.com/RLYHpaLpKrQXEAJ0iohbWq43fOMeOBtRsajjH6qCnYGbx5XnHWWdwEiMsKg_qQiFvFZ9graUzzL1w_mA6NIQbERVisUE20RwBLmVVlalwhBQn6Qe8jj6V1iKEivz33-Mk8irgXZpdcMVxu82pnjx354saw_9ZpqzyW_iapOolq6mA0cnfulmaQmxPDHm-KcNrrplRIUYtwpm7h16PoA-AZuqb057lu8AGa4e8s2PuMCYIILBXBWK-8YRc2eo4mi4ttrUzJRqV2PItsv2Ar6FCm_yya67g81Spx2PrQL-0Eo_B7zd-2hlAgFoy3Bi-jLuXmELTcYzjSxDuBtlk-fORgo1OSS2wCrkPD5Z4qjUip95KgyGLqfBFV48ZINpcbsiSoQC2ur3k1v_wg8OXfE40MQzg8VKkRXSyrixNRcu171smkH995lufp1sYutzezQwtSWKNZveQc5wlMaCPIiyPbNtgv40nqDkpSfIS5ZEQb4IrTPFOOG-B-hhahlCvDh7FjQZBCVjku3g7g95cscbuDGc_JizVxFc-VXQ2PeDJXGCs0h4eHESe_wonV56GKFNxBO1RbemlKWQwvCPPTzDEGoNJDnKbMCE_M8tFiCaol2nAmxDM6qLN3gnxz8elUwmvruRTpyjdHPtl81-PC0dJa8Ot2ephn2mJKtpkzMSZKBvegmtVqeS7llzZVO7IMeVFvZ8wNoUKvryZ2IugjyJPUOynMCQzCGF3ylE5xjpeIYDsQDWjQ=w640-h480-no =50%xauto)
+
+And of course the statue of [Stevie Ray Vaughan](https://nl.wikipedia.org/wiki/Stevie_Ray_Vaughan)
+![Stevie Ray Vaughan](https://lh3.googleusercontent.com/WW8Ej9Ns_qoHEIGxQviPAQJlyPlrEJl0ikR4Idxasx6i5qOQUxMvARK8RyZqpqYknr1_IdKBAXIG7ph4sP5COYMuZCmfVwcDPkZVH1jNAmQ24f6-X30ezF55VkSsOtYhm465ZjysF24aOLQXOjDlvn_1oDcswvxA4QxHSudLKFR171-Y2bL1DmD743JjUdSnxmcq8QqgdQRVIgI5raMTir-syRsHhtw0ky4W4fuLR1cpHL0AdAjw1g5ZLd_gSAZjO8sYg90GmuNcYuEDZng6gXdZWSxdrbA6zpCRj9k9b2vNmQiRHsu48FhTa-WOx0n8q8iqrmvj55TWRjA9tH9GBLK298M3DBNRRneRHIa58KZ7hnuzM5WMz0zIfRKt-j3MbrPKkKCFGvYsxkV52_DOINjHcp-i-uLciVWv3VFaEF21jvJxCjvfoISAVaRGFJ0Gc-oeC9oKpJqD3LDi58X9KLscjA2T-pvw1xG8rzgBrEyFvCTNgLngqC2yAKlxWs_Ps1Tts4-1rfn5yCTFHRWy7WH-v7OK0iXs6u55UUOucV-B9ObMs55turC92mhDKMQdcLcGA0ApV7JV9fNFp7Ptz3N1RymKUw4Yal1poEFGapCVvBWv5VyaNsCiOdm3s6z5MEFpMXIqiFWB1CSRQuqvAAQoXBPsH5VZEEnTd2QYLvaxzbq77PukYnq6X7PEhyekdx_6GHhBRDatY0fYLMFnVzYmTo4AofoYqE7Eumtd-uVmTMZ30A=w480-h640-no =50%xauto)
+
+After diner at the [Banger's sausage house and beer garden](https://www.bangersaustin.com/) we went to see if the bats would fly this evening. Lots of people, but nu bats.
+
+![no bats](https://lh3.googleusercontent.com/jKl-uRfLNtDLhtJEPcdFF1ZY3eOdNuNYkY6OnW9saOkwzgBNKPvVCIpEarbdoFSTS7K2eD_EyKtUIJUYaqGLyPFaFgp2sdUU8TkxCBxiAIVjziox1_UnsgWzpF8H8SmtHExcxD6Q7DXvk2Hh1qrSZqdE0IwlUjIha2_v6Ewn7XDVFhSL2OGKQI5B-mXcOHnzmhM8y38iKD9OOdUUD5SMbxXg2dpCF2cLxlw0VBvDxD589kZooVb_GBF4JHRflyehCKWOgMlqeoasbvFBqR8Pho1S_5lPR5XyvUdhTRaJhIxnPTiUZLstnibAZOJ8nKt6OdM0x0apR6dUJU2BVNdRU5vZIiNaHugKfvOxcV6T8I7RCIIYWrJNm9gtZb5ESACxCrDV7WevGmABeOiN7Bg_HjyeLWPcKro0rL6pcymLjTMwjHAREUtZfnRGipH1wX9CdvvyHVmvTbN3PTmWeA1yxDjHGrISzhYu0KtAJqxyMEkSvrXFgZnc1bsgC75KdZ-g9D9MsVOYcfO72oZy5Gfi64_ls840OSSThV8ocsJHzJg9ehZJrVP4RRVMeRYBnGMJuyfKoGq6cageHiROx10Td30v9gk5IXUI12otVP2sxCtdufVCZXAv-M09LJ9cTEin2HXhPKXbXpEYqsdcQ7ge6GbjNI46RQV3HuiJ9UE2mNCRQK0tVc5RdNm4Apw62CvQaweZCZX2a8R-XLxcwgCWJCZCumgc2LzCuwqOPs7npLYw2FeZrQ=w1600-h896-no =50%xauto)
 
 <<<
 
 ## Friday
+
+Last day in Austin.
 
 >>>
 

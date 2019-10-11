@@ -139,5 +139,28 @@ Line Two</p>
 
   });
 
+  it('blockquotes', () => {
+    expect(mdParser.parseMd(blog, `
+> block quote
+`))
+    .to.equal(`<div class="blog"><blockquote><p>block quote</p></blockquote></div>`);
+  });
+
+ it('arcordion', () => {
+   expect(mdParser.parseMd(blog, `
+before
+
+>>>
+
+Inside
+
+<<<
+
+after
+`))
+    .to.equal(`<div class="blog"><p>before</p>
+<div class="panel"><p>Inside</p></div><button class="accordion"></button>
+<p>after</p></div>`)
+ });
 
 });

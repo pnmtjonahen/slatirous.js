@@ -81,7 +81,6 @@ class IndexView {
   }
 
   setCurrentBlog(id) {
-    console.log("loading " + id);
     this.setBlog(this.blogs.filter(e => {
       return e.id === id;
     })[0]);
