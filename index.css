@@ -6,7 +6,10 @@ div.blog {
   margin-bottom: 10px;
 }
 
-img.blog {}
+img.blog {
+  width:50%;
+  height: auto;
+}
 
 a.blog {
   text-decoration: none;
