@@ -95,7 +95,7 @@ Opening of the SpringOne Platform with some very nice keynote speakers, actual t
 
 - VMware acquires Pivotal, still a work in progress but should be finished at the end of the Year.
 - Microsoft + Pivotal, with a nice demo on deploying and running Spring Boot applications on Azure. With the introduction of Azure Spring Cloud. (Will this compete with CloudFoundry?)
-- [Traihead](https://trailhead.salesforce.com/en/home) and the need to educate the next generation. My take from this was "document more" every thing that you figured out on your own someone can benefit from it. A appeal to all attendants to get, write a blog, answer questions in a community and present at a conference. Have companies create the environment to enable this, which made me proud to be at Ordina, as that is exactly what our CodeSmith program is about.
+- [Traihead](https://trailhead.salesforce.com/en/home) and the need to educate the next generation. My take from this was "document more" everything that you figured out on your own, someone can benefit from it. A appeal to all attendants to get involved, write a blog, answer questions in a community and present at a conference. Have companies create the environment to enable this, which made me proud to be at Ordina, as that is exactly what our CodeSmith program is about.
 - LOL, basic human needs include WiFi and battery.  
 - We as humans are need driven, as long as there is still a need we do things, this also applies to software development.
 
