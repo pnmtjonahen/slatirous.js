@@ -1,4 +1,24 @@
 [{
+    "hide":true,
+    "id": "kennyspeak",
+    "title": "Java8 Lambda kenny speak",
+    "description": "Kenny Speak with java8 and lambda's",
+    "date": "Mar 9, 2015",
+    "imageurl": "https://upload.wikimedia.org/wikipedia/en/6/6f/KennyMcCormick.png",
+    "imagealt": "Kenny",
+    "tags": ["Java", "Lambda", "Kenny", "Speak"]
+  },
+  {
+    "hide":true,
+    "id": "fizzbuzz",
+    "title": "Functional FizzBuzz",
+    "description": "Functional FizzBuzz with java and javascript",
+    "date": "October , 2019",
+    "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Lambda_uc_lc.svg/1920px-Lambda_uc_lc.svg.png",
+    "imagealt": "Lambda",
+    "tags": ["Java", "JavaScript", "Functional","programming"]
+  },
+  {
     "id": "s1p",
     "title": "SpringOne Platform",
     "description": "Austin Convention Center",
