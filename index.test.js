@@ -10,7 +10,7 @@ describe('Index', () => {
         fetch.resetMocks();
         document.body.innerHTML = `<div id="blog"></div>
 <ul>
-  <template id="popular-post">
+  <template id="older-post">
     <li>
         <a href="#{id}" id="{id}">
           <img src="{imageurl}" alt="{imagealt}">

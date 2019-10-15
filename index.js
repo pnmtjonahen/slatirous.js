@@ -14,29 +14,34 @@ class IndexView {
     .then(json => {
 
       this.blogs = json.filter(b => !b.hide);
-
-      const bookmarkRegExp = /(.*?)#([a-zA-Z0-9]*)_?.*/;
-      if (window.location.href.match(bookmarkRegExp)) {
-        let id = window.location.href.replace(bookmarkRegExp, (match, p1, p2) => p2);
-        this.setBlog(this.blogs.filter(e => e.id === id)[0])
-      } else {
-        this.setBlog(this.blogs[0]);
-      }
-
-      const popularPostTemplate = document.getElementById("popular-post");
-      const popularPostContainer = popularPostTemplate.parentNode;
-      this.blogs.forEach(blog => {
-          var node = this.replaceTemplateValues(popularPostTemplate.content.cloneNode(true), blog);
-          node = this.updateOnClick(node, blog);
-          popularPostContainer.appendChild(node);
-      });
+      this.setBlog(this.determineInitialBlog());
+      this.addOlderBlogs();
     })
     .catch(error => {
         console.log("failed fetch blog.json : " + error);
     });
   }
 
-  updateOnClick(node, blog) {
+  addOlderBlogs() {
+    const olderPostTemplate = document.getElementById("older-post");
+    const olderPostContainer = olderPostTemplate.parentNode;
+    this.blogs.forEach(blog => {
+        var node = this.replaceTemplateValues(olderPostTemplate.content.cloneNode(true), blog);
+        this.updateOlderBlogOnClick(node, blog);
+        olderPostContainer.appendChild(node);
+    });
+  }
+
+  determineInitialBlog() {
+    const bookmarkRegExp = /(.*?)#([a-zA-Z0-9]*)_?.*/;
+    if (window.location.href.match(bookmarkRegExp)) {
+      let id = window.location.href.replace(bookmarkRegExp, (match, p1, p2) => p2);
+      return this.blogs.filter(e => e.id === id)[0];
+    }
+    return this.blogs[0];
+  }
+
+  updateOlderBlogOnClick(node, blog) {
     var anchor = node.getElementById(blog.id);
     if (anchor) {
       anchor.onclick = () => {
@@ -44,10 +49,15 @@ class IndexView {
         this.setBlog(blog);
       }
     }
-    return node;
   }
 
   replaceTemplateValues(node, blog) {
+    this.replaceTemplateValuesUsingRegExOnTextNodes(node, blog);
+    this.replaceTemplateValuesUsingKeyValueMappingOnNoneTextNodes(node, blog);
+    return node;
+  }
+
+  replaceTemplateValuesUsingRegExOnTextNodes(node, blog) {
     // replace template values using regex, get all child nodes, filter on text nodes and use a regex to replace the node value
     Array.from(node.childNodes)
       .filter(n => n.nodeType === Node.TEXT_NODE).forEach(n => {
@@ -56,7 +66,9 @@ class IndexView {
           n.nodeValue = blog[name[1]];
         }
       });
+  }
 
+  replaceTemplateValuesUsingKeyValueMappingOnNoneTextNodes(node, blog) {
     // replace template values using javascript key-value mapping
     Array.from(node.childNodes)
       .filter(n => n.nodeType !== Node.TEXT_NODE).forEach(n => {
@@ -79,7 +91,6 @@ class IndexView {
 
   setBlog(blog) {
     document.location = '#' + blog.id;
-
     // insert new html snippet using backticks notation and a dynamic template element
     const div = this.htmlTemplate(`<div class="w3-card-4 w3-margin w3-white">
   <div class="w3-container">
@@ -88,8 +99,12 @@ class IndexView {
   </div>
 </div>`);
 
-    div.appendChild(this.appendBlogEntry(blog));
+    div.appendChild(this.buildBlogEntry(blog));
 
+    this.updateBlogContainer(div);
+  }
+
+  updateBlogContainer(div) {
     const blogContainer = document.getElementById("blog");
     if (blogContainer.hasChildNodes()) {
       blogContainer.replaceChild(div, blogContainer.firstChild);
@@ -104,23 +119,22 @@ class IndexView {
     return template.content.firstChild;
   }
 
-  appendBlogEntry(blog) {
-    const entry = document.createElement("div");
-    entry.className = "w3-container";
+  buildBlogEntry(blog) {
+    const blogEntry = this.htmlTemplate(`<div class="w3-container"></div>`);
     fetch("blog/" + blog.id + ".md")
     .then(res => {
       if (!res.ok) {
         throw Error(res.statusText);
       }
       return res.text();
-    }).then(md => {
-      var html = mdParser.parseMd(blog, md);
-      entry.appendChild(this.updatePanelOnClick(this.htmlTemplate(`<div class="blog">${html}</div>`)));
-      this.appendTags(blog);
+    }).then(entry => {
+      var html = mdParser.parseMd(blog, entry);
+      blogEntry.appendChild(this.updatePanelOnClick(this.htmlTemplate(`<div class="blog">${html}</div>`)));
+      this.updateBlogTags(blog);
     }).catch((error) => {
       console.log("failed fetch " + "blog/" + blog.id + ".md : " + error);
     });
-    return entry;
+    return blogEntry;
   }
 
   updatePanelOnClick(div) {
@@ -143,13 +157,13 @@ class IndexView {
     return div;
   }
 
-  appendTags(blog) {
-    if (!blog.tags) {
-      return;
-    }
+  updateBlogTags(blog) {
     var tags = document.getElementById("tags");
     while (tags.lastChild) {
       tags.removeChild(tags.lastChild);
+    }
+    if (!blog.tags) {
+      return;
     }
     tags.appendChild(this.htmlTemplate(`<p>${blog.tags.map((t) =>
       `<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">${t}</span> `).join('')}</p>`));

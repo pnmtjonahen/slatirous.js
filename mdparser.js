@@ -3,8 +3,8 @@
 
 class MdParser {
   constructor() {
-    var htmlBlocks = [];
-    var contentIds = [];
+    let htmlBlocks = [];
+    let contentIds = [];
   }
 
   parseMd(blog, entry) {
@@ -30,11 +30,11 @@ class MdParser {
   }
 
   hasTableOfContent(entry) {
-    return entry.match(/^!table\-of\-content$/gm);
+    return entry.match(/^!table-of-content$/gm);
   }
 
   parseTableOfContent(entry) {
-    return entry.replace(/!table\-of\-content/g, (match) => {
+    return entry.replace(/!table-of-content/g, (match) => {
       return this.hashHtmlCode(`<p>Table of content</p>
         <ul>
         ${this.contentIds.map(contentId => {
@@ -51,7 +51,7 @@ class MdParser {
   }
   parseAccordion(entry) {
     return entry.replace(/>{3}([\s\S]*?)<{3}/gm, (match, p1) => {
-        var content = this.parseParagraphs(p1);
+        const content = this.parseParagraphs(p1);
         return this.hashHtmlCode(`<div class="panel">${content}</div><button class="accordion"></button>`);
     });
   }
@@ -63,14 +63,11 @@ class MdParser {
 
     return entry.replace(headerRegEx, (match, p1, p2) => {
 
-      var hcontent = p2.replace(idRegExp, '');
-      var ids = p2.match(idRegExp);
+      const hcontent = p2.replace(idRegExp, '');
+      const ids = p2.match(idRegExp);
       if (hasTableOfContent && ids) {
-        var id = this.currentBlog.id + "_" + ids[0].replace(/\{/gm, '').replace(/}/gm, '').trim().replace(/#/g, '');
-        this.contentIds.push({
-          id: id,
-          title: hcontent
-        });
+        const id = this.currentBlog.id + "_" + ids[0].replace(/\{/gm, '').replace(/}/gm, '').trim().replace(/#/g, '');
+        this.contentIds.push({id: id, title: hcontent});
         return this.hashHtmlCode(`<h${p1.length} class="section back" id="${id}">${hcontent}<span class="back"><a class="back" onClick="document.body.scrollTop = 0; document.documentElement.scrollTop = 0; return false;">^</a></span></h${p1.length}>`);
       }
       return this.hashHtmlCode(`<h${p1.length} class="section">${hcontent}</h${p1.length}>`);
@@ -80,8 +77,8 @@ class MdParser {
   parseImg(entry) {
     const inlineImgRegEx = /!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d|auto]+[A-Za-z%]{0,4})x([*\d|auto]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/gm;
     return entry.replace(inlineImgRegEx, (match, p1, p2, p3, p4, p5, p6, p7) => {
-      var width = this.getSize(p4);
-      var heigth = this.getSize(p5);
+      const width = this.getSize(p4);
+      const heigth = this.getSize(p5);
       return this.hashHtmlCode(`<div class="blog"><img src="${p3}" alt="${p1}" class="blog"${p4 && p5 ? ` style="width:${width}; height:${heigth}"` : ''}${p7 ? ` title="${p7}"` : ''}/></div>`);
     });
   }
@@ -108,11 +105,16 @@ class MdParser {
 
   parseCode(entry) {
     return entry.replace(/(?:^|\n)(?: {0,3})(```+)(?: *)([^\s`]*)\n([\s\S]*?)\n(?: {0,3})\1/gm, (matc, p1, p2, p3) => {
-      p3 = p3.replace(/^([ \t]*)/g, '');
-      p3 = p3.replace(/[ \t]*$/g, '');
-      p3 = this.escapeXml(p3);
-      return this.hashHtmlCode(`<pre ${p2 ? `class="${p2}"` :''}>${p3}</pre>`);
+      const content = this.htmlEncodeXml(p3.replace(/^([ \t]*)/g, '')
+                                .replace(/[ \t]*$/g, ''));
+      return this.hashHtmlCode(`<pre ${p2 ? `class="${p2}"` :''}>${content}</pre>`);
     });
+  }
+
+  htmlEncodeXml(text) {
+    return text.replace(/<(?![a-z/?$!])/gi, '&lt;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
   }
 
   parseList(entry) {
@@ -135,18 +137,13 @@ class MdParser {
     });
   }
 
-  escapeXml(text) {
-    return text.replace(/<(?![a-z\/?$!])/gi, '&lt;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
-  }
-  parseParagraphs(text) {
+  parseParagraphs(entry) {
 
-    text = text.replace(/^\n+/g, '');
-    text = text.replace(/\n+$/g, '');
+    entry = entry.replace(/^\n+/g, '');
+    entry = entry.replace(/\n+$/g, '');
 
-    var paras = text.split(/\n{2,}/g);
-    var parasParsed = [];
+    const paras = entry.split(/\n{2,}/g);
+    const parasParsed = [];
 
     paras.forEach(str => {
       if (str.startsWith("PTJ-md")) {
@@ -162,6 +159,7 @@ class MdParser {
   }
 
   parseComments(entry) {
+    //TODO: parse xml comments
     return entry;
   }
 
@@ -173,7 +171,6 @@ class MdParser {
   unhashHtmlCode(entry) {
     const htmlHashedBlockRegExp = /PTJ-md(.*?)md-PTJ/gm;
     return entry.replace(htmlHashedBlockRegExp, (match, p1) => {
-      // nested elements
       if (this.htmlBlocks[p1].match(htmlHashedBlockRegExp)) {
         return this.unhashHtmlCode(this.htmlBlocks[p1]);
       }
