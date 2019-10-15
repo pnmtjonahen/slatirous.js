@@ -48,6 +48,6 @@ describe('Index', () => {
         const index = new IndexView();
         await flushPromises();
         expect(index !== undefined);
-        index.setCurrentBlog("id2")
+        index.setBlog(index.blogs[1]);
     });
 });

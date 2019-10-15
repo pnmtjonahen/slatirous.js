@@ -79,10 +79,10 @@ class MdParser {
 
   parseImg(entry) {
     const inlineImgRegEx = /!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d|auto]+[A-Za-z%]{0,4})x([*\d|auto]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/gm;
-    return entry.replace(inlineImgRegEx, (match, p1, p2, p3, p4, p5) => {
+    return entry.replace(inlineImgRegEx, (match, p1, p2, p3, p4, p5, p6, p7) => {
       var width = this.getSize(p4);
       var heigth = this.getSize(p5);
-      return this.hashHtmlCode(`<div class="blog"><img src="${p3}" alt="${p1}" class="blog" ${p4 && p5 ? `style="width:${width}; height:${heigth}"` : ''}/></div>`);
+      return this.hashHtmlCode(`<div class="blog"><img src="${p3}" alt="${p1}" class="blog"${p4 && p5 ? ` style="width:${width}; height:${heigth}"` : ''}${p7 ? ` title="${p7}"` : ''}/></div>`);
     });
   }
 

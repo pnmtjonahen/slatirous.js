@@ -68,7 +68,7 @@ describe('Markdown plus Parser', () => {
 
   it('img inside text', () => {
     expect(mdParser.parseMd(blog,'pre text ![](img.jpg) post text'))
-      .to.equal(`<div class="blog"><p>pre text <div class="blog"><img src="img.jpg" alt="" class="blog" /></div> post text</p></div>`);
+      .to.equal(`<div class="blog"><p>pre text <div class="blog"><img src="img.jpg" alt="" class="blog"/></div> post text</p></div>`);
   });
   it('img with styling', () => {
     expect(mdParser.parseMd(blog,'![img](img.jpg =autox100%)'))
@@ -77,6 +77,10 @@ describe('Markdown plus Parser', () => {
   it('img with styling fixed size', () => {
     expect(mdParser.parseMd(blog,'![img](img.jpg =100x100)'))
       .to.equal(`<div class="blog"><div class="blog"><img src="img.jpg" alt="img" class="blog" style="width:100px; height:100px"/></div></div>`);
+  });
+  it('img with title', () => {
+    expect(mdParser.parseMd(blog,'![img](img.jpg "title")'))
+      .to.equal(`<div class="blog"><div class="blog"><img src="img.jpg" alt="img" class="blog" title="title"/></div></div>`);
   });
   it('link inside text', () => {
     expect(mdParser.parseMd(blog,'pre text [](img.html) post text'))
