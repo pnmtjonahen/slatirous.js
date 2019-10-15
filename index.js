@@ -17,9 +17,10 @@ class IndexView {
 
       const bookmarkRegExp = /(.*?)#([a-zA-Z0-9]*)_?.*/;
       if (window.location.href.match(bookmarkRegExp)) {
-        this.setCurrentBlog(window.location.href.replace(bookmarkRegExp, (match, p1, p2) => p2));
+        let id = window.location.href.replace(bookmarkRegExp, (match, p1, p2) => p2);
+        this.setBlog(this.blogs.filter(e => e.id === id)[0])
       } else {
-        this.setCurrentBlog(this.blogs[0].id);
+        this.setBlog(this.blogs[0]);
       }
 
       const popularPostTemplate = document.getElementById("popular-post");
@@ -39,18 +40,14 @@ class IndexView {
     var anchor = node.getElementById(blog.id);
     if (anchor) {
       anchor.onclick = () => {
-        document.location = '#' + blog.id;
-        // document.body.scrollTop = 0;
-        // document.documentElement.scrollTop = 0;
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        // window.location.hash = blog.id
-        this.setCurrentBlog(blog.id);
+        this.setBlog(blog);
       }
     }
     return node;
   }
-  replaceTemplateValues(node, blog) {
 
+  replaceTemplateValues(node, blog) {
     // replace template values using regex, get all child nodes, filter on text nodes and use a regex to replace the node value
     Array.from(node.childNodes)
       .filter(n => n.nodeType === Node.TEXT_NODE).forEach(n => {
@@ -80,20 +77,16 @@ class IndexView {
     return node;
   }
 
-  setCurrentBlog(id) {
-    this.setBlog(this.blogs.filter(e => {
-      return e.id === id;
-    })[0]);
-  }
-
   setBlog(blog) {
+    document.location = '#' + blog.id;
+
     // insert new html snippet using backticks notation and a dynamic template element
     const div = this.htmlTemplate(`<div class="w3-card-4 w3-margin w3-white">
-        <div class="w3-container">
-            <h1 class="section"><b>${blog.title}</b></h1>
-            <h5>${blog.description}, <span class="w3-opacity">${blog.date}</span></h5>
-        </div>
-  </div>`);
+  <div class="w3-container">
+    <h1 class="section"><b>${blog.title}</b></h1>
+    <h5>${blog.description}, <span class="w3-opacity">${blog.date}</span></h5>
+  </div>
+</div>`);
 
     div.appendChild(this.appendBlogEntry(blog));
 
@@ -112,7 +105,6 @@ class IndexView {
   }
 
   appendBlogEntry(blog) {
-    // insert new html snippet using DOM api.
     const entry = document.createElement("div");
     entry.className = "w3-container";
     fetch("blog/" + blog.id + ".md")
@@ -159,9 +151,8 @@ class IndexView {
     while (tags.lastChild) {
       tags.removeChild(tags.lastChild);
     }
-    tags.appendChild(this.htmlTemplate(`<p>${blog.tags.map((t) => {
-        return `<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">${t}</span> `;
-    }).join('')}</p>`));
+    tags.appendChild(this.htmlTemplate(`<p>${blog.tags.map((t) =>
+      `<span class="w3-tag w3-light-grey w3-small w3-margin-bottom">${t}</span> `).join('')}</p>`));
   }
 }
 export {IndexView};
