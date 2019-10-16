@@ -1,3 +1,4 @@
+/* global module */
 // babel.config.js
 module.exports = {
   presets: [

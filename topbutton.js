@@ -29,13 +29,13 @@
     constructor() {
       super();
       this._shadowRoot = this.attachShadow({
-        'mode': 'open'
+        mode: 'open'
       });
       this._shadowRoot.appendChild(template.content.cloneNode(true));
-      var topbutton = this._shadowRoot.getElementById("topbutton");
+      var topbutton = this._shadowRoot.getElementById('topbutton');
 
       // When the user clicks on the button, scroll to the top of the document
-      this.addEventListener('click', e => {
+      this.addEventListener('click', () => {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
       });
@@ -49,19 +49,19 @@
         if (scrolling) {
           scrolling = false;
           if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            topbutton.style.display = "block";
+            topbutton.style.display = 'block';
           } else {
-            topbutton.style.display = "none";
+            topbutton.style.display = 'none';
           }
         }
       }, 250);
 
       // or for modern browsers
-      document.addEventListener('wheel', (evt) => {
+      document.addEventListener('wheel', () => {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-          topbutton.style.display = "block";
+          topbutton.style.display = 'block';
         } else {
-          topbutton.style.display = "none";
+          topbutton.style.display = 'none';
         }
       }, {
         capture: false,

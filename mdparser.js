@@ -1,11 +1,9 @@
 /* https://regex101.com */
 /* https://github.com/showdownjs/showdown/tree/master/src/subParsers/makehtml */
 
+'use strict';
+
 class MdParser {
-  constructor() {
-    let htmlBlocks = [];
-    let contentIds = [];
-  }
 
   parseMd(blog, entry) {
 
@@ -34,7 +32,7 @@ class MdParser {
   }
 
   parseTableOfContent(entry) {
-    return entry.replace(/!table-of-content/g, (match) => {
+    return entry.replace(/!table-of-content/g, () => {
       return this.hashHtmlCode(`<p>Table of content</p>
         <ul>
         ${this.contentIds.map(contentId => {

@@ -1,9 +1,9 @@
-/* global fetch, Node */
-import {mdParser} from './mdparser.js'
+'use strict';
+
+import { mdParser } from './mdparser.js'
 
 class IndexView {
   constructor() {
-    const blogs = [];
     fetch("blog.json")
     .then(res => {
       if (!res.ok) {
@@ -12,7 +12,6 @@ class IndexView {
       return res.json();
     })
     .then(json => {
-
       this.blogs = json.filter(b => !b.hide);
       this.setBlog(this.determineInitialBlog());
       this.addOlderBlogs();
@@ -34,9 +33,11 @@ class IndexView {
 
   determineInitialBlog() {
     const bookmarkRegExp = /(.*?)#([a-zA-Z0-9]*)_?.*/;
+
     if (window.location.href.match(bookmarkRegExp)) {
       let id = window.location.href.replace(bookmarkRegExp, (match, p1, p2) => p2);
-      return this.blogs.filter(e => e.id === id)[0];
+      const blog = this.blogs.filter(e => e.id === id)[0];
+      return blog === undefined ? this.blogs[0] : blog;
     }
     return this.blogs[0];
   }
