@@ -51,8 +51,8 @@ describe('Index', () => {
         expect(window.location.href === 'http://localhost/#id1').toBeTrue();
         expect(document.getElementById('blog')).toBeInTheDocument();
     });
-    it('should load index.js with accordion', async () => {
 
+    it('should load index.js with accordion, opening and closing the accordion', async () => {
         fetch.mockResponseOnce(JSON.stringify([{
                 id: 'id1',
                 title: 'TEST BLOG',
@@ -82,7 +82,7 @@ describe('Index', () => {
         expect(document.getElementById("panel")).not.toBeVisible();
     });
 
-    it('should load index.js switch to second', async () => {
+    it('should load index.js switch to second blog', async () => {
 
         fetch.mockResponseOnce(JSON.stringify([{
                 id: 'id1',
@@ -143,10 +143,7 @@ describe('Index', () => {
     });
 
     it('should fail to load blog', async () => {
-        fetch.mockReject({
-          status: 404,
-          body: JSON.stringify("")
-        });
+        fetch.mockResponseOnce('Not found', { status: 404 });
         const flushPromises = () => new Promise(setImmediate);
         new IndexView();
         await flushPromises();
@@ -165,10 +162,7 @@ describe('Index', () => {
                 tags:['js', 'test']
             }
           ]));
-        fetch.mockReject({
-          status: 404,
-          body: JSON.stringify("")
-        });
+        fetch.mockResponseOnce('Not found', { status: 404 });
         const flushPromises = () => new Promise(setImmediate);
         new IndexView();
         await flushPromises();
