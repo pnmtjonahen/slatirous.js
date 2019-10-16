@@ -43,13 +43,10 @@ class IndexView {
   }
 
   updateOlderBlogOnClick(node, blog) {
-    var anchor = node.getElementById(blog.id);
-    if (anchor) {
-      anchor.onclick = () => {
+    node.getElementById(blog.id).onclick = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         this.setBlog(blog);
-      }
-    }
+    };
   }
 
   replaceTemplateValues(node, blog) {
