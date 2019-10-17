@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint *.js",
-    "test": "jest --coverage"
+    "test": "jest --coverage --verbose"
   },
   "repository": {
     "type": "git",
@@ -32,8 +32,7 @@
     "eslint": "^6.5.1",
     "jest": "^24.9.0",
     "jest-extended": "^0.11.2",
-    "jest-fetch-mock": "^2.1.2",
-    "jquery": "^3.4.1"
+    "jest-fetch-mock": "^2.1.2"
   },
   "jest": {
     "testURL": "http://localhost",
@@ -41,7 +40,9 @@
     "setupFiles": [
       "./setupJest.js"
     ],
-    "setupFilesAfterEnv": ["jest-extended"],
+    "setupFilesAfterEnv": [
+      "jest-extended"
+    ],
     "collectCoverage": true,
     "coverageReporters": [
       "json",

@@ -16,7 +16,7 @@ describe('Markdown plus Parser', () => {
       var result = mdParser.parseMd(blog, '');
       expect(result).toEqualCaseInsensitive(`<div class="blog"></div>`);
   });
-
+describe('Test code block generation', () => {
   it('parse code block with class', () => {
     var result = mdParser.parseMd(blog, '```code\n\n<html></html>\n\n```');
     expect(result).toEqualCaseInsensitive(`<div class="blog"><pre class="code">
@@ -29,7 +29,9 @@ describe('Markdown plus Parser', () => {
 &lt;html&gt;&lt;/html&gt;
 </pre></div>`);
   });
+});
 
+describe('Test H1,H2,H3,H4,H5,H6 generation', () => {
   it('parse headers', () => {
     var result = mdParser.parseMd(blog,`# H1
 ## H2
@@ -56,7 +58,7 @@ describe('Markdown plus Parser', () => {
     var result = mdParser.parseMd(blog,`# H1 [blog](http://localhost) {#myid}`);
     expect(result).toEqualCaseInsensitive(`<div class="blog"><h1 class="section">H1 <a href="http://localhost" target="_blank">blog</a></h1></div>`);
   });
-
+});
   it('parse table of content', () => {
     var result = mdParser.parseMd(blog,`!table-of-content
 # H1 {#myid}`);
@@ -66,7 +68,7 @@ describe('Markdown plus Parser', () => {
         </ul>
 <h1 class="section back" id="id1_myid">H1<span class="back"><a class="back" onClick="document.body.scrollTop = 0; document.documentElement.scrollTop = 0; return false;">^</a></span></h1></div>`);
   });
-
+describe('Test img tags generation', () => {
   it('parse img inside text', () => {
     expect(mdParser.parseMd(blog,'pre text ![](img.jpg) post text'))
       .toEqualCaseInsensitive(`<div class="blog"><p>pre text <div class="blog"><img src="img.jpg" alt="" class="blog"/></div> post text</p></div>`);
@@ -83,6 +85,8 @@ describe('Markdown plus Parser', () => {
     expect(mdParser.parseMd(blog,'![img](img.jpg "title")'))
       .toEqualCaseInsensitive(`<div class="blog"><div class="blog"><img src="img.jpg" alt="img" class="blog" title="title"/></div></div>`);
   });
+});
+describe('Test anchor tag generation', () => {
   it('parse link inside text', () => {
     expect(mdParser.parseMd(blog,'pre text [](img.html) post text'))
       .toEqualCaseInsensitive(`<div class="blog"><p>pre text <a href="img.html" target="_blank">img.html</a> post text</p></div>`);
@@ -92,7 +96,8 @@ describe('Markdown plus Parser', () => {
     expect(mdParser.parseMd(blog,'[![img](img.jpg =autox100%)](img.html)'))
       .toEqualCaseInsensitive(`<div class="blog"><a href="img.html" target="_blank"><div class="blog"><img src="img.jpg" alt="img" class="blog" style="width:auto; height:100%"/></div></a></div>`);
   });
-
+});
+describe('Test ul/li generation', () => {
   it('parse list, single list', () => {
     expect(mdParser.parseMd(blog,`
 - single
@@ -115,7 +120,7 @@ describe('Markdown plus Parser', () => {
 <ul><li>1.1</li><li>1.2</li><li>1.3</li></ul>
 <p>-None</p></div>`);
   });
-
+});
 
   it('parse steps', () => {
     expect(mdParser.parseMd(blog,`

@@ -169,6 +169,7 @@ describe('Index', () => {
         const blog = document.getElementById('blog');
         expect(blog.childElementCount === 1).toBeTrue();
     });
+    
     it('should fail to load entry, wrong bookmark ', async () => {
         window.location.href = '#id2';
         fetch.mockResponseOnce(JSON.stringify([{
