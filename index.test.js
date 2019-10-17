@@ -4,16 +4,16 @@
 
 
 import { IndexView } from './index.js';
-import { toBeInTheDocument, toBeVisible } from '@testing-library/jest-dom'
-import { mdParser } from './mdparser.js'
+import { toBeInTheDocument, toBeVisible } from '@testing-library/jest-dom';
+import { markdownConverter } from './markdownconverter.js';
 
-expect.extend({ toBeInTheDocument, toBeVisible })
-jest.mock('./mdparser.js');
+expect.extend({toBeInTheDocument, toBeVisible})
+jest.mock('./markdownconverter.js');
 
 
 describe('Index', () => {
     beforeEach(() => {
-        mdParser.parseMd.mockReset();
+        markdownConverter.toHtml.mockReset();
         window.scrollTo = jest.fn();
         fetch.resetMocks();
         window.location.href = '';
@@ -41,10 +41,10 @@ describe('Index', () => {
                 date: '1-4-2018',
                 imageurl: 'https://www.w3schools.com/w3images/woods.jpg',
                 imagealt: 'nature',
-                tags:['js', 'test']
+                tags: ['js', 'test']
             }
-          ]));
-        fetch.mockResponseOnce('# Simple Text 1', { status: 200, headers: { 'content-type': 'text/plain; charset=UTF-8'} });
+        ]));
+        fetch.mockResponseOnce('# Simple Text 1', {status: 200, headers: {'content-type': 'text/plain; charset=UTF-8'}});
         const flushPromises = () => new Promise(setImmediate);
         new IndexView();
         await flushPromises();
@@ -60,12 +60,12 @@ describe('Index', () => {
                 date: '1-4-2018',
                 imageurl: 'https://www.w3schools.com/w3images/woods.jpg',
                 imagealt: 'nature',
-                tags:['js', 'test']
+                tags: ['js', 'test']
             }
-          ]));
-        fetch.mockResponseOnce('# Simple Text 1', { status: 200, headers: { 'content-type': 'text/plain; charset=UTF-8'} });
-        mdParser.parseMd = jest.fn(() => {
-          return `<div class="blog"><div id="panel" class="panel">Simple text</div><button class="accordion"></button></div>`;
+        ]));
+        fetch.mockResponseOnce('# Simple Text 1', {status: 200, headers: {'content-type': 'text/plain; charset=UTF-8'}});
+        markdownConverter.toHtml = jest.fn(() => {
+            return `<div class="blog"><div id="panel" class="panel">Simple text</div><button class="accordion"></button></div>`;
         });
         const flushPromises = () => new Promise(setImmediate);
         new IndexView();
@@ -91,7 +91,7 @@ describe('Index', () => {
                 date: '1-4-2018',
                 imageurl: 'https://www.w3schools.com/w3images/woods.jpg',
                 imagealt: 'nature',
-                tags:['js', 'test']
+                tags: ['js', 'test']
             },
             {
                 id: 'id2',
@@ -101,9 +101,9 @@ describe('Index', () => {
                 imageurl: 'https://www.w3schools.com/w3images/woods.jpg',
                 imagealt: 'nature'
             }
-          ]));
-        fetch.mockResponseOnce('# Simple Text 1', { status: 200, headers: { 'content-type': 'text/plain; charset=UTF-8'} });
-        fetch.mockResponseOnce('# Simple Text 2', { status: 200, headers: { 'content-type': 'text/plain; charset=UTF-8'} });
+        ]));
+        fetch.mockResponseOnce('# Simple Text 1', {status: 200, headers: {'content-type': 'text/plain; charset=UTF-8'}});
+        fetch.mockResponseOnce('# Simple Text 2', {status: 200, headers: {'content-type': 'text/plain; charset=UTF-8'}});
         const flushPromises = () => new Promise(setImmediate);
         new IndexView();
         await flushPromises();
@@ -123,7 +123,7 @@ describe('Index', () => {
                 date: '1-4-2018',
                 imageurl: 'https://www.w3schools.com/w3images/woods.jpg',
                 imagealt: 'nature',
-                tags:['js', 'test']
+                tags: ['js', 'test']
             },
             {
                 id: 'id2',
@@ -133,8 +133,8 @@ describe('Index', () => {
                 imageurl: 'https://www.w3schools.com/w3images/woods.jpg',
                 imagealt: 'nature'
             }
-          ]));
-        fetch.mockResponseOnce('# Simple Text 2', { status: 200, headers: { 'content-type': 'text/plain; charset=UTF-8'} });
+        ]));
+        fetch.mockResponseOnce('# Simple Text 2', {status: 200, headers: {'content-type': 'text/plain; charset=UTF-8'}});
         const flushPromises = () => new Promise(setImmediate);
         new IndexView();
         await flushPromises();
@@ -143,7 +143,7 @@ describe('Index', () => {
     });
 
     it('should fail to load blog', async () => {
-        fetch.mockResponseOnce('Not found', { status: 404 });
+        fetch.mockResponseOnce('Not found', {status: 404});
         const flushPromises = () => new Promise(setImmediate);
         new IndexView();
         await flushPromises();
@@ -159,17 +159,17 @@ describe('Index', () => {
                 date: '1-4-2018',
                 imageurl: 'https://www.w3schools.com/w3images/woods.jpg',
                 imagealt: 'nature',
-                tags:['js', 'test']
+                tags: ['js', 'test']
             }
-          ]));
-        fetch.mockResponseOnce('Not found', { status: 404 });
+        ]));
+        fetch.mockResponseOnce('Not found', {status: 404});
         const flushPromises = () => new Promise(setImmediate);
         new IndexView();
         await flushPromises();
         const blog = document.getElementById('blog');
         expect(blog.childElementCount === 1).toBeTrue();
     });
-    
+
     it('should fail to load entry, wrong bookmark ', async () => {
         window.location.href = '#id2';
         fetch.mockResponseOnce(JSON.stringify([{
@@ -179,10 +179,10 @@ describe('Index', () => {
                 date: '1-4-2018',
                 imageurl: 'https://www.w3schools.com/w3images/woods.jpg',
                 imagealt: 'nature',
-                tags:['js', 'test']
+                tags: ['js', 'test']
             }
-          ]));
-        fetch.mockResponseOnce('# Simple Text 2', { status: 200, headers: { 'content-type': 'text/plain; charset=UTF-8'} });
+        ]));
+        fetch.mockResponseOnce('# Simple Text 2', {status: 200, headers: {'content-type': 'text/plain; charset=UTF-8'}});
         const flushPromises = () => new Promise(setImmediate);
         new IndexView();
         await flushPromises();
