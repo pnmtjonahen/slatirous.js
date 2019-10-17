@@ -141,14 +141,14 @@ Line Two</p>
 
   });
 
-  it('parse blockquotes', () => {
+  it('parse block quotes', () => {
     expect(markdownConverter.toHtml("id1", `
 > block quote
 `))
     .toEqualCaseInsensitive(`<div class="blog"><blockquote><p>block quote</p></blockquote></div>`);
   });
 
- it('parse arcordion', () => {
+ it('parse accordion', () => {
    expect(markdownConverter.toHtml("id1", `
 before
 

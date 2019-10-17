@@ -8,7 +8,7 @@ class MarkdownConverter {
     toHtml(id, entry) {
 
         this.htmlBlocks = [];
-        this.contentIds = [];
+        this.tableOfContentIds = [];
         this.baseId = id;
 
         entry = this.parseCode(entry);
@@ -22,7 +22,7 @@ class MarkdownConverter {
         entry = this.parseBlockQuote(entry);
         entry = this.parseAccordion(entry);
         entry = this.parseParagraphs(entry);
-        entry = this.unhashHtmlCode(entry);
+        entry = this.unHashHtmlCode(entry);
 
         return `<div class="blog">${entry}</div>`;
     }
@@ -35,7 +35,7 @@ class MarkdownConverter {
         return entry.replace(/!table-of-content/g, () => {
             return this.hashHtmlCode(`<p>Table of content</p>
         <ul>
-        ${this.contentIds.map(contentId => {
+        ${this.tableOfContentIds.map(contentId => {
                 return `<li><a href="#${contentId.id}">${contentId.title}</a></li>`;
             }).join('')}
         </ul>`);
@@ -61,14 +61,14 @@ class MarkdownConverter {
 
         return entry.replace(headerRegEx, (match, p1, p2) => {
 
-            const hcontent = p2.replace(idRegExp, '');
+            const content = p2.replace(idRegExp, '');
             const ids = p2.match(idRegExp);
             if (hasTableOfContent && ids) {
                 const id = this.baseId + "_" + ids[0].replace(/\{/gm, '').replace(/}/gm, '').trim().replace(/#/g, '');
-                this.contentIds.push({id: id, title: hcontent});
-                return this.hashHtmlCode(`<h${p1.length} class="section back" id="${id}">${hcontent}<span class="back"><a class="back" onClick="document.body.scrollTop = 0; document.documentElement.scrollTop = 0; return false;">^</a></span></h${p1.length}>`);
+                this.tableOfContentIds.push({id: id, title: content});
+                return this.hashHtmlCode(`<h${p1.length} class="section back" id="${id}">${content}<span class="back"><a class="back" onClick="document.body.scrollTop = 0; document.documentElement.scrollTop = 0; return false;">^</a></span></h${p1.length}>`);
             }
-            return this.hashHtmlCode(`<h${p1.length} class="section">${hcontent}</h${p1.length}>`);
+            return this.hashHtmlCode(`<h${p1.length} class="section">${content}</h${p1.length}>`);
         });
     }
 
@@ -76,8 +76,8 @@ class MarkdownConverter {
         const inlineImgRegEx = /!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d|auto]+[A-Za-z%]{0,4})x([*\d|auto]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/gm;
         return entry.replace(inlineImgRegEx, (match, p1, p2, p3, p4, p5, p6, p7) => {
             const width = this.getSize(p4);
-            const heigth = this.getSize(p5);
-            return this.hashHtmlCode(`<div class="blog"><img src="${p3}" alt="${p1}" class="blog"${p4 && p5 ? ` style="width:${width}; height:${heigth}"` : ''}${p7 ? ` title="${p7}"` : ''}/></div>`);
+            const height = this.getSize(p5);
+            return this.hashHtmlCode(`<div class="blog"><img src="${p3}" alt="${p1}" class="blog"${p4 && p5 ? ` style="width:${width}; height:${height}"` : ''}${p7 ? ` title="${p7}"` : ''}/></div>`);
         });
     }
 
@@ -166,11 +166,11 @@ class MarkdownConverter {
         return "PTJ-md" + (this.htmlBlocks.push(html) - 1) + "md-PTJ";
     }
 
-    unhashHtmlCode(entry) {
+    unHashHtmlCode(entry) {
         const htmlHashedBlockRegExp = /PTJ-md(.*?)md-PTJ/gm;
         return entry.replace(htmlHashedBlockRegExp, (match, p1) => {
             if (this.htmlBlocks[p1].match(htmlHashedBlockRegExp)) {
-                return this.unhashHtmlCode(this.htmlBlocks[p1]);
+                return this.unHashHtmlCode(this.htmlBlocks[p1]);
             }
             return this.htmlBlocks[p1];
         });

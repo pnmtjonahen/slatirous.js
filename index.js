@@ -89,7 +89,7 @@ class IndexView {
 
     setBlog(blog) {
         document.location = '#' + blog.id;
-        // insert new html snippet using backticks notation and a dynamic template element
+        // insert new html snippet using back ticks notation and a dynamic template element
         const div = this.htmlTemplate(`<div class="w3-card-4 w3-margin w3-white">
   <div class="w3-container">
     <h1 class="section"><b>${blog.title}</b></h1>
