@@ -273,6 +273,7 @@ When using the Spring Gateway with RSocket you don't need to:
 With the demo they showed all of the above. One side note it all is still in beta, but to me looked very promising.
 
 ### Congress Bridge Bats
+
 After the last session we went to see the bats.
 ![bat](https://lh3.googleusercontent.com/MDp-OqNn7L92TPtr0lmNA2SSLOY89jEeLtxwSnRGzC0brb9gkIZJk3W7yAItJfSYaeGRC3Ban54QDk_l-EOLFSeRbjwlE5RDcGrP56rqT4Pcfe8RGjwa0ihLFgdN50Aq0MfAvLqR2S4b_99wZ45dlaHCa6udhwfLXSviDps3uUr1C6J-aUxA8kI20pK-S4HtuLCmSCTrupIFuohAEvNfSyCWQ4A5-eDhK5na5gCOMqOe3zX0a0gfjSC5pIElAK-9wdDRM0ZzZHiPCagu-MULMe-yKKbh-Ri85dXeMSn_phiU-xf1oNttuev-USQhrSaBuUjpRSsU9ZDvpP2sPwKG6ReTgSM2MMFJ5MzRKKSfOmpPptyLLeC_MekuUJl0de2oipxZVyIue1XH8V-t4amIWkPOa5D1HErTqsBsDikRjXLzoHMEnawTPdpKfoy0U-euJSoAzkzSBGVjvZvfpKuRNYtMC5Q-wIChQbGQ0AfYQA1878PrbOfe6v6_3OGz6idrPKCnmpOShm-8-TqdSpnDv4Aty3e0SqbigUPVOQazRTQuLBP7oEsv0ggympu7Skra5kxQdV9JK06tN883WrLRg9dgIL3vTb1K9czb0ijk8qyOklFupWSCtFAhWe-IjmvJ3B_GD8Znzyd3lf3gesrA_EMr4_7hiMGnPQSgM2G30zL6xASwr4xhq-Qjz5rAh_MUQNBncF4VxlWvGWaBtb6-eKovqvwYNe2IURWEy2_Iod-fDiZjLw=w640-h480-no )
 
@@ -293,12 +294,36 @@ The last keynote of the week, unfortunately it showed, presentations of how diff
 ![](https://lh3.googleusercontent.com/hnS3yyEJognPMqFc-I0sYbaVw8w7hvYpZd7l07UJIs6iLxAH3ygDY1uZVEB6JpxSJD25ajMxiCSnZVgQnRhu7BpeRU0F4ad04KP6AitxrRcnaLllUAdetuWrMxFQ4-znSr-yYjuo9HPGDcGq6VymymzLxDa8BaY5j2ov0WljhUwmxN5NkZolglu-g_QBpy6W1_RK3TOmt4yDvhweAqcuSPaTZL1jXleV3Uwdh6tFnwWxrVBC7zYmbv89Tt2NXSJBWdLZRKMiGnwLHp1eqSYfIfCVi3Y1BXdFf8xOZ7Gqi3Lfaj3BMpZiMlxTGCfjLidNDa4_f_39s6sZ0jlTEftfUWcD6XvJkrjwfHVopM5tPvLOXhf73Xlf114fm6Snw287tI6K3GLDLGQ9wWauX2lFtDhDcpSnPJkcz9sT6M_I_bdGPz-ne7q-6bhDbdyIHtXnlQR_MkUTv2SRj7vyBLkMxgdN8Iu_9l-OQXk639XAZMyapBB2iT8FjDCNQ7dDGad8Oez_5e2YZqmGJzUJQq8_szq9JbQphF7BHQrXv0b_SB6W28stnmceTze6s8mDXi8TwmYvqomV2chHvewe4CpyizEFud_D4ViWwfjjD4iLwTtkj11syAt0qERUjcns1K1wpTJHURz26XcaARZKksmlr636tUY1C_6-xUng5-ezk4Mv991kHtAbtsIrDxEmjNlzCvXiLkkHpCsNA-WDFDiWxKBQJv0DS6mIQ6aQOeEu2KiUEfFPjQ=w640-h480-no )
 
 ### 10:30am–11:40am JUnit 5: Evolution and Innovation
+Sam Brannen
 
-// TODO
+All the new and shining things that is included in jUnit Jupiter, aka jUnit5. New extension mechanism, new life cycle methods etc etc.
+
+With a demo on the new DisplayNameGenerator, where you can automatically generate display names based on your method names, eg replace underscores with spaces to make a test method like a_test_that_verify_my_method to be displayed as "a test that verify my method". sounds to me like a real must have.
+
+The @DisplayName annotation is one I don't get. Why would I annotate my test class or test method with a display name, Isn't that the same thing as adding comments in code? 
+
+```code
+@DisplayName("The FizzBuzz Test")
+public class FizzBuzzTest {
+
+    @DisplayName("test FizzBuzz")
+    public void testFizzBuzz() {
+
+....
+```
+
+Shouldn't our test classes and test methods have a clear and meaningful name?
+
+Random ordering your test methods using @TestMethodOrder(Random.class) to make sure that there is no dependency between different test methods sounds like plan.
+
+@Timeout annotation to test for long running methods and have a timeout if they take to long. So we could make sure that a method will not run longer that x seconds.
+
 
 ### 12:30pm–1:00pm Spring Cloud Gateway for Stateless Microservice Authorization
 
 // TODO
+
+### Lady Bird Lake Hike-and-Bike Trail
 
 After lunch we went out for a walk and ended up at the hotel pool.
 

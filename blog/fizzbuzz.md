@@ -131,26 +131,45 @@ public String fizzbuzz(Integer n) {
 
 ### Using javascript
 
-And as I am also a javascript developer, of course it should be done with javascript.
+And as I am also a javascript developer, of course it should be done with javascript. So here is my starting situation
+
+```code
+var fizzbuzz = function(n) {
+  if (n % 3 == 0 && n % 5 == 0) {
+    return "FizzBuzz";
+  }
+  if (n % 3 == 0) {
+    return "Fizz";
+  }
+  if (n % 5 == 0) {
+    return "Buzz";
+  }
+  return ""+n;
+}
+```
+
+Not much different then my Java version. Now lets refactor this. And yes I have my javascript unit tests.
+
+Making it more functional we can do the same as we did for the Java version.
 
 ```code
 
 var  fizzbuzz = function(n) {
-    var fizz = (f) =>  n % 3 == 0 ? (p) => "Fizz" + f("") : f;
-    var buzz = (f) =>  n % 5 == 0 ? (p) => "Buzz" + f("") : f;
-    var id = (p) => p;
+    var fizz = f =>  n % 3 == 0 ? p => "Fizz" + f("") : f;
+    var buzz = f =>  n % 5 == 0 ? p => "Buzz" + f("") : f;
+    var id = p => p;
 
     return fizz(buzz(id))(""+n);
 };
 
 ```
 
-And with bind.
+However javascript also has a bind function where you can bind a method to parameters, so we end up with
 
 ```code
 var  fizzbuzz = function(n) {
-    var fb = (mod, txt, f) =>  n % mod == 0 ? (p) => txt + f("") : f;
-    var id = (p) => p;
+    var fb = (mod, txt, f) =>  n % mod == 0 ? p => txt + f("") : f;
+    var id = p => p;
 
     var fizz = fb.bind(null, 3, "Fizz");
     var buzz = fb.bind(null, 5, "Buzz");
@@ -161,7 +180,11 @@ var  fizzbuzz = function(n) {
 
 ### TL;DR;
 
-Looking at the difference between the java version and the javascript version, yes java is more verbose, however I still prefer the first java implementation. To me it is clear what is happening, the code tells me what it is doing.
+Looking at the difference between the java version and the javascript version
+
+First I must admin the java lambda version is verbose compared with the javascript version. This is as expected as in java a lambda function is an implementation of an interface. 
+
+However I still prefer the first java/javascript implementation. To me it is clear what is happening, the code tells me what it is doing.
 
 
 All code can be found on [fizzbuzz](https://gitlab.com/pnmtjonahen/fizzbuzz.git)
