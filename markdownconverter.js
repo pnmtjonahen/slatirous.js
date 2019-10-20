@@ -43,14 +43,14 @@ class MarkdownConverter {
     }
 
     parseBlockQuote(entry) {
-        return entry.replace(/^> (.*)/gm, (match, p1) => {
-            return this.hashHtmlCode(`<blockquote><p>${p1}</p></blockquote>`);
+        return entry.replace(/^> (.*)/gm, (match, content) => {
+            return this.hashHtmlCode(`<blockquote><p>${content}</p></blockquote>`);
         });
     }
     parseAccordion(entry) {
-        return entry.replace(/>{3}([\s\S]*?)<{3}/gm, (match, p1) => {
-            const content = this.parseParagraphs(p1);
-            return this.hashHtmlCode(`<div class="panel">${content}</div><button class="accordion"></button>`);
+        return entry.replace(/>{3}([\s\S]*?)<{3}/gm, (match, panelContent) => {
+            const paragraphed = this.parseParagraphs(panelContent);
+            return this.hashHtmlCode(`<div class="panel">${paragraphed}</div><button class="accordion"></button>`);
         });
     }
 
@@ -59,53 +59,61 @@ class MarkdownConverter {
         const idRegExp = /\s?\{([^{]+?)}\s*$/gm;
         const hasTableOfContent = this.hasTableOfContent(entry);
 
-        return entry.replace(headerRegEx, (match, p1, p2) => {
+        return entry.replace(headerRegEx, (match, hashtags, header) => {
 
-            const content = p2.replace(idRegExp, '');
-            const ids = p2.match(idRegExp);
+            const content = header.replace(idRegExp, '');
+            const ids = header.match(idRegExp);
             if (hasTableOfContent && ids) {
                 const id = this.baseId + "_" + ids[0].replace(/\{/gm, '').replace(/}/gm, '').trim().replace(/#/g, '');
                 this.tableOfContentIds.push({id: id, title: content});
-                return this.hashHtmlCode(`<h${p1.length} class="section back" id="${id}">${content}<span class="back"><a class="back" onClick="document.body.scrollTop = 0; document.documentElement.scrollTop = 0; return false;">^</a></span></h${p1.length}>`);
+                return this.hashHtmlCode(`<h${hashtags.length} class="section back" id="${id}">${content}<span class="back"><a class="back" onClick="document.body.scrollTop = 0; document.documentElement.scrollTop = 0; return false;">^</a></span></h${hashtags.length}>`);
             }
-            return this.hashHtmlCode(`<h${p1.length} class="section">${content}</h${p1.length}>`);
+            return this.hashHtmlCode(`<h${hashtags.length} class="section">${content}</h${hashtags.length}>`);
         });
     }
 
     parseImg(entry) {
         const inlineImgRegEx = /!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d|auto]+[A-Za-z%]{0,4})x([*\d|auto]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/gm;
-        return entry.replace(inlineImgRegEx, (match, p1, p2, p3, p4, p5, p6, p7) => {
-            const width = this.getSize(p4);
-            const height = this.getSize(p5);
-            return this.hashHtmlCode(`<div class="blog"><img src="${p3}" alt="${p1}" class="blog"${p4 && p5 ? ` style="width:${width}; height:${height}"` : ''}${p7 ? ` title="${p7}"` : ''}/></div>`);
+        return entry.replace(inlineImgRegEx, (match, alt, unused1, src, rawWidth, rawHeight, unused2, title) => {
+            const style = this.determineStyle(rawWidth, rawHeight);
+            return this.hashHtmlCode(`<div class="blog"><img src="${src}" alt="${alt}" class="blog"${style}${title ? ` title="${title}"` : ''}/></div>`);
         });
     }
 
-    getSize(p) {
-        if (!p) {
-            return p;
+    determineStyle(rawWidth, rawHeight) {
+        const width = this.getSize(rawWidth);
+        const height = this.getSize(rawHeight);
+        if (rawWidth && rawHeight) {
+            return ` style="width:${width}; height:${height}"`;
+        }    
+        return '';
+    }
+
+    getSize(rawSize) {
+        if (!rawSize) {
+            return rawSize;
         }
-        if (p.endsWith('%')) {
-            return p;
+        if (rawSize.endsWith('%')) {
+            return rawSize;
         }
-        if (isNaN(p)) {
-            return p;
+        if (isNaN(rawSize)) {
+            return rawSize;
         }
-        return p + 'px';
+        return rawSize + 'px';
     }
 
     parseLink(entry) {
         const inlineLinkRegEx = /\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/gm;
-        return entry.replace(inlineLinkRegEx, (match, p1, p2, p3) => {
-            return this.hashHtmlCode(`<a href="${p3}" target="_blank">${p1 ? p1 : p3}</a>`);
+        return entry.replace(inlineLinkRegEx, (match, content, unused, href) => {
+            return this.hashHtmlCode(`<a href="${href}" target="_blank">${content ? content : href}</a>`);
         });
     }
 
     parseCode(entry) {
-        return entry.replace(/(?:^|\n)(?: {0,3})(```+)(?: *)([^\s`]*)\n([\s\S]*?)\n(?: {0,3})\1/gm, (matc, p1, p2, p3) => {
-            const content = this.htmlEncodeXml(p3.replace(/^([ \t]*)/g, '')
+        return entry.replace(/(?:^|\n)(?: {0,3})(```+)(?: *)([^\s`]*)\n([\s\S]*?)\n(?: {0,3})\1/gm, (match, unused, codeClass, rawContent) => {
+            const content = this.htmlEncodeXml(rawContent.replace(/^([ \t]*)/g, '')
                     .replace(/[ \t]*$/g, ''));
-            return this.hashHtmlCode(`<pre ${p2 ? `class="${p2}"` : ''}>${content}</pre>`);
+            return this.hashHtmlCode(`<pre ${codeClass ? `class="${codeClass}"` : ''}>${content}</pre>`);
         });
     }
 
@@ -116,22 +124,22 @@ class MarkdownConverter {
     }
 
     parseList(entry) {
-        entry = entry.replace(/^- (.*)/gm, (match, p1) => {
-            return '¨1' + this.hashHtmlCode(`<li>${p1}</li>`) + '¨2';
+        entry = entry.replace(/^- (.*)/gm, (match, content) => {
+            return '¨1' + this.hashHtmlCode(`<li>${content}</li>`) + '¨2';
         });
         return this.encloseList(entry);
     }
 
     encloseList(entry) {
         entry = entry.replace(/¨2(?:\r\n|\r|\n)¨1/gm, '');
-        return entry.replace(/¨1(.+)¨2/gm, (match, p1) => {
-            return this.hashHtmlCode(`<ul>${p1}</ul>`);
+        return entry.replace(/¨1(.+)¨2/gm, (match, hashedLiContent) => {
+            return this.hashHtmlCode(`<ul>${hashedLiContent}</ul>`);
         });
     }
 
     parseStep(entry) {
-        return entry.replace(/^-Step (.+)/gm, (match, p1) => {
-            return this.hashHtmlCode(`<p class="step">${p1}</p>`);
+        return entry.replace(/^-Step (.+)/gm, (match, content) => {
+            return this.hashHtmlCode(`<p class="step">${content}</p>`);
         });
     }
 
@@ -168,11 +176,11 @@ class MarkdownConverter {
 
     unHashHtmlCode(entry) {
         const htmlHashedBlockRegExp = /PTJ-md(.*?)md-PTJ/gm;
-        return entry.replace(htmlHashedBlockRegExp, (match, p1) => {
-            if (this.htmlBlocks[p1].match(htmlHashedBlockRegExp)) {
-                return this.unHashHtmlCode(this.htmlBlocks[p1]);
+        return entry.replace(htmlHashedBlockRegExp, (match, hashedBlockId) => {
+            if (this.htmlBlocks[hashedBlockId].match(htmlHashedBlockRegExp)) {
+                return this.unHashHtmlCode(this.htmlBlocks[hashedBlockId]);
             }
-            return this.htmlBlocks[p1];
+            return this.htmlBlocks[hashedBlockId];
         });
     }
 }
