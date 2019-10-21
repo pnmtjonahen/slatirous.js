@@ -13,12 +13,14 @@ describe('Test code block generation', () => {
     var result = markdownConverter.toHtml("id1", '```code\n\n<html></html>\n\n```');
     expect(result).toEqualCaseInsensitive(`<div class="blog"><pre class="code">
 &lt;html&gt;&lt;/html&gt;
+
 </pre></div>`);
   });
   it('parse code plain html', () => {
     var result = markdownConverter.toHtml("id1", '```\n\n<html></html>\n\n```');
     expect(result).toEqualCaseInsensitive(`<div class="blog"><pre >
 &lt;html&gt;&lt;/html&gt;
+
 </pre></div>`);
   });
 });

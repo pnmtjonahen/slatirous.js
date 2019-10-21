@@ -73,8 +73,8 @@ class MarkdownConverter {
     }
 
     parseImg(entry) {
-        const inlineImgRegEx = /!\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d|auto]+[A-Za-z%]{0,4})x([*\d|auto]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/gm;
-        return entry.replace(inlineImgRegEx, (match, alt, unused1, src, rawWidth, rawHeight, unused2, title) => {
+        const inlineImgRegEx = /!\[([^\]]*?)][ \t]*\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d|auto]+[A-Za-z%]{0,4})x([*\d|auto]+[A-Za-z%]{0,4}))?[ \t]*(?:["']([^"]*?)["'])?[ \t]?\)/gm;
+        return entry.replace(inlineImgRegEx, (match, alt, src, rawWidth, rawHeight, title) => {
             const style = this.determineStyle(rawWidth, rawHeight);
             return this.hashHtmlCode(`<div class="blog"><img src="${src}" alt="${alt}" class="blog"${style}${title ? ` title="${title}"` : ''}/></div>`);
         });
@@ -85,7 +85,7 @@ class MarkdownConverter {
         const height = this.getSize(rawHeight);
         if (rawWidth && rawHeight) {
             return ` style="width:${width}; height:${height}"`;
-        }    
+        }
         return '';
     }
 
@@ -103,24 +103,20 @@ class MarkdownConverter {
     }
 
     parseLink(entry) {
-        const inlineLinkRegEx = /\[([^\]]*?)][ \t]*()\([ \t]?<?([\S]+?(?:\([\S]*?\)[\S]*?)?)>?(?: =([*\d]+[A-Za-z%]{0,4})x([*\d]+[A-Za-z%]{0,4}))?[ \t]*(?:(["'])([^"]*?)\6)?[ \t]?\)/gm;
-        return entry.replace(inlineLinkRegEx, (match, content, unused, href) => {
+        return entry.replace(/\[(.*)\]\((.*)\)/gm, (match, content, href) => {
             return this.hashHtmlCode(`<a href="${href}" target="_blank">${content ? content : href}</a>`);
         });
     }
 
     parseCode(entry) {
-        return entry.replace(/(?:^|\n)(?: {0,3})(```+)(?: *)([^\s`]*)\n([\s\S]*?)\n(?: {0,3})\1/gm, (match, unused, codeClass, rawContent) => {
-            const content = this.htmlEncodeXml(rawContent.replace(/^([ \t]*)/g, '')
-                    .replace(/[ \t]*$/g, ''));
+        return entry.replace(/^```([^\s`]*)\n([\s\S]*?)```/gm, (match, codeClass, rawContent) => {
+            const content = this.htmlEncodeXml(rawContent.replace(/^([ \t]*)/g, '').replace(/[ \t]*$/g, ''));
             return this.hashHtmlCode(`<pre ${codeClass ? `class="${codeClass}"` : ''}>${content}</pre>`);
         });
     }
 
     htmlEncodeXml(text) {
-        return text.replace(/<(?![a-z/?$!])/gi, '&lt;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;');
+        return text.replace(/<(?![a-z/?$!])/gi, '&lt;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
 
     parseList(entry) {
@@ -170,7 +166,7 @@ class MarkdownConverter {
     }
 
     hashHtmlCode(html) {
-        // hash the parsed html code and put it between tags. this will prevent other parser to reparse this already correct html
+        // hash the parsed html code and put it between special markers. this will prevent other parser to re-parse this already correct html
         return "PTJ-md" + (this.htmlBlocks.push(html) - 1) + "md-PTJ";
     }
 
