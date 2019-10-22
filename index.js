@@ -32,10 +32,12 @@ class IndexView {
     }
 
     determineInitialBlog() {
-        const bookmarkRegExp = /(.*?)#([a-zA-Z0-9]*)_?.*/;
+        // const bookmarkRegExp = /(.*?)#([a-zA-Z0-9]*)_?.*/;
+        const bookmarkRegExp = /(?:.*?)\?blog=([a-zA-Z0-9]*)(?:#([a-zA-Z0-9]*))?/;
 
         if (window.location.href.match(bookmarkRegExp)) {
-            let id = window.location.href.replace(bookmarkRegExp, (match, p1, p2) => p2);
+            let id = window.location.href.replace(bookmarkRegExp, (match, blogId) => blogId);
+            // TODO: Jump to bookmark
             const blog = this.blogs.filter(e => e.id === id)[0];
             return blog === undefined ? this.blogs[0] : blog;
         }
@@ -88,7 +90,7 @@ class IndexView {
     }
 
     setBlog(blog) {
-        document.location = '#' + blog.id;
+        window.history.replaceState("blog", blog.title, '?blog=' + blog.id);
         // insert new html snippet using back ticks notation and a dynamic template element
         const div = this.htmlTemplate(`<div class="w3-card-4 w3-margin w3-white">
   <div class="w3-container">

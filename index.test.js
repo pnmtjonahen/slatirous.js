@@ -48,7 +48,7 @@ describe('Index', () => {
         const flushPromises = () => new Promise(setImmediate);
         new IndexView();
         await flushPromises();
-        expect(window.location.href === 'http://localhost/#id1').toBeTrue();
+        expect(window.location.href === 'http://localhost/?blog=id1').toBeTrue();
         expect(document.getElementById('blog')).toBeInTheDocument();
     });
 
@@ -70,7 +70,7 @@ describe('Index', () => {
         const flushPromises = () => new Promise(setImmediate);
         new IndexView();
         await flushPromises();
-        expect(window.location.href === 'http://localhost/#id1').toBeTrue();
+        expect(window.location.href === 'http://localhost/?blog=id1').toBeTrue();
         const accordion = document.getElementsByClassName("accordion");
         expect(document.getElementById("panel")).toBeVisible();
         expect(accordion[0].innerHTML).toEqualCaseInsensitive("More...");
@@ -107,15 +107,15 @@ describe('Index', () => {
         const flushPromises = () => new Promise(setImmediate);
         new IndexView();
         await flushPromises();
-        expect(window.location.href === 'http://localhost/#id1').toBeTrue();
+        expect(window.location.href === 'http://localhost/?blog=id1').toBeTrue();
         document.getElementById('id2').click();
         await flushPromises();
-        expect(window.location.href === 'http://localhost/#id2').toBeTrue();
+        expect(window.location.href === 'http://localhost/?blog=id2').toBeTrue();
         expect(document.getElementById('blog')).toBeInTheDocument();
     });
 
     it('should load second blog', async () => {
-        window.location.href = '#id2';
+        window.location.href = '?blog=id2';
         fetch.mockResponseOnce(JSON.stringify([{
                 id: 'id1',
                 title: 'TEST BLOG',
@@ -138,7 +138,7 @@ describe('Index', () => {
         const flushPromises = () => new Promise(setImmediate);
         new IndexView();
         await flushPromises();
-        expect(window.location.href === 'http://localhost/#id2').toBeTrue();
+        expect(window.location.href === 'http://localhost/?blog=id2').toBeTrue();
 
     });
 
@@ -188,6 +188,6 @@ describe('Index', () => {
         await flushPromises();
         const blog = document.getElementById('blog');
         expect(blog.childElementCount === 1).toBeTrue();
-        expect(window.location.href === 'http://localhost/#id1').toBeTrue();
+        expect(window.location.href === 'http://localhost/?blog=id1').toBeTrue();
     });
 });

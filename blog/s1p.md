@@ -316,12 +316,18 @@ Shouldn't our test classes and test methods have a clear and meaningful name?
 
 Random ordering your test methods using @TestMethodOrder(Random.class) to make sure that there is no dependency between different test methods sounds like plan.
 
-@Timeout annotation to test for long running methods and have a timeout if they take to long. So we could make sure that a method will not run longer that x seconds.
+@Timeout annotation to test for long running methods and have a timeout if they take to long. So we could make sure that a method will not run longer that x seconds. 
 
+###### Spring
+Jupiter also works for older 4.x spring framework, not official supported but it works. Also the SpringBoot test annotations already include the jupiter extension annotations, no extra annotation is needed.
 
 ### 12:30pm–1:00pm Spring Cloud Gateway for Stateless Microservice Authorization
+Chris Jackson, Saravana Prarmasivam
 
-// TODO
+Starting with a migration from monolith to microserver, in particular security aspects like authentication and authorization. How did they solve it at Ameritrade.
+Lots of pro/cons of all kind of solutions bud eventual ended up with an API gateway with Spring Cloud Gateway.
+
+Use Open Id Connect and/or OAuth based authentication using JWT tokens.
 
 ### Lady Bird Lake Hike-and-Bike Trail
 
