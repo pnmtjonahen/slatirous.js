@@ -9,7 +9,6 @@
     "tags": ["Java", "Lambda", "Kenny", "Speak"]
   },
   {
-    "hide":true,
     "id": "fizzbuzz",
     "title": "Functional FizzBuzz",
     "description": "Functional FizzBuzz with java and javascript",
