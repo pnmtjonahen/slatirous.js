@@ -90,6 +90,10 @@ describe('Test anchor tag generation', () => {
     expect(markdownConverter.toHtml("id1",'[![img](img.jpg =autox100%)](img.html)'))
       .toEqualCaseInsensitive(`<div class="blog"><a href="img.html" target="_blank"><div class="blog"><img src="img.jpg" alt="img" class="blog" style="width:auto; height:100%"/></div></a></div>`);
   });
+  it('parse link with () in text', () => {
+    expect(markdownConverter.toHtml("id1",'[link](img.html) (post test)'))
+      .toEqualCaseInsensitive(`<div class="blog"><a href="img.html" target="_blank">link</a> (post test)</div>`);
+  });
 });
 describe('Test ul/li generation', () => {
   it('parse list, single list', () => {

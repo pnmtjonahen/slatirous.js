@@ -103,7 +103,7 @@ class MarkdownConverter {
     }
 
     parseLink(entry) {
-        return entry.replace(/\[(.*)\]\((.*)\)/gm, (match, content, href) => {
+        return entry.replace(/\[(.*)\]\((.*?)\)/gm, (match, content, href) => {
             return this.hashHtmlCode(`<a href="${href}" target="_blank">${content ? content : href}</a>`);
         });
     }
