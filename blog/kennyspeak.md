@@ -39,7 +39,7 @@ public String decode(final String input) {
 }
 ```
 
-### The alfabet
+### The alphabet
 ```code
 private static final String[] KENNYLETTERS = {"mmm", "mmp", "mmf", "mpm",
     "mpp", "mpf", "mfm", "mfp", "mff", "pmm", "pmp", "pmf", "ppm",

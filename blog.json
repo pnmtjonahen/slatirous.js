@@ -1,4 +1,14 @@
 [{
+  "hide":true,
+  "id": "wifilocation",
+  "title": "The Case of the walking printer",
+  "description": "Can we do triangular location with wifi signals",
+  "date": "Dec, 2019",
+  "imageurl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Logo_WiFi.svg/260px-Logo_WiFi.svg.png",
+  "imagealt": "wifi",
+  "tags": ["Java", "PI"]
+  },
+  {
     "hide":true,
     "id": "kennyspeak",
     "title": "Java8 Lambda kenny speak",
