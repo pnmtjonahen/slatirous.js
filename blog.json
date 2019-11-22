@@ -73,6 +73,7 @@
     "tags": ["photo", "analog", "ion", "pis2sd", "canon", "f9000markII"]
   },
   {
+    "hide":true,
     "id": "restjpa",
     "title": "REST with JPA",
     "description": "Beautifull REST api with dynamic queries",
