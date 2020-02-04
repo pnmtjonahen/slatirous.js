@@ -82,7 +82,7 @@ where v is the value from which we take to dates. Something like '2019-01-01,201
 
 -Step is to generate the JPA model classes.
 
-So where does this FinStatement_ class come from? The actual API defines it as being a SingularAttribute<? super X, Y>. It s part of the JPA model generated classes. To generate this model I'll use a maven plugin.
+So where does this FinStatement_ class come from? The actual API defines it as being a SingularAttribute<? super X, Y>. It is part of the JPA model generated classes. To generate this model I'll use a maven plugin.
 
 ```code
 <plugin>
@@ -210,7 +210,7 @@ Last thing I did was rewrite the map as a enumeration.
 ```code
 public enum PredicateField {
 
-    CODE((cb, r, v) -> cb.equal(r.get(FinStatement_.beneficiaryaccount), v)),
+    ACCOUNT((cb, r, v) -> cb.equal(r.get(FinStatement_.beneficiaryaccount), v)),
     DATE((cb, r, v) -> cb.between(r.get(FinStatement_.creationdate), toFirstDate(v), toSecondDate(v)));
 
     private final PredicateSupplier ps;
