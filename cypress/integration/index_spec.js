@@ -1,6 +1,6 @@
 describe('Slatirous Blogging', function() {
   it('Visits the index blog and open about', function() {
-    cy.visit('http://blog.tjonahen.nl')
+    cy.visit('http://localhost:8080')
 
     cy.get('#about').click()
 
@@ -8,7 +8,7 @@ describe('Slatirous Blogging', function() {
   })
 
   it('Visits the book marked about page', function() {
-    cy.visit('http://blog.tjonahen.nl/?blog=about')
+    cy.visit('http://localhost:8080/?blog=about')
 
     cy.url().should('include', '?blog=about')
   })
