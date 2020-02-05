@@ -47,7 +47,7 @@ test:
 
 # integration tests using cypress
 it-test:
-  stage: test
+  stage: it-test
   script:
     # print CI environment variables for reference
     - $(npm bin)/print-env CI
