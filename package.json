@@ -49,6 +49,7 @@
   },
   "jest": {
     "testURL": "http://localhost",
+    "testPathIgnorePatterns": ["<rootDir>/cache/", "<rootDir>/node_modules/"],
     "automock": false,
     "setupFiles": [
       "./setupJest.js"
