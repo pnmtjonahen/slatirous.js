@@ -1,0 +1,61 @@
+image: cypress/base:10
+
+# first, install Cypress, then run all tests (in parallel)
+stages:
+  - setup
+  - build
+  - test
+  - it-test
+
+# to cache both npm modules and Cypress binary we use environment variables
+# to point at the folders we can list as paths in "cache" job settings
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+
+# cache using branch name
+# https://gitlab.com/help/ci/caching/index.md
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+    - cache/Cypress
+    - node_modules
+
+# this job installs NPM dependencies and Cypress
+setup:
+  stage: setup
+  script:
+    - npm ci
+    # check Cypress binary path and cached versions
+    # useful to make sure we are not carrying around old versions
+    - npx cypress cache path
+    - npx cypress cache list
+    - $(npm bin)/print-env CI
+    - npm run cy:verify
+
+build:
+  stage: build
+  script:
+    - npm run build
+
+# unit testing
+test:
+  stage: test
+  script:
+    - npm run test
+
+# integration tests using cypress
+it-test:
+  stage: test
+  script:
+    # print CI environment variables for reference
+    - $(npm bin)/print-env CI
+    # start the server in the background and run all cypress tests
+    - npm run test:ci
+  artifacts:
+    when: always
+    paths:
+      - cypress/videos/**/*.mp4
+      - cypress/screenshots/**/*.png
+    expire_in: 1 day
