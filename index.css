@@ -133,3 +133,8 @@ blockquote {
   color: #6a737d;
   border-left: .25em solid #dfe2e5;
 }
+
+img.post {
+  width:50px;
+  max-height: 90px;
+}

@@ -1,4 +1,24 @@
 [{
+  "hide":false,
+  "id": "k3s",
+  "title": "K3S lightweight kubernates?",
+  "description": "Install K3s on RaspberryPi's and deploy a microservice",
+  "date": "Jul, 2020",
+  "imageurl": "https://lh3.googleusercontent.com/pw/ACtC-3cXsLFmus5zE3cQOG4wvx1s2D8hN2rnBB4dNY34tfcWJ8GKAY83fmP1hyKQRwir02xCp1pfpynhXu_9kqrOsvjnFZaBrD4yXHNPoLT-zHugW34AF-YKgPQ9SxV9eNiESqYOgB_zyaggOlltqkELCPOIOQ=w475-h949-no?authuser=0",
+  "imagealt": "my cluster",
+  "tags": ["k3s", "kubernates", "rpi", "RaspberryPi", "arm", "docker"]
+  },
+  {
+  "hide":false,
+  "id": "gcd",
+  "title": "Git Change Directory",
+  "description": "A cd command for git projects.",
+  "date": "Mar, 2020",
+  "imageurl": "https://git-scm.com/images/logo@2x.png",
+  "imagealt": "git",
+  "tags": ["git", "cd"]
+  },
+  {
   "hide":true,
   "id": "wifilocation",
   "title": "The Case of the walking printer",
@@ -9,7 +29,6 @@
   "tags": ["Java", "PI"]
   },
   {
-    "hide":true,
     "id": "kennyspeak",
     "title": "Java8 Lambda kenny speak",
     "description": "Kenny Speak with java8 and lambda's",
@@ -73,7 +92,6 @@
     "tags": ["photo", "analog", "ion", "pis2sd", "canon", "f9000markII"]
   },
   {
-    "hide":true,
     "id": "restjpa",
     "title": "REST with JPA",
     "description": "Beautifull REST api with dynamic queries",

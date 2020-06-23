@@ -12,6 +12,7 @@ class MarkdownConverter {
         this.baseId = id;
 
         entry = this.parseCode(entry);
+        entry = this.parseInlineCode(entry);
         entry = this.parseComments(entry);
         entry = this.parseImg(entry);
         entry = this.parseLink(entry);
@@ -112,6 +113,12 @@ class MarkdownConverter {
         return entry.replace(/^```([^\s`]*)\n([\s\S]*?)```/gm, (match, codeClass, rawContent) => {
             const content = this.htmlEncodeXml(rawContent.replace(/^([ \t]*)/g, '').replace(/[ \t]*$/g, ''));
             return this.hashHtmlCode(`<pre ${codeClass ? `class="${codeClass}"` : ''}>${content}</pre>`);
+        });
+    }
+    parseInlineCode(entry) {
+        return entry.replace(/`([^\s`]*)`/gm, (match, rawContent) => {
+            const content = this.htmlEncodeXml(rawContent.replace(/^([ \t]*)/g, '').replace(/[ \t]*$/g, ''));
+            return this.hashHtmlCode(`<code>${content}</code>`);
         });
     }
 

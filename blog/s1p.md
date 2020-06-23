@@ -277,7 +277,7 @@ With the demo they showed all of the above. One side note it all is still in bet
 After the last session we went to see the bats.
 ![bat](https://lh3.googleusercontent.com/MDp-OqNn7L92TPtr0lmNA2SSLOY89jEeLtxwSnRGzC0brb9gkIZJk3W7yAItJfSYaeGRC3Ban54QDk_l-EOLFSeRbjwlE5RDcGrP56rqT4Pcfe8RGjwa0ihLFgdN50Aq0MfAvLqR2S4b_99wZ45dlaHCa6udhwfLXSviDps3uUr1C6J-aUxA8kI20pK-S4HtuLCmSCTrupIFuohAEvNfSyCWQ4A5-eDhK5na5gCOMqOe3zX0a0gfjSC5pIElAK-9wdDRM0ZzZHiPCagu-MULMe-yKKbh-Ri85dXeMSn_phiU-xf1oNttuev-USQhrSaBuUjpRSsU9ZDvpP2sPwKG6ReTgSM2MMFJ5MzRKKSfOmpPptyLLeC_MekuUJl0de2oipxZVyIue1XH8V-t4amIWkPOa5D1HErTqsBsDikRjXLzoHMEnawTPdpKfoy0U-euJSoAzkzSBGVjvZvfpKuRNYtMC5Q-wIChQbGQ0AfYQA1878PrbOfe6v6_3OGz6idrPKCnmpOShm-8-TqdSpnDv4Aty3e0SqbigUPVOQazRTQuLBP7oEsv0ggympu7Skra5kxQdV9JK06tN883WrLRg9dgIL3vTb1K9czb0ijk8qyOklFupWSCtFAhWe-IjmvJ3B_GD8Znzyd3lf3gesrA_EMr4_7hiMGnPQSgM2G30zL6xASwr4xhq-Qjz5rAh_MUQNBncF4VxlWvGWaBtb6-eKovqvwYNe2IURWEy2_Iod-fDiZjLw=w640-h480-no )
 
-Unfortunately the was to much wind and after almost 3 hours waiting we gave up. Fortunately there was a guy with a night vision (infrared) scope, So we did see them only where not able to take pictures. Maybe tomorrow.  
+Unfortunately the was to much wind and after almost 3 hours waiting we gave up. Fortunately there was a guy with a night vision (infrared) scope, So we did see them only where not able to take pictures. Maybe tomorrow. 
 
 <<<
 
